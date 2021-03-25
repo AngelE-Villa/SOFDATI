@@ -6,6 +6,7 @@
 package Modelo;
 
 public class Cliente extends Persona{
-   String idCliente;  
+   String idCliente;
+   String cedula_pe;
    
 }
