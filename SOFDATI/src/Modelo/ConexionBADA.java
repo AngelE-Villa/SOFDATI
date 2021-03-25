@@ -22,7 +22,7 @@ public class ConexionBADA {
     private Statement st;
     
     private String CadenaConexion="jdbc:postgresql://localhost:5432/sofdati";
-    private String usuario="postgres";
+    private String user="postgres";
     private String password="Angel0906@";
 
     public ConexionBADA() {
@@ -32,7 +32,7 @@ public class ConexionBADA {
             Logger.getLogger(ConexionBADA.class.getName()).log(Level.SEVERE, null, ex);
         }
         try {
-            con=DriverManager.getConnection( CadenaConexion, usuario, password);
+            con=DriverManager.getConnection( CadenaConexion, user, password);
         } catch (SQLException ex) {
             Logger.getLogger(ConexionBADA.class.getName()).log(Level.SEVERE, null, ex);
         }
