@@ -70,7 +70,7 @@ public class ModeloVehiculo extends Vehiculo {
 
     public static List<Vehiculo> BuscarVehiculo(String aguja) {
         try {
-            String query = "SELECT * FROM vehiculo WHERE matricula ='" + getMatricula + "';";
+            String query = "SELECT * FROM vehiculo WHERE matricula ='" + aguja + "';";
             ResultSet rs = con.query(query);
             List<Vehiculo> lista = new ArrayList<Vehiculo>();
 

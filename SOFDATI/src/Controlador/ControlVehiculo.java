@@ -11,6 +11,6 @@ package Controlador;
  */
 public class ControlVehiculo {
 //Atributos
-    private ModeloVehiculo String;
+//    private ModeloVehiculo String;
 //Metodos   
 }

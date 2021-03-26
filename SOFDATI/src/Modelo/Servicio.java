@@ -24,6 +24,10 @@ public class Servicio {
 
     public Servicio() {
     }
+
+    public Servicio(String codservicio) {
+        this.codservicio = codservicio;
+    }
     
     public Servicio(String codservicio, Date fechaServicio, double km_llegada, double km_salida, String codvehiculo, String codempleado, String codcliente, String codciudad) {
         this.codservicio = codservicio;
