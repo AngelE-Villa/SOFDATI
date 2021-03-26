@@ -11,5 +11,6 @@ package Controlador;
  */
 public class ControlVehiculo {
 //Atributos
-String RAM,Matricula;   
+    private ModeloVehiculo String;
+//Metodos   
 }
