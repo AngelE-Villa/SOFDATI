@@ -61,7 +61,6 @@ public class Control_Servicio {
                 CargarLista(vistaS.getTxtbuscarS().getText());
             }
         };
-
         vistaS.getBtnactualizar().addActionListener(l -> CargarLista(""));
 
         vistaS.getBtnnuevoS().addActionListener(l -> {
@@ -124,7 +123,7 @@ public class Control_Servicio {
     private void MuestraDialogo() {
         vistaS.getDialogoServicio().setVisible(true);
         vistaS.getDialogoServicio().setTitle("NUEVO SERVICIO");
-        vistaS.getDialogoServicio().setSize(650, 400);
+        vistaS.getDialogoServicio().setSize(450, 600);
         vistaS.getTxtcodServicio().setText("");
         vistaS.getTxtidcliente().setText("");
         vistaS.getTxtJfechaServicio().setCalendar(null);

@@ -36,7 +36,7 @@ public class Modelo_Servicio extends Servicio {
     public boolean Grabar_Servicio() {
 
         String sql;
-        sql = "INSERT INTO servicio (km_salida,km_llegada,cod_cuidad_s,cod_cliente_s,cod_empleado_s,fecha_servicio,cod_vehiculo_s,cod_servicio)";
+        sql = "INSERT INTO servicio (km_salida,km_llegada,cod_ciudad_s,cod_cliente_s,cod_empleado_s,fecha_servicio,cod_vehiculo_s,cod_servicio)";
         sql += "VALUES ('" + getKm_salida() + "','" + getKm_llegada() + "','" + getCodciudad() + "','" + getCodcliente() + "',"
                 + "'" + getCodempleado() + "','" + getFechaServicio() + "','" + getCodvehiculo() + "','" + getCodservicio()+ "')";
         if (con.noQuery(sql) == null) {
@@ -47,7 +47,6 @@ public class Modelo_Servicio extends Servicio {
     }
     
     public static List<Servicio> ListarServicios(String buscar) {
-
         try {
             String query = "SELECT * FROM servicio WHERE UPPER(cod_servicio) LIKE UPPER('" + buscar + "%') "
                     + "OR UPPER(cod_vehiculo_s) LIKE UPPER('" + buscar + "%') OR UPPER(cod_empleado_s) LIKE UPPER('" + buscar + "%') "
@@ -63,7 +62,6 @@ public class Modelo_Servicio extends Servicio {
                 servicio.setCodempleado(rs.getString("cod_servicio"));
                 servicio.setCodcliente(rs.getString("cod_cliente_s"));
                 servicio.setCodciudad(rs.getString("cod_ciudad_s"));
-                
                 servicio.setKm_llegada(rs.getDouble("km_llegada"));
                 servicio.setKm_salida(rs.getDouble("km_salida"));
 
@@ -78,7 +76,7 @@ public class Modelo_Servicio extends Servicio {
     }
     
     public boolean ValidarServicio() throws SQLException {
-        String query = "SELECT cod_servicio FROM servicio WHERE idpersona='" + getCodservicio() + "';";
+        String query = "SELECT * FROM servicio WHERE cod_servicio='" + getCodservicio() + "';";
         ResultSet rs = con.query(query);
         if (rs.next()) {
             return true;
