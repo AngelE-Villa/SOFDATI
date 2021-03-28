@@ -5,8 +5,11 @@
  */
 package Sofdati;
 
+import Controlador.Control_Cliente;
 import Controlador.Control_Servicio;
+import Modelo.ModeloCliente;
 import Modelo.Modelo_Servicio;
+import Vista.Vista_Cliente;
 import Vista.Vista_Servicio;
 
 /**
@@ -20,5 +23,10 @@ public class Main_Sofdati {
         Control_Servicio cs=new Control_Servicio(vs, ms);
         cs.iniciarControl();
         cs.CargarLista("");
+        Vista_Cliente vc = new Vista_Cliente();
+        ModeloCliente mc = new ModeloCliente();
+        Control_Cliente cc=new Control_Cliente(mc, vc);
+        cc.InicioControl();
+        cc.CargarLista("");
     }
 }
