@@ -14,12 +14,18 @@ public class Empleado extends Persona{
     private String cargo;
     private Image foto;
 
-    public Empleado(String cod_empleado, Double sueldo, String cargo, Image foto, String cedula, String nombre, String apellido, Date fnacimineto, String direccion, String telefono) {
+    public Empleado() {
+    }
+
+    public Empleado(String cedula) {
+        super(cedula);
+    }
+
+    public Empleado(String cod_empleado, Double sueldo, String cargo, String cedula, String nombre, String apellido, Date fnacimineto, String direccion, String telefono) {
         super(cedula, nombre, apellido, fnacimineto, direccion, telefono);
         this.cod_empleado = cod_empleado;
         this.sueldo = sueldo;
         this.cargo = cargo;
-        this.foto = foto;
     }
 
     public String getCod_empleado() {

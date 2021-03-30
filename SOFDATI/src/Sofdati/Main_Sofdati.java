@@ -5,12 +5,8 @@
  */
 package Sofdati;
 
-import Controlador.Control_Cliente;
-import Controlador.Control_Servicio;
-import Modelo.ModeloCliente;
-import Modelo.Modelo_Servicio;
-import Vista.Vista_Cliente;
-import Vista.Vista_Servicio;
+import Controlador.Control_Principal;
+import Vista.Principal;
 
 /**
  *
@@ -18,15 +14,9 @@ import Vista.Vista_Servicio;
  */
 public class Main_Sofdati {
     public static void main(String[] args) {
-//        Vista_Servicio vs=new Vista_Servicio();
-//        Modelo_Servicio ms=new Modelo_Servicio();
-//        Control_Servicio cs=new Control_Servicio(vs, ms);
-//        cs.iniciarControl();
-//        cs.CargarLista("");
-        Vista_Cliente vc = new Vista_Cliente();
-        ModeloCliente mc = new ModeloCliente();
-        Control_Cliente cc=new Control_Cliente(mc, vc);
-        cc.InicioControl();
-        cc.CargarLista("");
+        Principal p=new Principal();
+        Control_Principal cp=new Control_Principal(p);
+        cp.Inicia_Control();
+        
     }
 }

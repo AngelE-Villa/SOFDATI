@@ -109,12 +109,11 @@ public class ModeloCliente extends Cliente{
         }
     }
     
-    public List<Cliente> BuscarporID(String busqueda) {
+    public List<Cliente> BuscarporID(String id) {
         try {
             String query = "select cli.cod_cliente,p.cedula,p.nombre,p.apellido,p.fechanacimiento,p.direccion,p.telefono" +
-            " from cliente cli join persona p on p.cedula=cli.cedula_pe where "
-                    + "cli.cod_cliente = '" + busqueda + "' or cli.cedula_pe= '"+busqueda+"'";
-
+            " from cliente cli join persona p on p.cedula=cli.cedula_pe where ";
+            query += "UPPER(p.cedula) LIKE UPPER('%" + id + "%') ";
             ResultSet rs = con.query(query);
             List<Cliente> lista = new ArrayList<Cliente>();
             while (rs.next()) {
@@ -127,7 +126,7 @@ public class ModeloCliente extends Cliente{
                 c.setDireccion(rs.getString("direccion"));
                 c.setTelefono(rs.getString("telefono"));
                 lista.add(c);
-            }   
+            }
             rs.close();
             return lista;
         } catch (SQLException ex) {

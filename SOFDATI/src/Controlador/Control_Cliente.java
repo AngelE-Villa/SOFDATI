@@ -188,6 +188,7 @@ public class Control_Cliente {
             for (int i = 0; i < c.size(); i++) {
                 Cliente cli = c.get(i);
                 MostrarDialog();
+                vista.getDialogCliente().setTitle("EDITAR CLIENTE");
                 vista.getTxtidCliente().setVisible(true);
                 vista.getTxtid().setVisible(true);
                 vista.getTxtidCliente().setText(cli.getIdCliente());
