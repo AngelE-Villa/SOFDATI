@@ -18,11 +18,11 @@ import Vista.Vista_Servicio;
  */
 public class Main_Sofdati {
     public static void main(String[] args) {
-        Vista_Servicio vs=new Vista_Servicio();
-        Modelo_Servicio ms=new Modelo_Servicio();
-        Control_Servicio cs=new Control_Servicio(vs, ms);
-        cs.iniciarControl();
-        cs.CargarLista("");
+//        Vista_Servicio vs=new Vista_Servicio();
+//        Modelo_Servicio ms=new Modelo_Servicio();
+//        Control_Servicio cs=new Control_Servicio(vs, ms);
+//        cs.iniciarControl();
+//        cs.CargarLista("");
         Vista_Cliente vc = new Vista_Cliente();
         ModeloCliente mc = new ModeloCliente();
         Control_Cliente cc=new Control_Cliente(mc, vc);

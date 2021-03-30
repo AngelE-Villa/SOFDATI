@@ -50,7 +50,7 @@ public class Vista_Detalle extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGap(0, 313, Short.MAX_VALUE)
         );
 
         pack();

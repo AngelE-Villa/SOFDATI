@@ -16,6 +16,10 @@ public class Cliente extends Persona{
    public Cliente(){
        
    }
+
+    public Cliente(String cedula) {
+        super(cedula);
+    }
     public Cliente(String idCliente, String cedula, String nombre, String apellido, Date fnacimineto, String direccion, String telefono) {
         super(cedula, nombre, apellido, fnacimineto, direccion, telefono);
         this.idCliente = idCliente;
