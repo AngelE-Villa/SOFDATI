@@ -13,45 +13,47 @@ import Vista.Vista_Servicio;
  * @author Usuario
  */
 public class Control_Principal {
+
     Principal principal;
 
     public Control_Principal(Principal principal) {
         this.principal = principal;
         this.principal.setVisible(true);
     }
-    
-    public void Inicia_Control(){
-        principal.getBtnclientes().addActionListener(l->Abrir_Clientes());
-        principal.getBtnEmpleadoP().addActionListener(l->Abrir_Empleados());
-        principal.getBtnServicio().addActionListener(l->Abrir_Servicios());
+
+    public void Inicia_Control() {
+        principal.getBtnclientes().addActionListener(l -> Abrir_Clientes());
+        principal.getBtnEmpleadoP().addActionListener(l -> Abrir_Empleados());
+        principal.getBtnServicio().addActionListener(l -> Abrir_Servicios());
     }
-    
-    public void Abrir_Clientes(){
+
+    public void Abrir_Clientes() {
         Vista_Cliente vc = new Vista_Cliente();
         ModeloCliente mc = new ModeloCliente();
         principal.getPantalla().add(vc);
-        Control_Cliente cc=new Control_Cliente(mc, vc);
+        Control_Cliente cc = new Control_Cliente(mc, vc);
         cc.InicioControl();
         cc.CargarLista("");
-        
+
     }
-    
-    public void Abrir_Empleados(){
+
+    public void Abrir_Empleados() {
         Vista_Empleado ve = new Vista_Empleado();
         Modelo_Empleado me = new Modelo_Empleado();
         principal.getPantalla().add(ve);
-        Control_Empleado ce=new Control_Empleado(ve, me);
+        Control_Empleado ce = new Control_Empleado(ve, me);
         ce.InicioControl();
         ce.CargarLista("");
     }
-    
-    public void Abrir_Servicios(){
-        Vista_Servicio vs=new Vista_Servicio();
-        Modelo_Servicio ms=new Modelo_Servicio();
+
+    public void Abrir_Servicios() {
+        Vista_Servicio vs = new Vista_Servicio();
+        Modelo_Servicio ms = new Modelo_Servicio();
         principal.getPantalla().add(vs);
-        Control_Servicio cs=new Control_Servicio(vs, ms);
+        Control_Servicio cs = new Control_Servicio(vs, ms);
         cs.iniciarControl();
         cs.CargarLista("");
-        
+
     }
+
 }

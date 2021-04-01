@@ -9,7 +9,7 @@ package Vista;
  *
  * @author Usuario
  */
-public class Vista_Detalle extends javax.swing.JFrame {
+public class Vista_Detalle extends javax.swing.JInternalFrame {
 
     /**
      * Creates new form Vista_Detalle

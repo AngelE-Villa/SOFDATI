@@ -19,7 +19,7 @@ import javax.swing.JTextField;
  *
  * @author User
  */
-public class Vista_Cliente extends javax.swing.JFrame {
+public class Vista_Cliente extends javax.swing.JInternalFrame {
 
     /**
      * Creates new form Vista_Cliente
@@ -76,13 +76,6 @@ public class Vista_Cliente extends javax.swing.JFrame {
         this.btnNuevocli = btnNuevocli;
     }
 
-    public JInternalFrame getjInternalFrame1() {
-        return jInternalFrame1;
-    }
-
-    public void setjInternalFrame1(JInternalFrame jInternalFrame1) {
-        this.jInternalFrame1 = jInternalFrame1;
-    }
 
 
     public JLabel getLblMensaje() {
