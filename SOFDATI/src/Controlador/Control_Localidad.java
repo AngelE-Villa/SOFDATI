@@ -53,7 +53,7 @@ public class Control_Localidad {
 
             @Override
             public void keyReleased(KeyEvent e) {
-                cargaLista(vista.getTxtBusquedaV1().getText());
+          //      cargaLista(vista.getTxtBusquedaV1().getText());
             }
         };
 
