@@ -15,7 +15,7 @@ import javax.swing.JTextField;
  *
  * @author Usuario
  */
-public class Vista_Vehiculo extends javax.swing.JInternalFrame {
+public class Vista_Vehiculo extends javax.swing.JFrame {
 
     /**
      * Creates new form Vista_Vehiculo

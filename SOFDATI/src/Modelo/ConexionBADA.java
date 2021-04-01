@@ -23,7 +23,7 @@ public class ConexionBADA {
     
     private String CadenaConexion="jdbc:postgresql://localhost:5432/sofdatibd";
     private String user="postgres";
-    private String password="1983";
+    private String password="1983@";
 
     public ConexionBADA() {
         try {

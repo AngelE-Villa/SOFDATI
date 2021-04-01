@@ -14,7 +14,7 @@ import javax.swing.JTextField;
  *
  * @author Usuario
  */
-public class Vista_Localidad extends javax.swing.JInternalFrame {
+public class Vista_Localidad extends javax.swing.JFrame {
 
     /**
      * Creates new form Vista_Localidad

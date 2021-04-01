@@ -19,7 +19,7 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.xml.ws.Holder;
-//import sun.swing.table.DefaultTableCellHeaderRenderer;
+import sun.swing.table.DefaultTableCellHeaderRenderer;
 
 
 public class Control_Empleado {
@@ -79,10 +79,10 @@ public class Control_Empleado {
     }
 
     public void CargarLista(String busqueda) {
-//        vista.getTblEmpleado().setDefaultRenderer(Object.class, new ImagenTabla());
-//        vista.getTblEmpleado().setRowHeight(100);
-//        DefaultTableCellRenderer renderer = new DefaultTableCellHeaderRenderer();
-
+        vista.getTblEmpleado().setDefaultRenderer(Object.class, new ImagenTabla());
+        vista.getTblEmpleado().setRowHeight(100);
+        DefaultTableCellRenderer renderer = new DefaultTableCellHeaderRenderer();
+        
         DefaultTableModel tblModel;
         tblModel = (DefaultTableModel) vista.getTblEmpleado().getModel();
         tblModel.setNumRows(0);//vaciar la tabla
@@ -105,7 +105,7 @@ public class Control_Empleado {
             if (img != null) {
                 Image newimg = img.getScaledInstance(100, 100, java.awt.Image.SCALE_SMOOTH);
                 ImageIcon icon = new ImageIcon(newimg);
-                //renderer.setIcon(icon);
+                renderer.setIcon(icon);
                 vista.getTblEmpleado().setValueAt(new JLabel(icon), i.value, 8);
             } else {
                 vista.getTblEmpleado().setValueAt(null, i.value, 8);

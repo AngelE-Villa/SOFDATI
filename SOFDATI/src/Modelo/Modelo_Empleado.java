@@ -135,7 +135,7 @@ public class Modelo_Empleado extends Empleado {
             query += "UPPER(p.nombre) LIKE UPPER('%" + busqueda + "%') OR ";
             query += "UPPER(p.apellido) LIKE UPPER('%" + busqueda + "%') OR ";
             query += "UPPER(p.cedula) LIKE UPPER('%" + busqueda + "%') OR ";
-            query += "UPPER(e.cod_empleado) LIKE UPPER('%" + busqueda + "%') OR ";
+            query += "UPPER(e.cod_empleado) LIKE UPPER('%" + busqueda + "%')";
             query += "UPPER(e.cargo) LIKE UPPER('%" + busqueda + "%')";
             ResultSet rs = con.query(query);
             List<Empleado> lista = new ArrayList<Empleado>();
