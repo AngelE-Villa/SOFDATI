@@ -17,10 +17,13 @@ public class Localidad {
     //Constructor
     public Localidad() {
     }
-    //Metodos
 
-    public Localidad(String cod_ciudad, String pais, String canton, String provincia) {
+    public Localidad(String cod_ciudad) {
         this.cod_ciudad = cod_ciudad;
+    }
+
+    //Metodos
+    public Localidad(String pais, String canton, String provincia) {
         this.pais = pais;
         this.canton = canton;
         this.provincia = provincia;

@@ -27,8 +27,12 @@ public class ModeloVehiculo extends Vehiculo {
     }
 
     //Metodos
-    public ModeloVehiculo(String ram_o_cpn, String matricula, String pais, String canton, String servicio_vehiculo, String color, int anio_modelo, float tonelaje, Date fecha_ultima_matricula, Date fecha_caducidad_matricula) {
-        super(ram_o_cpn, matricula, pais, canton, servicio_vehiculo, color, anio_modelo, tonelaje, fecha_ultima_matricula, fecha_caducidad_matricula);
+    public ModeloVehiculo(String matricula) {
+        super(matricula);
+    }
+
+    public ModeloVehiculo(String ram_o_cpn, String pais, String canton, String servicio_vehiculo, String color, int anio_modelo, float tonelaje, Date fecha_ultima_matricula, Date fecha_caducidad_matricula) {
+        super(ram_o_cpn, pais, canton, servicio_vehiculo, color, anio_modelo, tonelaje, fecha_ultima_matricula, fecha_caducidad_matricula);
     }
 
     public boolean grabar() {
@@ -98,16 +102,26 @@ public class ModeloVehiculo extends Vehiculo {
 
         String sql;
         sql = "UPDATE vehiculo SET " + "anio_modelo='" + getAnio_modelo()
-                + "', tonelaje='" + getTonelaje()+ "',"
-                + "pais=" + getPais()+ ", canton=" + getCanton()+ ","
-                + "servicio_vehiculo='" + getServicio_vehiculo()+ "'"
-                + "WHERE matricula='" + getMatricula()+ "';";
+                + "', tonelaje='" + getTonelaje() + "',"
+                + "pais=" + getPais() + ", canton=" + getCanton() + ","
+                + "servicio_vehiculo='" + getServicio_vehiculo() + "'"
+                + "WHERE matricula='" + getMatricula() + "';";
         if (con.noQuery(sql) == null) {
             return true;
         } else {
             return false;
         }
 
+    }
+
+    public boolean eliminar() {
+        String sql;
+        sql = "DELETE FROM vehiculo WHERE cedula_pe='" + getMatricula() + "'";
+        if (con.noQuery(sql) == null) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
 }
