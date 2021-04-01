@@ -2,7 +2,7 @@ package Modelo;
 
 /**
  *
- * @author Usuario
+ * @author Emi
  */
 public class Detalle_Servicio {
     
@@ -15,6 +15,12 @@ public class Detalle_Servicio {
 
     public Detalle_Servicio() {
     }
+
+    public Detalle_Servicio(String cod_dellate_servicio) {
+        this.cod_dellate_servicio = cod_dellate_servicio;
+    }
+    
+    
 
     public Detalle_Servicio(String cod_dellate_servicio, String cod_producto_detalle, String cod_servicio_detalle, double precio_unitario, int cantidad) {
         this.cod_dellate_servicio = cod_dellate_servicio;

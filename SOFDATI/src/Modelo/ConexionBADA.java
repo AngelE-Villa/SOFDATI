@@ -21,9 +21,9 @@ public class ConexionBADA {
     private Connection con;
     private Statement st;
     
-    private String CadenaConexion="jdbc:postgresql://localhost:5432/sofdatibd";
+    private String CadenaConexion="jdbc:postgresql://localhost:5432/BaseSofDati";
     private String user="postgres";
-    private String password="1983@";
+    private String password="felipe";
 
     public ConexionBADA() {
         try {

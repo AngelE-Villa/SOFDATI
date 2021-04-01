@@ -5,6 +5,12 @@
  */
 package Vista;
 
+import com.toedter.calendar.JDateChooser;
+import javax.swing.JButton;
+import javax.swing.JDialog;
+import javax.swing.JTable;
+import javax.swing.JTextField;
+
 /**
  *
  * @author Usuario
@@ -12,11 +18,140 @@ package Vista;
 public class Vista_Detalle extends javax.swing.JFrame {
 
     /**
-     * Creates new form Vista_Detalle
+     * Creates new form Vista_Servicio
      */
     public Vista_Detalle() {
         initComponents();
     }
+
+    public JDialog getDialogoDetalle() {
+        return DialogoDetalle;
+    }
+
+    public void setDialogoDetalle(JDialog DialogoDetalle) {
+        this.DialogoDetalle = DialogoDetalle;
+    }
+
+    public JButton getBtnaceptarDetalle() {
+        return btnaceptarDetalle;
+    }
+
+    public void setBtnaceptarDetalle(JButton btnaceptarDetalle) {
+        this.btnaceptarDetalle = btnaceptarDetalle;
+    }
+
+    public JButton getBtnactualizarD() {
+        return btnactualizarD;
+    }
+
+    public void setBtnactualizarD(JButton btnactualizarD) {
+        this.btnactualizarD = btnactualizarD;
+    }
+
+    public JButton getBtnbuscarD() {
+        return btnbuscarD;
+    }
+
+    public void setBtnbuscarD(JButton btnbuscarD) {
+        this.btnbuscarD = btnbuscarD;
+    }
+
+    public JButton getBtncancelarDetalle() {
+        return btncancelarDetalle;
+    }
+
+    public void setBtncancelarDetalle(JButton btncancelarDetalle) {
+        this.btncancelarDetalle = btncancelarDetalle;
+    }
+
+    public JButton getBtneliminarD() {
+        return btneliminarD;
+    }
+
+    public void setBtneliminarD(JButton btneliminarD) {
+        this.btneliminarD = btneliminarD;
+    }
+
+    public JButton getBtnimprimirD() {
+        return btnimprimirD;
+    }
+
+    public void setBtnimprimirD(JButton btnimprimirD) {
+        this.btnimprimirD = btnimprimirD;
+    }
+
+    public JButton getBtnmodificarD() {
+        return btnmodificarD;
+    }
+
+    public void setBtnmodificarD(JButton btnmodificarD) {
+        this.btnmodificarD = btnmodificarD;
+    }
+
+    public JButton getBtnnuevoD() {
+        return btnnuevoD;
+    }
+
+    public void setBtnnuevoD(JButton btnnuevoD) {
+        this.btnnuevoD = btnnuevoD;
+    }
+
+    public JTable getTblDetalle() {
+        return tblDetalle;
+    }
+
+    public void setTblDetalle(JTable tblDetalle) {
+        this.tblDetalle = tblDetalle;
+    }
+
+    public JTextField getTxtCodproducto() {
+        return txtCodproducto;
+    }
+
+    public void setTxtCodproducto(JTextField txtCodproducto) {
+        this.txtCodproducto = txtCodproducto;
+    }
+
+    public JTextField getTxtCodservicio() {
+        return txtCodservicio;
+    }
+
+    public void setTxtCodservicio(JTextField txtCodservicio) {
+        this.txtCodservicio = txtCodservicio;
+    }
+
+    public JTextField getTxtPrecioUnit() {
+        return txtPrecioUnit;
+    }
+
+    public void setTxtPrecioUnit(JTextField txtPrecioUnit) {
+        this.txtPrecioUnit = txtPrecioUnit;
+    }
+
+    public JTextField getTxtbuscarD() {
+        return txtbuscarD;
+    }
+
+    public void setTxtbuscarD(JTextField txtbuscarD) {
+        this.txtbuscarD = txtbuscarD;
+    }
+
+    public JTextField getTxtcantidad() {
+        return txtcantidad;
+    }
+
+    public void setTxtcantidad(JTextField txtcantidad) {
+        this.txtcantidad = txtcantidad;
+    }
+
+    public JTextField getTxtcodDetalle() {
+        return txtcodDetalle;
+    }
+
+    public void setTxtcodDetalle(JTextField txtcodDetalle) {
+        this.txtcodDetalle = txtcodDetalle;
+    }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -27,36 +162,251 @@ public class Vista_Detalle extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jDialog1 = new javax.swing.JDialog();
+        DialogoDetalle = new javax.swing.JDialog();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        txtcodDetalle = new javax.swing.JTextField();
+        txtcantidad = new javax.swing.JTextField();
+        txtPrecioUnit = new javax.swing.JTextField();
+        txtCodproducto = new javax.swing.JTextField();
+        txtCodservicio = new javax.swing.JTextField();
+        btnaceptarDetalle = new javax.swing.JButton();
+        btncancelarDetalle = new javax.swing.JButton();
+        jPanel1 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tblDetalle = new javax.swing.JTable();
+        jPanel2 = new javax.swing.JPanel();
+        btnbuscarD = new javax.swing.JButton();
+        btnnuevoD = new javax.swing.JButton();
+        btnmodificarD = new javax.swing.JButton();
+        btneliminarD = new javax.swing.JButton();
+        btnimprimirD = new javax.swing.JButton();
+        txtbuscarD = new javax.swing.JTextField();
+        btnactualizarD = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
 
-        javax.swing.GroupLayout jDialog1Layout = new javax.swing.GroupLayout(jDialog1.getContentPane());
-        jDialog1.getContentPane().setLayout(jDialog1Layout);
-        jDialog1Layout.setHorizontalGroup(
-            jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        jLabel3.setText("DETALLE SERVICIO");
+
+        jLabel4.setText("Cod_Detalle");
+
+        jLabel5.setText("Codigo Producto");
+
+        jLabel7.setText("Cod_Servicio");
+
+        jLabel8.setText("Cantidad");
+
+        jLabel9.setText("Precio Unit");
+
+        btnaceptarDetalle.setText("Aceptar");
+
+        btncancelarDetalle.setText("Cancelar");
+
+        javax.swing.GroupLayout DialogoDetalleLayout = new javax.swing.GroupLayout(DialogoDetalle.getContentPane());
+        DialogoDetalle.getContentPane().setLayout(DialogoDetalleLayout);
+        DialogoDetalleLayout.setHorizontalGroup(
+            DialogoDetalleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(DialogoDetalleLayout.createSequentialGroup()
+                .addGroup(DialogoDetalleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(DialogoDetalleLayout.createSequentialGroup()
+                        .addGroup(DialogoDetalleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(DialogoDetalleLayout.createSequentialGroup()
+                                .addGap(45, 45, 45)
+                                .addGroup(DialogoDetalleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel4)
+                                    .addComponent(jLabel8)
+                                    .addComponent(jLabel9)
+                                    .addComponent(jLabel7)
+                                    .addComponent(jLabel5))
+                                .addGap(47, 47, 47))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, DialogoDetalleLayout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(btncancelarDetalle)
+                                .addGap(29, 29, 29)))
+                        .addGroup(DialogoDetalleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(txtCodproducto, javax.swing.GroupLayout.DEFAULT_SIZE, 146, Short.MAX_VALUE)
+                            .addComponent(txtCodservicio, javax.swing.GroupLayout.DEFAULT_SIZE, 146, Short.MAX_VALUE)
+                            .addComponent(txtPrecioUnit, javax.swing.GroupLayout.DEFAULT_SIZE, 146, Short.MAX_VALUE)
+                            .addComponent(txtcodDetalle)
+                            .addComponent(txtcantidad, javax.swing.GroupLayout.DEFAULT_SIZE, 146, Short.MAX_VALUE)
+                            .addGroup(DialogoDetalleLayout.createSequentialGroup()
+                                .addGap(27, 27, 27)
+                                .addComponent(btnaceptarDetalle))))
+                    .addGroup(DialogoDetalleLayout.createSequentialGroup()
+                        .addGap(53, 53, 53)
+                        .addComponent(jLabel3)))
+                .addContainerGap(21, Short.MAX_VALUE))
         );
-        jDialog1Layout.setVerticalGroup(
-            jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+        DialogoDetalleLayout.setVerticalGroup(
+            DialogoDetalleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(DialogoDetalleLayout.createSequentialGroup()
+                .addGap(39, 39, 39)
+                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(38, 38, 38)
+                .addGroup(DialogoDetalleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel4)
+                    .addComponent(txtcodDetalle, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(DialogoDetalleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5)
+                    .addComponent(txtCodproducto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(DialogoDetalleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel7)
+                    .addComponent(txtCodservicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(DialogoDetalleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel8)
+                    .addComponent(txtcantidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(DialogoDetalleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel9)
+                    .addComponent(txtPrecioUnit, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(34, 34, 34)
+                .addGroup(DialogoDetalleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btncancelarDetalle)
+                    .addComponent(btnaceptarDetalle))
+                .addContainerGap(46, Short.MAX_VALUE))
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 48)); // NOI18N
+        jLabel1.setText("DETALLE SERVICIO");
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addGap(155, 155, 155))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+
+        tblDetalle.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null}
+            },
+            new String [] {
+                "ID", "Title 2", "Title 3", "Title 4", "Title 5", "Title 6", "Title 7", "Title 8"
+            }
+        ));
+        jScrollPane1.setViewportView(tblDetalle);
+
+        btnbuscarD.setText("Buscar");
+
+        btnnuevoD.setText("Nuevo");
+
+        btnmodificarD.setText("Modificar");
+
+        btneliminarD.setText("Eliminar");
+
+        btnimprimirD.setText("Imprimir");
+
+        btnactualizarD.setText("Actualizar");
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(txtbuscarD, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnbuscarD)
+                .addGap(66, 66, 66)
+                .addComponent(btnnuevoD)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnmodificarD)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnactualizarD)
+                .addGap(10, 10, 10)
+                .addComponent(btneliminarD)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 86, Short.MAX_VALUE)
+                .addComponent(btnimprimirD)
+                .addContainerGap())
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(13, Short.MAX_VALUE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnbuscarD)
+                    .addComponent(btnnuevoD)
+                    .addComponent(btnmodificarD)
+                    .addComponent(btneliminarD)
+                    .addComponent(btnimprimirD)
+                    .addComponent(txtbuscarD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnactualizarD))
+                .addContainerGap())
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jScrollPane1)
+            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 313, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 301, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JDialog jDialog1;
+    private javax.swing.JDialog DialogoDetalle;
+    private javax.swing.JButton btnaceptarDetalle;
+    private javax.swing.JButton btnactualizarD;
+    private javax.swing.JButton btnbuscarD;
+    private javax.swing.JButton btncancelarDetalle;
+    private javax.swing.JButton btneliminarD;
+    private javax.swing.JButton btnimprimirD;
+    private javax.swing.JButton btnmodificarD;
+    private javax.swing.JButton btnnuevoD;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable tblDetalle;
+    private javax.swing.JTextField txtCodproducto;
+    private javax.swing.JTextField txtCodservicio;
+    private javax.swing.JTextField txtPrecioUnit;
+    private javax.swing.JTextField txtbuscarD;
+    private javax.swing.JTextField txtcantidad;
+    private javax.swing.JTextField txtcodDetalle;
     // End of variables declaration//GEN-END:variables
 }

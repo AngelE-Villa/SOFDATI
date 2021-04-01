@@ -5,6 +5,8 @@
  */
 package Modelo;
 
+import java.awt.Image;
+
 /**
  *
  * @author daysi
@@ -13,9 +15,12 @@ public class Productos extends Categoria{
     private String cod_producto;
     private String nombre_producto;
     private String unidad_medida;
+    private Image foto;
 
     public Productos() {
     }
+
+  
 
     public Productos(String cod_producto, String nombre_producto, String unidad_medida, String cod_categoria, String descripcion, String nombre_categoria) {
         super(cod_categoria, descripcion, nombre_categoria);
@@ -24,6 +29,25 @@ public class Productos extends Categoria{
         this.unidad_medida = unidad_medida;
     }
 
+    public Productos(String cod_producto) {
+        this.cod_producto = cod_producto;
+    }
+
+    public Productos(Image foto) {
+        this.foto = foto;
+    }
+
+    public Image getFoto() {
+        return foto;
+    }
+
+    public void setFoto(Image foto) {
+        this.foto = foto;
+    }
+
+   
+
+  
   
 
     public String getUnidad_medida() {

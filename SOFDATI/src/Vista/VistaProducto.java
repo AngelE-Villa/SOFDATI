@@ -5,6 +5,12 @@
  */
 package Vista;
 
+import javax.swing.JButton;
+import javax.swing.JDialog;
+import javax.swing.JLabel;
+import javax.swing.JTable;
+import javax.swing.JTextField;
+
 /**
  *
  * @author daysi
@@ -28,32 +34,30 @@ public class VistaProducto extends javax.swing.JInternalFrame {
     private void initComponents() {
 
         dialogoproducto = new javax.swing.JDialog();
-        txtnompro2 = new javax.swing.JTextField();
-        txtunidadm2 = new javax.swing.JTextField();
-        jButton11 = new javax.swing.JButton();
-        jButton12 = new javax.swing.JButton();
+        txtnompro = new javax.swing.JTextField();
+        txtunidadm = new javax.swing.JTextField();
         jLabel13 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
         jLabel17 = new javax.swing.JLabel();
-        txtcate2 = new javax.swing.JTextField();
-        txtnomcate2 = new javax.swing.JTextField();
-        txtdescripcion2 = new javax.swing.JTextField();
+        txtcodcate = new javax.swing.JTextField();
+        txtnomcate = new javax.swing.JTextField();
+        txtdescripcion = new javax.swing.JTextField();
         jLabel18 = new javax.swing.JLabel();
-        txtcodproducto2 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        txtcodproducto = new javax.swing.JTextField();
+        lblfoto = new javax.swing.JLabel();
+        btnaceptar = new javax.swing.JButton();
+        btnexaminar = new javax.swing.JButton();
+        btneditar = new javax.swing.JButton();
+        btncancelar = new javax.swing.JButton();
+        btnagregar = new javax.swing.JButton();
+        btnmodificar = new javax.swing.JButton();
+        btnimprimir = new javax.swing.JButton();
+        btnvizualizar = new javax.swing.JButton();
+        btneliminar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
-        jButton8 = new javax.swing.JButton();
-        jButton9 = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
-        jButton7 = new javax.swing.JButton();
-        jButton10 = new javax.swing.JButton();
-
-        jButton11.setText("AGREGAR");
-
-        jButton12.setText("MODIFICAR");
+        tablaproducto = new javax.swing.JTable();
 
         jLabel13.setText("CODIGO CATEGORIA");
 
@@ -65,25 +69,42 @@ public class VistaProducto extends javax.swing.JInternalFrame {
 
         jLabel17.setText("UNIDAD DE MEDIDA");
 
-        txtcate2.addActionListener(new java.awt.event.ActionListener() {
+        txtcodcate.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtcate2ActionPerformed(evt);
+                txtcodcateActionPerformed(evt);
+            }
+        });
+
+        txtnomcate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtnomcateActionPerformed(evt);
             }
         });
 
         jLabel18.setText("CODIGO PRODUCTO");
 
-        jButton1.setText("REGRESAR");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
+        lblfoto.setText("jLabel1");
+
+        btnaceptar.setText("ACEPTAR");
+
+        btnexaminar.setText("EXAMINAR");
+
+        btneditar.setText("EDITAR");
+
+        btncancelar.setText("CANCELAR");
 
         javax.swing.GroupLayout dialogoproductoLayout = new javax.swing.GroupLayout(dialogoproducto.getContentPane());
         dialogoproducto.getContentPane().setLayout(dialogoproductoLayout);
         dialogoproductoLayout.setHorizontalGroup(
             dialogoproductoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(dialogoproductoLayout.createSequentialGroup()
+                .addGap(66, 66, 66)
+                .addComponent(btnaceptar)
+                .addGap(96, 96, 96)
+                .addComponent(btneditar)
+                .addGap(98, 98, 98)
+                .addComponent(btncancelar)
+                .addContainerGap(109, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, dialogoproductoLayout.createSequentialGroup()
                 .addGroup(dialogoproductoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(dialogoproductoLayout.createSequentialGroup()
@@ -96,24 +117,23 @@ public class VistaProducto extends javax.swing.JInternalFrame {
                                 .addComponent(jLabel18, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addGroup(dialogoproductoLayout.createSequentialGroup()
                                 .addGap(4, 4, 4)
-                                .addGroup(dialogoproductoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jButton11)
-                                    .addComponent(jLabel17)))))
+                                .addComponent(jLabel17))))
                     .addGroup(dialogoproductoLayout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jLabel16)))
                 .addGap(34, 34, 34)
                 .addGroup(dialogoproductoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(txtcate2)
-                    .addComponent(txtnomcate2)
-                    .addComponent(txtdescripcion2)
-                    .addComponent(txtcodproducto2)
-                    .addComponent(txtnompro2)
-                    .addComponent(txtunidadm2, javax.swing.GroupLayout.DEFAULT_SIZE, 117, Short.MAX_VALUE)
-                    .addComponent(jButton12, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(53, 53, 53)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(185, Short.MAX_VALUE))
+                    .addComponent(txtcodcate)
+                    .addComponent(txtnomcate)
+                    .addComponent(txtdescripcion)
+                    .addComponent(txtcodproducto)
+                    .addComponent(txtnompro)
+                    .addComponent(txtunidadm, javax.swing.GroupLayout.DEFAULT_SIZE, 117, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(dialogoproductoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnexaminar)
+                    .addComponent(lblfoto, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(49, 49, 49))
         );
         dialogoproductoLayout.setVerticalGroup(
             dialogoproductoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -124,40 +144,57 @@ public class VistaProducto extends javax.swing.JInternalFrame {
                         .addComponent(jLabel13))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, dialogoproductoLayout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(txtcate2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(txtcodcate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
-                .addGroup(dialogoproductoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel14)
-                    .addComponent(txtnomcate2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(19, 19, 19)
-                .addGroup(dialogoproductoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel15)
-                    .addComponent(txtdescripcion2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(49, 49, 49)
-                .addGroup(dialogoproductoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel18)
-                    .addComponent(txtcodproducto2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(2, 2, 2)
                 .addGroup(dialogoproductoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(dialogoproductoLayout.createSequentialGroup()
-                        .addGap(6, 6, 6)
-                        .addComponent(txtnompro2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(dialogoproductoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel14)
+                            .addComponent(txtnomcate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(19, 19, 19)
+                        .addGroup(dialogoproductoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel15)
+                            .addComponent(txtdescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(49, 49, 49)
+                        .addGroup(dialogoproductoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel18)
+                            .addComponent(txtcodproducto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(2, 2, 2)
+                        .addGroup(dialogoproductoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(dialogoproductoLayout.createSequentialGroup()
+                                .addGap(6, 6, 6)
+                                .addComponent(txtnompro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(dialogoproductoLayout.createSequentialGroup()
+                                .addGap(23, 23, 23)
+                                .addComponent(jLabel16))))
                     .addGroup(dialogoproductoLayout.createSequentialGroup()
-                        .addGap(23, 23, 23)
-                        .addComponent(jLabel16)))
-                .addGap(51, 51, 51)
+                        .addGap(3, 3, 3)
+                        .addComponent(lblfoto, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(25, 25, 25)
+                .addComponent(btnexaminar)
+                .addGap(3, 3, 3)
                 .addGroup(dialogoproductoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel17)
-                    .addComponent(txtunidadm2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(43, 43, 43)
+                    .addComponent(txtunidadm, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 58, Short.MAX_VALUE)
                 .addGroup(dialogoproductoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton11)
-                    .addComponent(jButton12)
-                    .addComponent(jButton1))
-                .addContainerGap(73, Short.MAX_VALUE))
+                    .addComponent(btnaceptar)
+                    .addComponent(btneditar)
+                    .addComponent(btncancelar))
+                .addGap(58, 58, 58))
         );
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        btnagregar.setText("AGREGAR");
+
+        btnmodificar.setText("MODIFICAR");
+
+        btnimprimir.setText("IMPRIMIR");
+
+        btnvizualizar.setText("VIZUALIZAR");
+
+        btneliminar.setText("ELEIMINAR");
+
+        tablaproducto.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -165,74 +202,208 @@ public class VistaProducto extends javax.swing.JInternalFrame {
                 "CODIGO CATEGORIA", "NOMBRE CATEGORIA", "DESCRIPCION", "CODIGO PRODUCTO", "NOMBRE PRODUCTO", "UNIDAD DE MEDIDA"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
-
-        jButton8.setText("AGREGAR");
-
-        jButton9.setText("MODIFICAR");
-
-        jButton6.setText("IMPRIMIR");
-
-        jButton7.setText("VIZUALIZAR");
-
-        jButton10.setText("ELEIMINAR");
+        jScrollPane1.setViewportView(tablaproducto);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 675, Short.MAX_VALUE)
-                .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addComponent(jButton8)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(btnagregar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton7)
+                .addComponent(btnvizualizar)
                 .addGap(63, 63, 63)
-                .addComponent(jButton9)
+                .addComponent(btnmodificar)
                 .addGap(45, 45, 45)
-                .addComponent(jButton10)
+                .addComponent(btneliminar)
                 .addGap(37, 37, 37)
-                .addComponent(jButton6)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addComponent(btnimprimir)
+                .addGap(0, 109, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jScrollPane1)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton7)
-                    .addComponent(jButton9)
-                    .addComponent(jButton8)
-                    .addComponent(jButton10)
-                    .addComponent(jButton6))
-                .addGap(37, 37, 37)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 305, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(15, Short.MAX_VALUE))
+                    .addComponent(btnvizualizar)
+                    .addComponent(btnmodificar)
+                    .addComponent(btnagregar)
+                    .addComponent(btneliminar)
+                    .addComponent(btnimprimir))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtcate2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtcate2ActionPerformed
+    private void txtcodcateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtcodcateActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtcate2ActionPerformed
+    }//GEN-LAST:event_txtcodcateActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void txtnomcateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtnomcateActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_txtnomcateActionPerformed
+
+    public JButton getBtnaceptar() {
+        return btnaceptar;
+    }
+
+    public void setBtnaceptar(JButton btnaceptar) {
+        this.btnaceptar = btnaceptar;
+    }
+
+    public JButton getBtnagregar() {
+        return btnagregar;
+    }
+
+    public void setBtnagregar(JButton btnagregar) {
+        this.btnagregar = btnagregar;
+    }
+
+    public JButton getBtncancelar() {
+        return btncancelar;
+    }
+
+    public void setBtncancelar(JButton btncancelar) {
+        this.btncancelar = btncancelar;
+    }
+
+    public JButton getBtneditar() {
+        return btneditar;
+    }
+
+    public void setBtneditar(JButton btneditar) {
+        this.btneditar = btneditar;
+    }
+
+    public JButton getBtneliminar() {
+        return btneliminar;
+    }
+
+    public void setBtneliminar(JButton btneliminar) {
+        this.btneliminar = btneliminar;
+    }
+
+    public JButton getBtnexaminar() {
+        return btnexaminar;
+    }
+
+    public void setBtnexaminar(JButton btnexaminar) {
+        this.btnexaminar = btnexaminar;
+    }
+
+    public JButton getBtnimprimir() {
+        return btnimprimir;
+    }
+
+    public void setBtnimprimir(JButton btnimprimir) {
+        this.btnimprimir = btnimprimir;
+    }
+
+    public JButton getBtnmodificar() {
+        return btnmodificar;
+    }
+
+    public void setBtnmodificar(JButton btnmodificar) {
+        this.btnmodificar = btnmodificar;
+    }
+
+    public JButton getBtnvizualizar() {
+        return btnvizualizar;
+    }
+
+    public void setBtnvizualizar(JButton btnvizualizar) {
+        this.btnvizualizar = btnvizualizar;
+    }
+
+    public JDialog getDialogoproducto() {
+        return dialogoproducto;
+    }
+
+    public void setDialogoproducto(JDialog dialogoproducto) {
+        this.dialogoproducto = dialogoproducto;
+    }
+
+    public JLabel getLblfoto() {
+        return lblfoto;
+    }
+
+    public void setLblfoto(JLabel lblfoto) {
+        this.lblfoto = lblfoto;
+    }
+
+    public JTable getTablaproducto() {
+        return tablaproducto;
+    }
+
+    public void setTablaproducto(JTable tablaproducto) {
+        this.tablaproducto = tablaproducto;
+    }
+
+    public JTextField getTxtcodcate() {
+        return txtcodcate;
+    }
+
+    public void setTxtcodcate(JTextField txtcodcate) {
+        this.txtcodcate = txtcodcate;
+    }
+
+    public JTextField getTxtcodproducto() {
+        return txtcodproducto;
+    }
+
+    public void setTxtcodproducto(JTextField txtcodproducto) {
+        this.txtcodproducto = txtcodproducto;
+    }
+
+    public JTextField getTxtdescripcion() {
+        return txtdescripcion;
+    }
+
+    public void setTxtdescripcion(JTextField txtdescripcion) {
+        this.txtdescripcion = txtdescripcion;
+    }
+
+    public JTextField getTxtnomcate() {
+        return txtnomcate;
+    }
+
+    public void setTxtnomcate(JTextField txtnomcate) {
+        this.txtnomcate = txtnomcate;
+    }
+
+    public JTextField getTxtnompro() {
+        return txtnompro;
+    }
+
+    public void setTxtnompro(JTextField txtnompro) {
+        this.txtnompro = txtnompro;
+    }
+
+    public JTextField getTxtunidadm() {
+        return txtunidadm;
+    }
+
+    public void setTxtunidadm(JTextField txtunidadm) {
+        this.txtunidadm = txtunidadm;
+    }
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnaceptar;
+    private javax.swing.JButton btnagregar;
+    private javax.swing.JButton btncancelar;
+    private javax.swing.JButton btneditar;
+    private javax.swing.JButton btneliminar;
+    private javax.swing.JButton btnexaminar;
+    private javax.swing.JButton btnimprimir;
+    private javax.swing.JButton btnmodificar;
+    private javax.swing.JButton btnvizualizar;
     private javax.swing.JDialog dialogoproducto;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton10;
-    private javax.swing.JButton jButton11;
-    private javax.swing.JButton jButton12;
-    private javax.swing.JButton jButton6;
-    private javax.swing.JButton jButton7;
-    private javax.swing.JButton jButton8;
-    private javax.swing.JButton jButton9;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
@@ -240,12 +411,13 @@ public class VistaProducto extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTextField txtcate2;
-    private javax.swing.JTextField txtcodproducto2;
-    private javax.swing.JTextField txtdescripcion2;
-    private javax.swing.JTextField txtnomcate2;
-    private javax.swing.JTextField txtnompro2;
-    private javax.swing.JTextField txtunidadm2;
+    private javax.swing.JLabel lblfoto;
+    private javax.swing.JTable tablaproducto;
+    private javax.swing.JTextField txtcodcate;
+    private javax.swing.JTextField txtcodproducto;
+    private javax.swing.JTextField txtdescripcion;
+    private javax.swing.JTextField txtnomcate;
+    private javax.swing.JTextField txtnompro;
+    private javax.swing.JTextField txtunidadm;
     // End of variables declaration//GEN-END:variables
 }
