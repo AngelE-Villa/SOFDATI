@@ -131,11 +131,11 @@ public class Modelo_Empleado extends Empleado {
     public static List<Empleado> Lista_Empleados(String busqueda) {
         try {
             String query = "select e.cod_empleado,e.foto,e.cargo,e.sueldo,p.cedula,p.nombre,p.apellido,p.fechanacimiento,p.direccion,p.telefono" +
-            " from empleado e join persona p on p.cedula=cli.cedula_pe where ";
+            " from empleado e join persona p on p.cedula=e.cedula_pe where ";
             query += "UPPER(p.nombre) LIKE UPPER('%" + busqueda + "%') OR ";
             query += "UPPER(p.apellido) LIKE UPPER('%" + busqueda + "%') OR ";
             query += "UPPER(p.cedula) LIKE UPPER('%" + busqueda + "%') OR ";
-            query += "UPPER(e.cod_empleado) LIKE UPPER('%" + busqueda + "%')";
+            query += "UPPER(e.cod_empleado) LIKE UPPER('%" + busqueda + "%') OR ";
             query += "UPPER(e.cargo) LIKE UPPER('%" + busqueda + "%')";
             ResultSet rs = con.query(query);
             List<Empleado> lista = new ArrayList<Empleado>();

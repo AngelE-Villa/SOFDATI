@@ -21,7 +21,8 @@ import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
-import sun.swing.table.DefaultTableCellHeaderRenderer;
+import javax.xml.ws.Holder;
+//import sun.swing.table.DefaultTableCellHeaderRenderer;
 
 /**
  *
@@ -98,8 +99,8 @@ public class Control_Localidad {
 
     public void cargaLista(String aguja) {
 
-        vista.getTblLocalidad().setRowHeight(100);
-        DefaultTableCellRenderer renderer = new DefaultTableCellHeaderRenderer();
+//        vista.getTblLocalidad().setRowHeight(100);
+//        DefaultTableCellRenderer renderer = new DefaultTableCellHeaderRenderer();
 
         DefaultTableModel tdlModel;
         tdlModel = (DefaultTableModel) vista.getTblLocalidad().getModel();

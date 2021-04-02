@@ -69,18 +69,6 @@ public class VistaProducto extends javax.swing.JInternalFrame {
 
         jLabel17.setText("UNIDAD DE MEDIDA");
 
-        txtcodcate.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtcodcateActionPerformed(evt);
-            }
-        });
-
-        txtnomcate.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtnomcateActionPerformed(evt);
-            }
-        });
-
         jLabel18.setText("CODIGO PRODUCTO");
 
         lblfoto.setText("jLabel1");
@@ -145,7 +133,6 @@ public class VistaProducto extends javax.swing.JInternalFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, dialogoproductoLayout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(txtcodcate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(18, 18, 18)
                 .addGroup(dialogoproductoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(dialogoproductoLayout.createSequentialGroup()
                         .addGroup(dialogoproductoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -239,14 +226,6 @@ public class VistaProducto extends javax.swing.JInternalFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void txtcodcateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtcodcateActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtcodcateActionPerformed
-
-    private void txtnomcateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtnomcateActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtnomcateActionPerformed
 
     public JButton getBtnaceptar() {
         return btnaceptar;

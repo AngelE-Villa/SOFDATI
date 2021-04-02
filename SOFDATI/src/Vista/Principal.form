@@ -94,6 +94,11 @@
                       <Component id="btnclientes" alignment="0" max="32767" attributes="0"/>
                       <Component id="btnEmpleadoP" alignment="0" max="32767" attributes="0"/>
                       <Component id="btnServicio" alignment="1" max="32767" attributes="0"/>
+                      <Component id="btnVehiculos" alignment="0" max="32767" attributes="0"/>
+                      <Component id="btnProductos" alignment="1" max="32767" attributes="0"/>
+                      <Component id="btnCategorias" alignment="1" max="32767" attributes="0"/>
+                      <Component id="btnLocalidad" alignment="0" max="32767" attributes="0"/>
+                      <Component id="btndetalle" alignment="0" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
@@ -102,13 +107,23 @@
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
-                  <Component id="btnclientes" min="-2" pref="71" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="btnclientes" min="-2" pref="45" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Component id="btnEmpleadoP" min="-2" pref="71" max="-2" attributes="0"/>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Component id="btnServicio" min="-2" pref="71" max="-2" attributes="0"/>
-                  <EmptySpace pref="211" max="32767" attributes="0"/>
+                  <Component id="btnEmpleadoP" min="-2" pref="45" max="-2" attributes="0"/>
+                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                  <Component id="btnServicio" min="-2" pref="42" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="13" max="-2" attributes="0"/>
+                  <Component id="btndetalle" min="-2" pref="42" max="-2" attributes="0"/>
+                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                  <Component id="btnVehiculos" min="-2" pref="42" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="btnProductos" min="-2" pref="42" max="-2" attributes="0"/>
+                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                  <Component id="btnCategorias" min="-2" pref="42" max="-2" attributes="0"/>
+                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                  <Component id="btnLocalidad" min="-2" pref="42" max="-2" attributes="0"/>
+                  <EmptySpace pref="84" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -127,6 +142,31 @@
         <Component class="javax.swing.JButton" name="btnServicio">
           <Properties>
             <Property name="text" type="java.lang.String" value="SERVICIOS"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JButton" name="btnVehiculos">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="VEHICULOS"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JButton" name="btnProductos">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="PRODUCTOS"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JButton" name="btnCategorias">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="CATEGORIAS"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JButton" name="btnLocalidad">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="LOCALIDADES"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JButton" name="btndetalle">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="DETALLE"/>
           </Properties>
         </Component>
       </SubComponents>

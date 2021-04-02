@@ -29,7 +29,7 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.xml.ws.Holder;
-import sun.swing.table.DefaultTableCellHeaderRenderer;
+//import sun.swing.table.DefaultTableCellHeaderRenderer;
 
 /**
  *
@@ -91,9 +91,9 @@ public class ControlVehiculo {
     }
 
     public void cargaLista(String aguja) {
-        vista.getTblVehiculo().setDefaultRenderer(Object.class, new ImagenTabla());
-        vista.getTblVehiculo().setRowHeight(100);
-        DefaultTableCellRenderer renderer = new DefaultTableCellHeaderRenderer();
+//        vista.getTblVehiculo().setDefaultRenderer(Object.class, new ImagenTabla());
+//        vista.getTblVehiculo().setRowHeight(100);
+//        DefaultTableCellRenderer renderer = new DefaultTableCellHeaderRenderer();
 
         DefaultTableModel tdlModel;
         tdlModel = (DefaultTableModel) vista.getTblVehiculo().getModel();
