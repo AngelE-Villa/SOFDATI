@@ -5,7 +5,10 @@
  */
 package Sofdati;
 
+import Controlador.Control_Login;
 import Controlador.Control_Principal;
+import Modelo.Modelo_Administrador;
+import Vista.Login;
 import Vista.Principal;
 
 /**
@@ -14,9 +17,10 @@ import Vista.Principal;
  */
 public class Main_Sofdati {
     public static void main(String[] args) {
-        Principal p=new Principal();
-        Control_Principal cp=new Control_Principal(p);
-        cp.Inicia_Control();
+        Login l=new Login();
+        Modelo_Administrador ma=new Modelo_Administrador();
+        Control_Login cl=new Control_Login(l, ma);
+        cl.Iniciar_Controles();
         
     }
 }

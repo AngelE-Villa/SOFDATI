@@ -21,6 +21,7 @@ public class Servicio {
     private String codempleado;
     private String codcliente;
     private String codciudad;
+    private double precioServicio;
 
     public Servicio() {
     }
@@ -28,8 +29,8 @@ public class Servicio {
     public Servicio(String codservicio) {
         this.codservicio = codservicio;
     }
-    
-    public Servicio(String codservicio, Date fechaServicio, double km_llegada, double km_salida, String codvehiculo, String codempleado, String codcliente, String codciudad) {
+
+    public Servicio(String codservicio, Date fechaServicio, double km_llegada, double km_salida, String codvehiculo, String codempleado, String codcliente, String codciudad, double precioServicio) {
         this.codservicio = codservicio;
         this.fechaServicio = fechaServicio;
         this.km_llegada = km_llegada;
@@ -38,8 +39,18 @@ public class Servicio {
         this.codempleado = codempleado;
         this.codcliente = codcliente;
         this.codciudad = codciudad;
+        this.precioServicio = precioServicio;
     }
 
+    public double getPrecioServicio() {
+        return precioServicio;
+    }
+
+    public void setPrecioServicio(double precioServicio) {
+        this.precioServicio = precioServicio;
+    }
+    
+    
     public String getCodciudad() {
         return codciudad;
     }

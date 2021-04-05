@@ -23,6 +23,11 @@ public class Persona {
     public Persona(String cedula) {
         this.cedula = cedula;
     }
+
+    public Persona(String cedula, String telefono) {
+        this.cedula = cedula;
+        this.telefono = telefono;
+    }
     
     public Persona(String cedula, String nombre, String apellido, Date fnacimineto, String direccion, String telefono) {
         this.cedula = cedula;

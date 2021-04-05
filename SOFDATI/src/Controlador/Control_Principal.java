@@ -27,6 +27,7 @@ public class Control_Principal {
     public Control_Principal(Principal principal) {
         this.principal = principal;
         this.principal.setVisible(true);
+        this.principal.setLocationRelativeTo(null);
     }
     
     public void Inicia_Control() {
