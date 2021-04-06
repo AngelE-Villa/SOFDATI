@@ -35,6 +35,11 @@ public class Principal extends javax.swing.JFrame {
         btnclientes = new javax.swing.JButton();
         btnEmpleadoP = new javax.swing.JButton();
         btnServicio = new javax.swing.JButton();
+        btnVehiculos = new javax.swing.JButton();
+        btnProductos = new javax.swing.JButton();
+        btnCategorias = new javax.swing.JButton();
+        btnLocalidad = new javax.swing.JButton();
+        btndetalle = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         Pantalla = new javax.swing.JDesktopPane();
 
@@ -63,6 +68,16 @@ public class Principal extends javax.swing.JFrame {
 
         btnServicio.setText("SERVICIOS");
 
+        btnVehiculos.setText("VEHICULOS");
+
+        btnProductos.setText("PRODUCTOS");
+
+        btnCategorias.setText("CATEGORIAS");
+
+        btnLocalidad.setText("LOCALIDADES");
+
+        btndetalle.setText("DETALLE");
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -72,19 +87,34 @@ public class Principal extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnclientes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnEmpleadoP, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnServicio, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(btnServicio, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnVehiculos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnProductos, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnCategorias, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnLocalidad, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btndetalle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(40, 40, 40)
-                .addComponent(btnclientes, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap()
+                .addComponent(btnclientes, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(btnEmpleadoP, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(btnServicio, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(211, Short.MAX_VALUE))
+                .addComponent(btnEmpleadoP, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnServicio, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(13, 13, 13)
+                .addComponent(btndetalle, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnVehiculos, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnProductos, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnCategorias, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnLocalidad, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(84, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
@@ -139,6 +169,46 @@ public class Principal extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    public JButton getBtndetalle() {
+        return btndetalle;
+    }
+
+    public void setBtndetalle(JButton btndetalle) {
+        this.btndetalle = btndetalle;
+    }
+
+    public JButton getBtnCategorias() {
+        return btnCategorias;
+    }
+
+    public void setBtnCategorias(JButton btnCategorias) {
+        this.btnCategorias = btnCategorias;
+    }
+
+    public JButton getBtnLocalidad() {
+        return btnLocalidad;
+    }
+
+    public void setBtnLocalidad(JButton btnLocalidad) {
+        this.btnLocalidad = btnLocalidad;
+    }
+
+    public JButton getBtnProductos() {
+        return btnProductos;
+    }
+
+    public void setBtnProductos(JButton btnProductos) {
+        this.btnProductos = btnProductos;
+    }
+
+    public JButton getBtnVehiculos() {
+        return btnVehiculos;
+    }
+
+    public void setBtnVehiculos(JButton btnVehiculos) {
+        this.btnVehiculos = btnVehiculos;
+    }
+
     public JDesktopPane getPantalla() {
         return Pantalla;
     }
@@ -173,9 +243,14 @@ public class Principal extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JDesktopPane Pantalla;
+    private javax.swing.JButton btnCategorias;
     private javax.swing.JButton btnEmpleadoP;
+    private javax.swing.JButton btnLocalidad;
+    private javax.swing.JButton btnProductos;
     private javax.swing.JButton btnServicio;
+    private javax.swing.JButton btnVehiculos;
     private javax.swing.JButton btnclientes;
+    private javax.swing.JButton btndetalle;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;

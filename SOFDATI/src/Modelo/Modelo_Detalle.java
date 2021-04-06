@@ -42,18 +42,18 @@ public class Modelo_Detalle extends Detalle_Servicio{
     
     public static List<Detalle_Servicio> ListarDetalles(String buscar) {
         try {
-            String query = "SELECT * FROM servicio_detalle WHERE";
-            query += "UPPER(cod_dellate_servicio) LIKE UPPER('%" + buscar + "%') OR ";
-            query += "UPPER(cod_servicio_detalle) LIKE UPPER('%" + buscar + "%')";
+            String query = "SELECT * FROM detalle_servicio WHERE ";
+            query += "UPPER(cod_detalle_servicio) LIKE UPPER('%" + buscar + "%') OR ";
+            query += "UPPER(cod_servicio_d) LIKE UPPER('%" + buscar + "%')";
         
             ResultSet rs = con.query(query);
             List<Detalle_Servicio> listaD = new ArrayList<Detalle_Servicio>();
             
             while (rs.next()) {
                 Detalle_Servicio detalle = new Detalle_Servicio();
-                detalle.setCod_dellate_servicio(rs.getString("cod_dellate_servicio"));
+                detalle.setCod_dellate_servicio(rs.getString("cod_detalle_servicio"));
                 detalle.setCod_producto_detalle(rs.getString("cod_producto_detalle"));
-                detalle.setCod_servicio_detalle(rs.getString("cod_servicio_detalle"));
+                detalle.setCod_servicio_detalle(rs.getString("cod_servicio_d"));
                 detalle.setPrecio_unitario(rs.getDouble("precio_unitario"));
                 detalle.setCantidad(rs.getInt("cantidad"));
 

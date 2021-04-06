@@ -159,7 +159,7 @@ public class Control_Servicio {
                     JOptionPane.showMessageDialog(vistaS, "El ID ya existe");
 
                 } else {
-                    String codservicio = vistaS.getTxtcodServicio().getText();
+                    String codservicio = modeloS.NServicio()+1+"";
                     String idcliente = vistaS.getTxtidcliente().getText();
                     Instant instant = vistaS.getTxtJfechaServicio().getDate().toInstant();
                     ZoneId zoneid = ZoneId.of("America/Guayaquil");
@@ -170,7 +170,8 @@ public class Control_Servicio {
                     String codempleado = vistaS.getTxtcodempleado().getText();
                     Double kmSalida = Double.parseDouble(vistaS.getTxtkmsalida().getText());
                     Double kmLlegada = Double.parseDouble(vistaS.getTxtkmllegada().getText());
-                    Modelo_Servicio servicio = new Modelo_Servicio(codservicio, fechanacimiento, kmLlegada, kmSalida, codVehiculo, codempleado, idcliente, codciudad);
+                    Double totalServicio=Double.parseDouble(vistaS.getTxttotalServicio().getText());
+                    Modelo_Servicio servicio = new Modelo_Servicio(codservicio, fechanacimiento, kmLlegada, kmSalida, codVehiculo, codempleado, idcliente, codciudad,totalServicio);
                     if (servicio.Grabar_Servicio()) {
                         CargarLista("");
                         JOptionPane.showMessageDialog(vistaS, "Registro grabado Satisfactoriamente");
@@ -210,7 +211,8 @@ public class Control_Servicio {
             String codempleado = vistaS.getTxtcodempleado().getText();
             Double kmSalida = Double.parseDouble(vistaS.getTxtkmsalida().getText());
             Double kmLlegada = Double.parseDouble(vistaS.getTxtkmllegada().getText());
-            Modelo_Servicio servicio = new Modelo_Servicio(codservicio, fechanacimiento, kmLlegada, kmSalida, codVehiculo, codempleado, idcliente, codciudad);
+            Double totalServicio=Double.parseDouble(vistaS.getTxttotalServicio().getText());
+            Modelo_Servicio servicio = new Modelo_Servicio(codservicio, fechanacimiento, kmLlegada, kmSalida, codVehiculo, codempleado, idcliente, codciudad,totalServicio);
             if (servicio.Grabar_Servicio()) {
                 CargarLista("");
                 JOptionPane.showMessageDialog(vistaS, "Registro editado Satisfactoriamente");

@@ -8,10 +8,7 @@ package Vista;
 import com.toedter.calendar.JDateChooser;
 import javax.swing.JButton;
 import javax.swing.JDialog;
-import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 
@@ -19,7 +16,7 @@ import javax.swing.JTextField;
  *
  * @author User
  */
-public class Vista_Cliente extends javax.swing.JFrame {
+public class Vista_Cliente extends javax.swing.JInternalFrame {
 
     /**
      * Creates new form Vista_Cliente
@@ -75,15 +72,6 @@ public class Vista_Cliente extends javax.swing.JFrame {
     public void setBtnNuevocli(JButton btnNuevocli) {
         this.btnNuevocli = btnNuevocli;
     }
-
-    public JInternalFrame getjInternalFrame1() {
-        return jInternalFrame1;
-    }
-
-    public void setjInternalFrame1(JInternalFrame jInternalFrame1) {
-        this.jInternalFrame1 = jInternalFrame1;
-    }
-
 
     public JLabel getLblMensaje() {
         return lblMensaje;
@@ -252,8 +240,6 @@ public class Vista_Cliente extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         txtidCliente = new javax.swing.JTextField();
         txtid = new javax.swing.JLabel();
-        jInternalFrame1 = new javax.swing.JInternalFrame();
-        lblMensaje = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         txtBuscar = new javax.swing.JTextField();
@@ -262,11 +248,10 @@ public class Vista_Cliente extends javax.swing.JFrame {
         btnEliminarcli = new javax.swing.JButton();
         btnActualizarcli = new javax.swing.JButton();
         btnImprimircli = new javax.swing.JButton();
-        btnCerrarP = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblCliente = new javax.swing.JTable();
-
-        DialogCliente.setPreferredSize(new java.awt.Dimension(330, 350));
+        lblMensaje = new javax.swing.JLabel();
+        btnCerrarP = new javax.swing.JButton();
 
         jLabel5.setText("Fecha:");
 
@@ -367,11 +352,7 @@ public class Vista_Cliente extends javax.swing.JFrame {
                 .addContainerGap(26, Short.MAX_VALUE))
         );
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        jInternalFrame1.setVisible(true);
-
-        lblMensaje.setText("Sistema Personas :");
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel1.setText("Buscar");
 
@@ -402,7 +383,7 @@ public class Vista_Cliente extends javax.swing.JFrame {
                 .addComponent(btnEliminarcli, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnActualizarcli, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 123, Short.MAX_VALUE)
                 .addComponent(btnImprimircli, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -421,8 +402,6 @@ public class Vista_Cliente extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        btnCerrarP.setText("CERRAR");
-
         tblCliente.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -433,40 +412,31 @@ public class Vista_Cliente extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(tblCliente);
 
-        javax.swing.GroupLayout jInternalFrame1Layout = new javax.swing.GroupLayout(jInternalFrame1.getContentPane());
-        jInternalFrame1.getContentPane().setLayout(jInternalFrame1Layout);
-        jInternalFrame1Layout.setHorizontalGroup(
-            jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(jInternalFrame1Layout.createSequentialGroup()
-                .addComponent(lblMensaje, javax.swing.GroupLayout.PREFERRED_SIZE, 629, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
-                .addComponent(btnCerrarP)
-                .addGap(19, 19, 19))
-        );
-        jInternalFrame1Layout.setVerticalGroup(
-            jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jInternalFrame1Layout.createSequentialGroup()
-                .addGap(7, 7, 7)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 294, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblMensaje, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnCerrarP)))
-        );
+        lblMensaje.setText("Sistema Personas :");
+
+        btnCerrarP.setText("CERRAR");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jInternalFrame1)
+            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(lblMensaje, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnCerrarP, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jInternalFrame1)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblMensaje)
+                    .addComponent(btnCerrarP)))
         );
 
         pack();
@@ -488,7 +458,6 @@ public class Vista_Cliente extends javax.swing.JFrame {
     private javax.swing.JButton btnImprimircli;
     private javax.swing.JButton btnNuevocli;
     private com.toedter.calendar.JDateChooser dchfechacli;
-    private javax.swing.JInternalFrame jInternalFrame1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel3;

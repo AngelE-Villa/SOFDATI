@@ -15,7 +15,7 @@ import javax.swing.JTextField;
  *
  * @author Usuario
  */
-public class Vista_Servicio extends javax.swing.JFrame {
+public class Vista_Servicio extends javax.swing.JInternalFrame {
 
     /**
      * Creates new form Vista_Servicio
@@ -53,6 +53,8 @@ public class Vista_Servicio extends javax.swing.JFrame {
         txtJfechaServicio = new com.toedter.calendar.JDateChooser();
         btnaceptarNS = new javax.swing.JButton();
         btncancelarNS = new javax.swing.JButton();
+        txttotalServicio = new javax.swing.JTextField();
+        jLabel12 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -70,25 +72,27 @@ public class Vista_Servicio extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel3.setText("Nuevo Servicio");
 
-        jLabel4.setText("N° Servicio:");
+        jLabel4.setText("N° :");
 
-        jLabel5.setText("ID cliente:");
+        jLabel5.setText("Cliente:");
 
-        jLabel6.setText("Fecha:");
+        jLabel6.setText("Fecha :");
 
-        jLabel7.setText("Ciudad");
+        jLabel7.setText("Ciudad :");
 
-        jLabel8.setText("Vehiculo");
+        jLabel8.setText("Vehiculo :");
 
-        jLabel9.setText("ID empleado");
+        jLabel9.setText("Empleado :");
 
-        jLabel10.setText("Km Salida");
+        jLabel10.setText("Km Salida :");
 
-        jLabel11.setText("Km Llegada");
+        jLabel11.setText("Km Llegada :");
 
         btnaceptarNS.setText("Aceptar");
 
         btncancelarNS.setText("Cancelar");
+
+        jLabel12.setText("Total :");
 
         javax.swing.GroupLayout DialogoServicioLayout = new javax.swing.GroupLayout(DialogoServicio.getContentPane());
         DialogoServicio.getContentPane().setLayout(DialogoServicioLayout);
@@ -105,28 +109,32 @@ public class Vista_Servicio extends javax.swing.JFrame {
                                 .addComponent(btnaceptarNS))
                             .addGroup(DialogoServicioLayout.createSequentialGroup()
                                 .addGroup(DialogoServicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel4)
                                     .addComponent(jLabel11)
                                     .addComponent(jLabel10)
                                     .addComponent(jLabel8)
                                     .addComponent(jLabel9)
                                     .addComponent(jLabel7)
                                     .addComponent(jLabel6)
-                                    .addComponent(jLabel5))
-                                .addGap(47, 47, 47)
+                                    .addComponent(jLabel5)
+                                    .addComponent(jLabel12))
+                                .addGap(32, 32, 32)
                                 .addGroup(DialogoServicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(txttotalServicio)
                                     .addComponent(txtidcliente, javax.swing.GroupLayout.DEFAULT_SIZE, 146, Short.MAX_VALUE)
                                     .addComponent(txtciudadSer, javax.swing.GroupLayout.DEFAULT_SIZE, 146, Short.MAX_VALUE)
                                     .addComponent(txtcodempleado, javax.swing.GroupLayout.DEFAULT_SIZE, 146, Short.MAX_VALUE)
                                     .addComponent(txtkmsalida, javax.swing.GroupLayout.DEFAULT_SIZE, 146, Short.MAX_VALUE)
                                     .addComponent(txtkmllegada, javax.swing.GroupLayout.DEFAULT_SIZE, 146, Short.MAX_VALUE)
-                                    .addComponent(txtcodServicio)
                                     .addComponent(txtcodvehiculo, javax.swing.GroupLayout.DEFAULT_SIZE, 146, Short.MAX_VALUE)
-                                    .addComponent(txtJfechaServicio, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
+                                    .addComponent(txtJfechaServicio, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, DialogoServicioLayout.createSequentialGroup()
+                                        .addComponent(jLabel4)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(txtcodServicio, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))))))
                     .addGroup(DialogoServicioLayout.createSequentialGroup()
                         .addGap(71, 71, 71)
                         .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(47, Short.MAX_VALUE))
+                .addContainerGap(61, Short.MAX_VALUE))
         );
         DialogoServicioLayout.setVerticalGroup(
             DialogoServicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -165,14 +173,18 @@ public class Vista_Servicio extends javax.swing.JFrame {
                 .addGroup(DialogoServicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel11)
                     .addComponent(txtkmllegada, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addGroup(DialogoServicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txttotalServicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel12))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
                 .addGroup(DialogoServicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btncancelarNS)
                     .addComponent(btnaceptarNS))
                 .addGap(20, 20, 20))
         );
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 48)); // NOI18N
         jLabel1.setText("SERVICIOS");
@@ -193,13 +205,13 @@ public class Vista_Servicio extends javax.swing.JFrame {
 
         tablaServicios.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "ID", "Title 2", "Title 3", "Title 4", "Title 5", "Title 6", "Title 7", "Title 8"
+                "ID Servicio", "Empleado", "Fecha", "Ciudad", "Vehiculo", "Empleado", "Km Salida", "Km Llegada", "Total"
             }
         ));
         jScrollPane1.setViewportView(tablaServicios);
@@ -222,19 +234,19 @@ public class Vista_Servicio extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(txtbuscarS, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtbuscarS, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnbuscarS)
-                .addGap(66, 66, 66)
-                .addComponent(btnnuevoS)
+                .addGap(64, 64, 64)
+                .addComponent(btnnuevoS, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnmodificarS)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnactualizar)
-                .addGap(10, 10, 10)
-                .addComponent(btneliminarS)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 86, Short.MAX_VALUE)
-                .addComponent(btnimprimirS)
+                .addComponent(btnmodificarS, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnactualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btneliminarS, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 76, Short.MAX_VALUE)
+                .addComponent(btnimprimirS, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -268,8 +280,8 @@ public class Vista_Servicio extends javax.swing.JFrame {
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 301, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(1, 1, 1)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 306, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -373,6 +385,14 @@ public class Vista_Servicio extends javax.swing.JFrame {
         this.txtciudadSer = txtciudadSer;
     }
 
+    public JTextField getTxttotalServicio() {
+        return txttotalServicio;
+    }
+
+    public void setTxttotalServicio(JTextField txttotalServicio) {
+        this.txttotalServicio = txttotalServicio;
+    }
+
     public JTextField getTxtcodServicio() {
         return txtcodServicio;
     }
@@ -442,6 +462,7 @@ public class Vista_Servicio extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -463,5 +484,6 @@ public class Vista_Servicio extends javax.swing.JFrame {
     private javax.swing.JTextField txtidcliente;
     private javax.swing.JTextField txtkmllegada;
     private javax.swing.JTextField txtkmsalida;
+    private javax.swing.JTextField txttotalServicio;
     // End of variables declaration//GEN-END:variables
 }

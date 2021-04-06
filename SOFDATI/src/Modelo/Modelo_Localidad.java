@@ -48,7 +48,7 @@ public class Modelo_Localidad extends Localidad {
 
     public static List<Localidad> ListarLocalidad(String aguja) {
         try {
-            String query = "Select * from localidad WHERE cod_ciudad LIKE UPPER('" + aguja + "%') OR UPPER(canton)";;
+            String query = "Select * from localidad WHERE cod_ciudad LIKE UPPER('" + aguja + "%') OR UPPER(canton) LIKE UPPER('" + aguja + "%')";
             ResultSet rs = con.query(query);
             List<Localidad> lista = new ArrayList<Localidad>();
 

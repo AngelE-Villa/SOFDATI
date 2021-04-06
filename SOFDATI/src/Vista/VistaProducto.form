@@ -69,7 +69,6 @@
                           <Component id="txtcodcate" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" attributes="0">
                           <Group type="103" groupAlignment="3" attributes="0">
@@ -152,14 +151,8 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="txtcodcate">
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtcodcateActionPerformed"/>
-          </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="txtnomcate">
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtnomcateActionPerformed"/>
-          </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="txtdescripcion">
         </Component>

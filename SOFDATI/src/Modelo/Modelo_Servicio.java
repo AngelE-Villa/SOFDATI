@@ -25,20 +25,36 @@ public class Modelo_Servicio extends Servicio {
     public Modelo_Servicio() {
     }
 
-    public Modelo_Servicio(String codservicio, Date fechaServicio, double km_llegada, double km_salida, String codvehiculo, String codempleado, String codcliente, String codciudad) {
-        super(codservicio, fechaServicio, km_llegada, km_salida, codvehiculo, codempleado, codcliente, codciudad);
+    public Modelo_Servicio(String codservicio, Date fechaServicio, double km_llegada, double km_salida, String codvehiculo, String codempleado, String codcliente, String codciudad, double precioServicio) {
+        super(codservicio, fechaServicio, km_llegada, km_salida, codvehiculo, codempleado, codcliente, codciudad, precioServicio);
     }
+
 
     public Modelo_Servicio(String codservicio) {
         super(codservicio);
     }
     
+    public int NServicio(){
+        String query = "select max(cod_servicio) as num from servicio";
+        ResultSet rs = con.query(query);
+        
+        try {
+            while (rs.next()) {
+                return rs.getInt("num");
+            }
+            rs.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(ModeloCliente.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return 10000000;
+    }
+    
     public boolean Grabar_Servicio() {
 
         String sql;
-        sql = "INSERT INTO servicio (km_salida,km_llegada,cod_ciudad_s,cod_cliente_s,cod_empleado_s,fecha_servicio,cod_vehiculo_s,cod_servicio)";
+        sql = "INSERT INTO servicio (km_salida,km_llegada,cod_ciudad_s,cod_cliente_s,cod_empleado_s,fecha_servicio,cod_vehiculo_s,cod_servicio,precioservicio)";
         sql += "VALUES ('" + getKm_salida() + "','" + getKm_llegada() + "','" + getCodciudad() + "','" + getCodcliente() + "',"
-                + "'" + getCodempleado() + "','" + getFechaServicio() + "','" + getCodvehiculo() + "','" + getCodservicio()+ "')";
+                + "'" + getCodempleado() + "','" + getFechaServicio() + "','" + getCodvehiculo() + "','" + getCodservicio()+ "','" + getPrecioServicio()+ "')";
         if (con.noQuery(sql) == null) {
             return true;
         } else {
@@ -59,11 +75,12 @@ public class Modelo_Servicio extends Servicio {
                 servicio.setCodservicio(rs.getString("cod_servicio"));
                 servicio.setCodvehiculo(rs.getString("cod_vehiculo_s"));
                 servicio.setFechaServicio(rs.getDate("fecha_servicio"));
-                servicio.setCodempleado(rs.getString("cod_servicio"));
+                servicio.setCodempleado(rs.getString("cod_empleado_s"));
                 servicio.setCodcliente(rs.getString("cod_cliente_s"));
                 servicio.setCodciudad(rs.getString("cod_ciudad_s"));
                 servicio.setKm_llegada(rs.getDouble("km_llegada"));
                 servicio.setKm_salida(rs.getDouble("km_salida"));
+                servicio.setPrecioServicio(rs.getDouble("precioservicio"));
 
                 listaS.add(servicio);
             }
@@ -96,13 +113,13 @@ public class Modelo_Servicio extends Servicio {
                 servicio.setCodservicio(rs.getString("cod_servicio"));
                 servicio.setCodvehiculo(rs.getString("cod_vehiculo_s"));
                 servicio.setFechaServicio(rs.getDate("fecha_servicio"));
-                servicio.setCodempleado(rs.getString("cod_servicio"));
+                servicio.setCodempleado(rs.getString("cod_empleado_s"));
                 servicio.setCodcliente(rs.getString("cod_cliente_s"));
                 servicio.setCodciudad(rs.getString("cod_ciudad_s"));
-                
                 servicio.setKm_llegada(rs.getDouble("km_llegada"));
                 servicio.setKm_salida(rs.getDouble("km_salida"));
-
+                servicio.setPrecioServicio(rs.getDouble("precioservicio"));
+                
                 listaS.add(servicio);
             }
             rs.close();
@@ -118,7 +135,7 @@ public class Modelo_Servicio extends Servicio {
         sql = "UPDATE servicio SET km_salida=" + getKm_salida()+ ", km_llegada= " + getKm_llegada() + " ,"
                 + "cod_ciudad_s='" + getCodciudad() + "', cod_cliente_s='" + getCodcliente() + "',"
                 + "cod_empleado_s='" + getCodempleado()+ "',fecha_servicio='" + getFechaServicio() + "', "
-                + "cod_vehiculo_s=" + getCodvehiculo()+ "'"
+                + "cod_vehiculo_s=" + getCodvehiculo()+ "', precioservicio=" + getPrecioServicio()+ "'"
                 + "WHERE cod_servicio='" + getCodservicio() + "';";
         if (con.noQuery(sql) == null) {
             return true;

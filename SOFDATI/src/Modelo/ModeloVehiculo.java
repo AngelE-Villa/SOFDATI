@@ -48,7 +48,7 @@ public class ModeloVehiculo extends Vehiculo {
 
     public static List<Vehiculo> ListarVehiculo(String aguja) {
         try {
-            String query = "Select * from vehiculo WHERE matricula LIKE '" + aguja + "%' OR UPPER(color)";;
+            String query = "Select * from vehiculo WHERE matricula LIKE '" + aguja + "%' OR UPPER(color) LIKE '" + aguja + "%'";;
             ResultSet rs = con.query(query);
             List<Vehiculo> lista = new ArrayList<Vehiculo>();
 

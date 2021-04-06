@@ -19,7 +19,7 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.xml.ws.Holder;
-import sun.swing.table.DefaultTableCellHeaderRenderer;
+//import sun.swing.table.DefaultTableCellHeaderRenderer;
 
 
 public class Control_Empleado {
@@ -79,10 +79,10 @@ public class Control_Empleado {
     }
 
     public void CargarLista(String busqueda) {
-        vista.getTblEmpleado().setDefaultRenderer(Object.class, new ImagenTabla());
-        vista.getTblEmpleado().setRowHeight(100);
-        DefaultTableCellRenderer renderer = new DefaultTableCellHeaderRenderer();
-        
+//        vista.getTblEmpleado().setDefaultRenderer(Object.class, new ImagenTabla());
+//        vista.getTblEmpleado().setRowHeight(100);
+//        DefaultTableCellRenderer renderer = new DefaultTableCellHeaderRenderer();
+//        
         DefaultTableModel tblModel;
         tblModel = (DefaultTableModel) vista.getTblEmpleado().getModel();
         tblModel.setNumRows(0);//vaciar la tabla
@@ -101,15 +101,15 @@ public class Control_Empleado {
             vista.getTblEmpleado().setValueAt(p.getTelefono(), i.value, 6);
             vista.getTblEmpleado().setValueAt(p.getCargo(), i.value, 7);
             vista.getTblEmpleado().setValueAt(p.getSueldo(), i.value, 8);
-            Image img = p.getFoto();
-            if (img != null) {
-                Image newimg = img.getScaledInstance(100, 100, java.awt.Image.SCALE_SMOOTH);
-                ImageIcon icon = new ImageIcon(newimg);
-                renderer.setIcon(icon);
-                vista.getTblEmpleado().setValueAt(new JLabel(icon), i.value, 8);
-            } else {
-                vista.getTblEmpleado().setValueAt(null, i.value, 8);
-            }
+//            Image img = p.getFoto();
+//            if (img != null) {
+//                Image newimg = img.getScaledInstance(100, 100, java.awt.Image.SCALE_SMOOTH);
+//                ImageIcon icon = new ImageIcon(newimg);
+//                renderer.setIcon(icon);
+//                vista.getTblEmpleado().setValueAt(new JLabel(icon), i.value, 8);
+//            } else {
+//                vista.getTblEmpleado().setValueAt(null, i.value, 8);
+//            }
             
             i.value++;
         });
