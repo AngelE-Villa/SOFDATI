@@ -29,6 +29,22 @@ public class ModeloCliente extends Cliente{
         super(idCliente, cedula, nombre, apellido, fnacimineto, direccion, telefono);
     }
     
+        public String CodCliente(String cedula){
+        String query = "select cod_cliente from cliente where cedula_pe='"+cedula+"';";
+        ResultSet rs = con.query(query);
+        
+        try {
+            while (rs.next()) {
+                return rs.getString("cod_cliente");
+            }
+            rs.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(Modelo_Categoria.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return "";
+    }
+
+    
     public int NCliente(){
         String query = "select max(cod_cliente) as num from cliente";
         ResultSet rs = con.query(query);
@@ -47,7 +63,7 @@ public class ModeloCliente extends Cliente{
         String sql;
         sql = "INSERT INTO persona (nombre,cedula,apellido,telefono, fechanacimiento, direccion) "
                 + "VALUES ('" + getNombre() + "','" + getCedula() + "','" + getApellido() + "','" + getTelefono()+ "',"
-                + "'" + getFnacimiento()+ "','" + getDireccion()+ "');";
+                + "" + getFnacimiento() + ",'" + getDireccion()+ "');";
         sql += "INSERT INTO cliente (cod_cliente,cedula_pe) "
                 + "VALUES ('" + getIdCliente() + "','" + getCedula() + "');";
         if (con.noQuery(sql) == null) {

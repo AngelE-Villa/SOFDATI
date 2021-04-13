@@ -21,8 +21,9 @@ public class Vehiculo {
         this.matricula = matricula;
     }
 
-    public Vehiculo(String ram_o_cpn, String pais, String canton, String servicio_vehiculo, String color, int anio_modelo, float tonelaje, Date fecha_ultima_matricula, Date fecha_caducidad_matricula) {
+    public Vehiculo(String ram_o_cpn, String matricula, String pais, String canton, String servicio_vehiculo, String color, int anio_modelo, float tonelaje, Date fecha_ultima_matricula, Date fecha_caducidad_matricula) {
         this.ram_o_cpn = ram_o_cpn;
+        this.matricula = matricula;
         this.pais = pais;
         this.canton = canton;
         this.servicio_vehiculo = servicio_vehiculo;
@@ -32,7 +33,6 @@ public class Vehiculo {
         this.fecha_ultima_matricula = fecha_ultima_matricula;
         this.fecha_caducidad_matricula = fecha_caducidad_matricula;
     }
-
     
 
     public String getRam_o_cpn() {

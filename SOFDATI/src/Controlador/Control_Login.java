@@ -44,8 +44,11 @@ public class Control_Login {
     }
 
     public void Ingresar() {
-        modelo.setCedula(login.getTxtUsuario().getText());
-        modelo.setPassword(String.valueOf(login.getTxtpassword().getPassword()));
+//        modelo.setCedula(login.getTxtUsuario().getText());
+//        modelo.setPassword(String.valueOf(login.getTxtpassword().getPassword()));
+        
+        modelo.setCedula("1400995096");
+        modelo.setPassword("Angel");
 
         if (modelo.ValidarDatos()) {
             login.setVisible(false);

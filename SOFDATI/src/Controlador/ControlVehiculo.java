@@ -46,6 +46,7 @@ public class ControlVehiculo {
     public ControlVehiculo(ModeloVehiculo modelo, Vista_Vehiculo vista) {
         this.modelo = modelo;
         this.vista = vista;
+        this.vista.setVisible(true);
     }
 //Metodos   
 
@@ -94,16 +95,18 @@ public class ControlVehiculo {
 //        vista.getTblVehiculo().setDefaultRenderer(Object.class, new ImagenTabla());
 //        vista.getTblVehiculo().setRowHeight(100);
 //        DefaultTableCellRenderer renderer = new DefaultTableCellHeaderRenderer();
-
+        System.out.println("Cargar");
         DefaultTableModel tdlModel;
         tdlModel = (DefaultTableModel) vista.getTblVehiculo().getModel();
         tdlModel.setNumRows(0);
         List<Vehiculo> Lista = ModeloVehiculo.ListarVehiculo(aguja);
+        System.out.println(Lista);
         int ncols = tdlModel.getColumnCount();
         Holder<Integer> i = new Holder<>(0); // problema con paquete 
         Lista.stream().forEach(p1 -> {
             tdlModel.addRow(new Object[ncols]);
             vista.getTblVehiculo().setValueAt(p1.getRam_o_cpn(), i.value, 0);
+            System.out.println(p1.getMatricula());
             vista.getTblVehiculo().setValueAt(p1.getAnio_modelo(), i.value, 1);
             vista.getTblVehiculo().setValueAt(p1.getTonelaje(), i.value, 2);
             vista.getTblVehiculo().setValueAt(p1.getMatricula(), i.value, 3);
@@ -113,7 +116,6 @@ public class ControlVehiculo {
             vista.getTblVehiculo().setValueAt(p1.getServicio_vehiculo(), i.value, 6);
             vista.getTblVehiculo().setValueAt(p1.getColor(), i.value, 7);
             vista.getTblVehiculo().setValueAt(p1.getFecha_caducidad_matricula(), i.value, 8);
-
             i.value++;
         });
     }
@@ -168,8 +170,8 @@ public class ControlVehiculo {
 
     private void editarVehiculo() {
         String ram = vista.getTxtRam().getText();
-        String anio = vista.getTxtAnio().getText();
-        String tonelaje = vista.getTxtTonelaje().getText();
+        int anio =Integer.parseInt( vista.getTxtAnio().getText());
+        float tonelaje =Float.valueOf(vista.getTxtTonelaje().getText());
         String matricula = vista.getTxtMatricula().getText();
         String pais = vista.getTxtPais().getText();
         String canton = vista.getTxtCanton().getText();
@@ -184,8 +186,7 @@ public class ControlVehiculo {
         Date fechaUltima = Date.valueOf(zdt1.toLocalDate());
         Date fechaCaduce = Date.valueOf(zdt2.toLocalDate());
 
-        ModeloVehiculo vehiculo = new ModeloVehiculo(canton, pais, canton, servicio, color, 0, 0, fechaUltima, fechaCaduce);
-
+        ModeloVehiculo vehiculo = new ModeloVehiculo(ram,matricula,pais, canton, servicio, color, anio, tonelaje, fechaUltima, fechaCaduce);
         if (vehiculo.editar()) {
             cargaLista("");
             JOptionPane.showMessageDialog(vista, "Registro editado Satisfactoriamente");
