@@ -11,23 +11,33 @@ import java.awt.Image;
  *
  * @author daysi
  */
-public class Productos extends Categoria{
+public class Productos {
     private String cod_producto;
     private String nombre_producto;
     private String unidad_medida;
+    private String cod_categoria;
     private Image foto;
 
     public Productos() {
     }
 
-  
-
-    public Productos(String cod_producto, String nombre_producto, String unidad_medida, String cod_categoria, String descripcion, String nombre_categoria) {
-        super(cod_categoria, descripcion, nombre_categoria);
+    public Productos(String cod_producto, String nombre_producto, String unidad_medida, String cod_categoria) {
         this.cod_producto = cod_producto;
         this.nombre_producto = nombre_producto;
         this.unidad_medida = unidad_medida;
+        this.cod_categoria = cod_categoria;
     }
+
+    public String getCod_categoria() {
+        return cod_categoria;
+    }
+
+    public void setCod_categoria(String cod_categoria) {
+        this.cod_categoria = cod_categoria;
+    }
+
+    
+
 
     public Productos(String cod_producto) {
         this.cod_producto = cod_producto;

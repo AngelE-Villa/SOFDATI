@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
-<Form version="1.5" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
+<Form version="1.5" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JInternalFrameFormInfo">
   <NonVisualComponents>
     <Container class="javax.swing.JDialog" name="dlgVehiculo">
 
@@ -249,7 +249,6 @@
   </Properties>
   <SyntheticProperties>
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
-    <SyntheticProperty name="generateCenter" type="boolean" value="false"/>
   </SyntheticProperties>
   <AuxValues>
     <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
@@ -267,35 +266,27 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="1" attributes="0">
-              <Group type="103" groupAlignment="1" attributes="0">
-                  <Group type="102" alignment="1" attributes="0">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="lblV1" min="-2" max="-2" attributes="0"/>
                           <Component id="txtBusquedaV1" alignment="0" min="-2" pref="313" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="10" max="32767" attributes="0"/>
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="btnEliminarV1" max="32767" attributes="0"/>
-                          <Component id="bntModificarV1" alignment="0" max="32767" attributes="0"/>
-                          <Component id="btnAgregarV1" alignment="0" max="32767" attributes="0"/>
-                          <Component id="btnBuscarV1" alignment="0" max="32767" attributes="0"/>
-                      </Group>
                   </Group>
-                  <Group type="102" alignment="1" attributes="0">
-                      <EmptySpace max="32767" attributes="0"/>
-                      <Component id="btnSalirV1" min="-2" pref="75" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="2" max="-2" attributes="0"/>
+                  <Component id="jScrollPane1" alignment="0" min="-2" pref="653" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace pref="24" max="32767" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="103" alignment="1" groupAlignment="0" max="-2" attributes="0">
+                      <Component id="btnEliminarV1" max="32767" attributes="0"/>
+                      <Component id="bntModificarV1" alignment="0" max="32767" attributes="0"/>
+                      <Component id="btnBuscarV1" alignment="0" max="32767" attributes="0"/>
                   </Group>
+                  <Component id="btnAgregarV1" alignment="1" min="-2" pref="75" max="-2" attributes="0"/>
+                  <Component id="btnSalirV1" alignment="1" min="-2" pref="75" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
-          </Group>
-          <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
-              <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Component id="scrVehiculo" min="-2" pref="311" max="-2" attributes="0"/>
-                  <EmptySpace pref="93" max="32767" attributes="0"/>
-              </Group>
           </Group>
       </Group>
     </DimensionLayout>
@@ -310,20 +301,18 @@
                   <Component id="btnBuscarV1" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="btnAgregarV1" min="-2" max="-2" attributes="0"/>
-              <EmptySpace max="-2" attributes="0"/>
-              <Component id="bntModificarV1" min="-2" max="-2" attributes="0"/>
-              <EmptySpace max="-2" attributes="0"/>
-              <Component id="btnEliminarV1" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="116" max="32767" attributes="0"/>
-              <Component id="btnSalirV1" min="-2" max="-2" attributes="0"/>
-              <EmptySpace max="-2" attributes="0"/>
-          </Group>
-          <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
-              <Group type="102" alignment="1" attributes="0">
-                  <EmptySpace pref="70" max="32767" attributes="0"/>
-                  <Component id="scrVehiculo" min="-2" pref="181" max="-2" attributes="0"/>
-                  <EmptySpace pref="49" max="32767" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" attributes="0">
+                      <Component id="btnAgregarV1" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="bntModificarV1" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="btnEliminarV1" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="237" max="-2" attributes="0"/>
+                      <Component id="btnSalirV1" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
+                  </Group>
+                  <Component id="jScrollPane1" pref="0" max="32767" attributes="0"/>
               </Group>
           </Group>
       </Group>
@@ -360,7 +349,12 @@
         <Property name="text" type="java.lang.String" value="Salir"/>
       </Properties>
     </Component>
-    <Container class="javax.swing.JScrollPane" name="scrVehiculo">
+    <Component class="javax.swing.JButton" name="btnEliminarV1">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Eliminar"/>
+      </Properties>
+    </Component>
+    <Container class="javax.swing.JScrollPane" name="jScrollPane1">
       <AuxValues>
         <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
       </AuxValues>
@@ -372,15 +366,15 @@
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
               <Table columnCount="10" rowCount="0">
                 <Column editable="true" title="RAM o CPN" type="java.lang.Object"/>
-                <Column editable="true" title="A&#xf1;o de Modelo" type="java.lang.Object"/>
+                <Column editable="true" title="A&#xf1;o Matricula" type="java.lang.Object"/>
                 <Column editable="true" title="Tonelaje" type="java.lang.Object"/>
                 <Column editable="true" title="Matricula" type="java.lang.Object"/>
-                <Column editable="true" title="Pais de Origen" type="java.lang.Object"/>
+                <Column editable="true" title="Pais" type="java.lang.Object"/>
                 <Column editable="true" title="Canton" type="java.lang.Object"/>
-                <Column editable="true" title="Fecha Ultima Matricula" type="java.lang.Object"/>
-                <Column editable="true" title="Tipo de Servicio " type="java.lang.Object"/>
+                <Column editable="true" title="Ultima Matricula" type="java.lang.Object"/>
+                <Column editable="true" title="Servicio" type="java.lang.Object"/>
                 <Column editable="true" title="Color" type="java.lang.Object"/>
-                <Column editable="true" title="Fecha Caducidad Matricula" type="java.lang.Object"/>
+                <Column editable="true" title="Caducidad" type="java.lang.Object"/>
               </Table>
             </Property>
             <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
@@ -425,7 +419,7 @@
                   <Editor/>
                   <Renderer/>
                 </Column>
-                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="false">
+                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
                   <Title/>
                   <Editor/>
                   <Renderer/>
@@ -444,10 +438,5 @@
         </Component>
       </SubComponents>
     </Container>
-    <Component class="javax.swing.JButton" name="btnEliminarV1">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Eliminar"/>
-      </Properties>
-    </Component>
   </SubComponents>
 </Form>

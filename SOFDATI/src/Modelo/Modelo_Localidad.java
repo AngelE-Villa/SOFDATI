@@ -31,8 +31,25 @@ public class Modelo_Localidad extends Localidad {
         super(cod_ciudad);
     }
 
-    public Modelo_Localidad(String pais, String canton, String provincia) {
-        super(pais, canton, provincia);
+    public Modelo_Localidad(String cod_ciudad, String pais, String canton, String provincia) {
+        super(cod_ciudad, pais, canton, provincia);
+    }
+
+
+    
+    public int NLocalizacion() {
+        String query = "select max(cod_ciudad) as num from localidad";
+        ResultSet rs = con.query(query);
+
+        try {
+            while (rs.next()) {
+                return rs.getInt("num");
+            }
+            rs.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(ModeloCliente.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return 1000;
     }
 
     public boolean grabar() {
@@ -46,6 +63,20 @@ public class Modelo_Localidad extends Localidad {
         }
     }
 
+    public String CodLocalizacion(String local) {
+        String sql="select cod_ciudad from localidad where UPPER(canton)=UPPER('"+local+"')";
+        ResultSet rs = con.query(sql);
+        try {
+            while (rs.next()) {
+                return rs.getString("canton");
+            }
+            rs.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(ModeloCliente.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return "";
+    }
+    
     public static List<Localidad> ListarLocalidad(String aguja) {
         try {
             String query = "Select * from localidad WHERE cod_ciudad LIKE UPPER('" + aguja + "%') OR UPPER(canton) LIKE UPPER('" + aguja + "%')";

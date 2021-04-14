@@ -23,11 +23,14 @@ public class Localidad {
     }
 
     //Metodos
-    public Localidad(String pais, String canton, String provincia) {
+
+    public Localidad(String cod_ciudad, String pais, String canton, String provincia) {
+        this.cod_ciudad = cod_ciudad;
         this.pais = pais;
         this.canton = canton;
         this.provincia = provincia;
     }
+
 
     public String getCod_ciudad() {
         return cod_ciudad;

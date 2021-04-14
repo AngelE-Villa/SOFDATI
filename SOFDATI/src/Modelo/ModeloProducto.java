@@ -37,9 +37,11 @@ public class ModeloProducto extends Productos {
     public ModeloProducto() {
     }
 
-    public ModeloProducto(String cod_producto, String nombre_producto, String unidad_medida, String cod_categoria, String descripcion, String nombre_categoria) {
-        super(cod_producto, nombre_producto, unidad_medida, cod_categoria, descripcion, nombre_categoria);
+    public ModeloProducto(String cod_producto, String nombre_producto, String unidad_medida, String cod_categoria) {
+        super(cod_producto, nombre_producto, unidad_medida, cod_categoria);
     }
+
+    
 
     public ModeloProducto(String cod_producto) {
         super(cod_producto);
@@ -49,27 +51,54 @@ public class ModeloProducto extends Productos {
         super(foto);
     }
 
-  
+    public int NProducto(){
+        String query = "select max(cod_producto) as num from producto";
+        ResultSet rs = con.query(query);
+        
+        try {
+            while (rs.next()) {
+                return rs.getInt("num");
+            }
+            rs.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(ModeloProducto.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return 2000;
+    }
+        
+    public String codigo_producto(String prod) {
+            
+            String query = "select cod_producto from producto where UPPER(nombre_producto)=UPPER('"+ prod +"')";
+            ResultSet rs = con.query(query);
+            try {
+                while (rs.next()) {
+                    return rs.getString("cod_producto");
+                }
+                rs.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(ModeloCliente.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            return null;   
+        }
   
 
     public boolean grabar() {
         //Trnasformar Imagen a base 64
-        String foto64 = null;
-        ByteArrayOutputStream bos = new ByteArrayOutputStream();
-        try {
-            BufferedImage img = imgBimage(getFoto());
-
-            ImageIO.write(img, "PNG", bos);
-
-            byte[] imgb = bos.toByteArray();
-            foto64 = Base64.encodeBytes(imgb);
-        } catch (IOException ex) {
-            System.out.println(ex.getMessage());
-        }
+//        String foto64 = null;
+//        ByteArrayOutputStream bos = new ByteArrayOutputStream();
+//        try {
+//            BufferedImage img = imgBimage(getFoto());
+//
+//            ImageIO.write(img, "PNG", bos);
+//
+//            byte[] imgb = bos.toByteArray();
+//            foto64 = Base64.encodeBytes(imgb);
+//        } catch (IOException ex) {
+//            System.out.println(ex.getMessage());
+//        }
         String sql;
-        sql = "INSERT INTO producto(cod_categoria,descripcion_ct,nombre_categoria,cod_producto, nombre, foto)";
-        sql += "VALUES ( '" + getCod_categoria() + "','" + getDescripcion() + "','" + getNombre_categoria()+ "'," + getCod_producto() + " ,'" + getNombre_producto() + "','" + getUnidad_medida() + "','" + foto64 + "')";
-
+        sql = "INSERT INTO producto(cod_producto,cod_ct_producto,nombre_producto,medida_producto)";
+        sql += "VALUES ( '" + getCod_producto() + "'," + getCod_categoria() + ",'" + getNombre_producto()+ "','" + getUnidad_medida() + "')";
         if (con.noQuery(sql) == null) {
             return true;
         } else {
@@ -93,23 +122,23 @@ public class ModeloProducto extends Productos {
 
     public boolean editar() {
         //Trnasformar Imagen a base 64
-        String foto64 = null;
-        ByteArrayOutputStream bos = new ByteArrayOutputStream();
-        try {
-            BufferedImage img = imgBimage(getFoto());
-
-            ImageIO.write(img, "PNG", bos);
-
-            byte[] imgb = bos.toByteArray();
-            foto64 = Base64.encodeBytes(imgb);
-        } catch (IOException ex) {
-            System.out.println(ex.getMessage());
-        }
+//        String foto64 = null;
+//        ByteArrayOutputStream bos = new ByteArrayOutputStream();
+//        try {
+//            BufferedImage img = imgBimage(getFoto());
+//
+//            ImageIO.write(img, "PNG", bos);
+//
+//            byte[] imgb = bos.toByteArray();
+//            foto64 = Base64.encodeBytes(imgb);
+//        } catch (IOException ex) {
+//            System.out.println(ex.getMessage());
+//        }
 //        
         String sql;
-        sql = "UPDATE producto SET nombrepro='" + getCod_categoria() + "', descripcion='" + getDescripcion() + "',"
-                + "precio=" + getNombre_categoria()+ ", categoria='" + getCod_producto() + "',foto='" + foto64 + "' " 
-                + "WHERE codigopro='" + getCod_categoria() + "';";
+        sql = "UPDATE producto SET nombre_producto='" + getNombre_producto() + "', medida_producto='" + getUnidad_medida() + "', "
+                + "cod_ct_producto='" + getCod_categoria() + "' "
+                + "WHERE cod_producto='" + getCod_producto() + "';";
         if (con.noQuery(sql) == null) {
             return true;
         } else {
@@ -119,7 +148,7 @@ public class ModeloProducto extends Productos {
 
     public boolean eliminar() {
         String sql;
-        sql = "DELETE FROM producto WHERE cod_producto = '" + getCod_categoria()+ "';";
+        sql = "DELETE FROM producto WHERE cod_producto = '" + getCod_producto()+ "';";
         if (con.noQuery(sql) == null) {
             return true;
         } else {
@@ -130,32 +159,35 @@ public class ModeloProducto extends Productos {
     public static List<Productos> ListarProducto(String aguja) {
 
         try {
-            String query = " select * from producto where UPPER (codigopro) like UPPER('" + aguja + "%') or UPPER (nombrepro) like UPPER('" + aguja + "%') or UPPER (categoria) like UPPER ('" + aguja + "%')";
+            String query = " select * from producto where "
+                    + "UPPER (cod_producto) like UPPER('" + aguja + "%') OR "
+                    + "UPPER (nombre_producto) like UPPER('" + aguja + "%') OR "
+                    + "UPPER (medida_producto) like UPPER('" + aguja + "%') OR "
+                    + "UPPER (cod_ct_producto) like UPPER ('" + aguja + "%')";
             ResultSet rs = con.query(query);
             List<Productos> lista = new ArrayList<Productos>();
-            byte[] bf;
+//            byte[] bf;
             while (rs.next()) {
                 Productos producto = new Productos();
-//                producto.setCodigo(rs.getString("codigopro"));
-//                producto.setNombre(rs.getString("nombrepro"));
-//                producto.setDescripcion(rs.getString("descripcion"));
-//                producto.setPrecio(rs.getDouble("precio"));
-//                producto.setCategoria(rs.getString("categoria"));
-                bf = rs.getBytes("foto");
-
-                if (bf != null) {
-                    bf = Base64.decode(bf, 0, bf.length);
-
-                    try {
-                        //obtener imagen
-                        producto.setFoto(obterImagen(bf));
-                    } catch (IOException ex) {
-                        producto.setFoto(null);
-                        Logger.getLogger(ModeloProducto.class.getName()).log(Level.SEVERE, null, ex);
-                    }
-                } else {
-                    producto.setFoto(null);
-                }
+                producto.setCod_producto(rs.getString("cod_producto"));
+                producto.setCod_categoria(rs.getString("cod_ct_producto"));
+                producto.setNombre_producto(rs.getString("nombre_producto"));
+                producto.setUnidad_medida(rs.getString("medida_producto"));
+//                bf = rs.getBytes("foto");
+//
+//                if (bf != null) {
+//                    bf = Base64.decode(bf, 0, bf.length);
+//
+//                    try {
+//                        //obtener imagen
+//                        producto.setFoto(obterImagen(bf));
+//                    } catch (IOException ex) {
+//                        producto.setFoto(null);
+//                        Logger.getLogger(ModeloProducto.class.getName()).log(Level.SEVERE, null, ex);
+//                    }
+//                } else {
+//                    producto.setFoto(null);
+//                }
                 lista.add(producto);
 
             }
@@ -168,19 +200,18 @@ public class ModeloProducto extends Productos {
 
     }
 
-    public List<Productos> BuscarPersona() {
+    public List<Productos> BuscarProducto() {
         try {
-            String query = "SELECT * FROM producto WHERE codigopro='" + getCod_categoria() + "';";
+            String query = "SELECT * FROM producto WHERE cod_producto='" + getCod_producto() + "';";
             ResultSet rs = con.query(query);
             List<Productos> lista = new ArrayList<Productos>();
 
             while (rs.next()) {
                 Productos producto = new Productos();
-//                producto.setCodigo(rs.getString("codigopro"));
-//                producto.setNombre(rs.getString("nombrepro"));
-//                producto.setDescripcion(rs.getString("descripcion"));
-//                producto.setPrecio(Double.parseDouble(rs.getString("precio")));
-//                producto.setCategoria(rs.getString("categoria"));
+                producto.setCod_producto(rs.getString("cod_producto"));
+                producto.setCod_categoria(rs.getString("cod_ct_producto"));
+                producto.setNombre_producto(rs.getString("nombre_producto"));
+                producto.setUnidad_medida(rs.getString("medida_producto"));
 //               
                 lista.add(producto);
             }

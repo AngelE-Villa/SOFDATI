@@ -27,10 +27,25 @@ public class Modelo_Detalle extends Detalle_Servicio{
         super(cod_dellate_servicio, cod_producto_detalle, cod_servicio_detalle, precio_unitario, cantidad);
     }
     
+    public int NDetalle(){
+        String query = "select max(cod_detalle_servicio) as num from detalle_servicio";
+        ResultSet rs = con.query(query);
+        
+        try {
+            while (rs.next()) {
+                return rs.getInt("num");
+            }
+            rs.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(Modelo_Detalle.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return 600;
+    }
+    
     public boolean Grabar_Detalle() {
 
         String sql;
-        sql = "INSERT INTO detalle_servicio (cod_dellate_servicio, cod_producto_detalle, cod_servicio_detalle, precio_unitario,cantidad)";
+        sql = "INSERT INTO detalle_servicio (cod_detalle_servicio, cod_producto_detalle, cod_servicio_d, precio_unitario,cantidad)";
         sql += "VALUES ('" + getCod_dellate_servicio() + "','" + getCod_producto_detalle() + "','" + getCod_servicio_detalle() + "','" + 
                 getPrecio_unitario() + "','" + getCantidad()+ "')";
         if (con.noQuery(sql) == null) {

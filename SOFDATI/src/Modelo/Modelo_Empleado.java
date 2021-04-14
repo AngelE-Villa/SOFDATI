@@ -190,8 +190,8 @@ public class Modelo_Empleado extends Empleado {
     public List<Empleado> BuscarporID(String id) {
         try {
             String query = "select e.cod_empleado,e.foto,e.cargo,e.sueldo,p.cedula,p.nombre,p.apellido,p.fechanacimiento,p.direccion,p.telefono" +
-            " from empleado e join persona p on p.cedula=cli.cedula_pe where ";
-            query += "UPPER(p.cedula) LIKE UPPER('%" + id + "%')";
+            " from empleado e join persona p on p.cedula=e.cedula_pe where ";
+            query += "UPPER(e.cod_empleado) LIKE UPPER('%" + id + "%')";
             ResultSet rs = con.query(query);
             List<Empleado> lista = new ArrayList<Empleado>();
             byte[] bf;

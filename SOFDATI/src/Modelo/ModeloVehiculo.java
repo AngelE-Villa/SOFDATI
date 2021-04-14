@@ -31,8 +31,8 @@ public class ModeloVehiculo extends Vehiculo {
         super(matricula);
     }
 
-    public ModeloVehiculo(String ram_o_cpn, String pais, String canton, String servicio_vehiculo, String color, int anio_modelo, float tonelaje, Date fecha_ultima_matricula, Date fecha_caducidad_matricula) {
-        super(ram_o_cpn, pais, canton, servicio_vehiculo, color, anio_modelo, tonelaje, fecha_ultima_matricula, fecha_caducidad_matricula);
+    public ModeloVehiculo(String ram_o_cpn, String matricula, String pais, String canton, String servicio_vehiculo, String color, int anio_modelo, float tonelaje, Date fecha_ultima_matricula, Date fecha_caducidad_matricula) {
+        super(ram_o_cpn, matricula, pais, canton, servicio_vehiculo, color, anio_modelo, tonelaje, fecha_ultima_matricula, fecha_caducidad_matricula);
     }
 
     public boolean grabar() {
@@ -48,7 +48,7 @@ public class ModeloVehiculo extends Vehiculo {
 
     public static List<Vehiculo> ListarVehiculo(String aguja) {
         try {
-            String query = "Select * from vehiculo WHERE matricula LIKE '" + aguja + "%' OR UPPER(color) LIKE '" + aguja + "%'";;
+            String query = "Select * from vehiculo WHERE UPPER(matricula) LIKE '" + aguja + "%' OR UPPER(color) LIKE '" + aguja + "%'";
             ResultSet rs = con.query(query);
             List<Vehiculo> lista = new ArrayList<Vehiculo>();
 
@@ -63,6 +63,7 @@ public class ModeloVehiculo extends Vehiculo {
                 vehiculo.setFecha_ultima_matricula(rs.getDate("fecha_ultima_matricula"));
                 vehiculo.setColor(rs.getString("Color"));
                 vehiculo.setFecha_caducidad_matricula(rs.getDate("fecha_caducidad_matricula"));
+                lista.add(vehiculo);
             }
             rs.close();
             return lista;
@@ -72,7 +73,7 @@ public class ModeloVehiculo extends Vehiculo {
         return null;
     }
 
-    public static List<Vehiculo> BuscarVehiculo(String aguja) {
+    public List<Vehiculo> BuscarVehiculo(String aguja) {
         try {
             String query = "SELECT * FROM vehiculo WHERE matricula ='" + aguja + "';";
             ResultSet rs = con.query(query);
@@ -89,6 +90,7 @@ public class ModeloVehiculo extends Vehiculo {
                 vehiculo.setFecha_ultima_matricula(rs.getDate("fecha_ultima_matricula"));
                 vehiculo.setColor(rs.getString("Color"));
                 vehiculo.setFecha_caducidad_matricula(rs.getDate("fecha_caducidad_matricula"));
+                lista.add(vehiculo);
             }
             rs.close();
             return lista;
