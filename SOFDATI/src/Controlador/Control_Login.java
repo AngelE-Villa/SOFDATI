@@ -108,7 +108,7 @@ public class Control_Login {
     
     public void AbriDialogoRecuperar(){
         login.getDialogoRecuperar().setVisible(true);
-        login.getDialogoRecuperar().setSize(300, 320);
+        login.getDialogoRecuperar().setSize(360, 300);
         login.getDialogoRecuperar().setLocationRelativeTo(login);
         login.getTxtbuscarRecup().setText("");
         login.getLblDRecuperar().setText("");        
