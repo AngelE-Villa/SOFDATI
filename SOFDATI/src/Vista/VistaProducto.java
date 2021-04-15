@@ -174,6 +174,8 @@ public class VistaProducto extends javax.swing.JInternalFrame {
                 .addGap(58, 58, 58))
         );
 
+        setClosable(true);
+
         btnagregar.setText("Nuevo");
 
         btnmodificar.setText("Editar");

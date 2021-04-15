@@ -210,6 +210,7 @@ public class Vista_Vehiculo extends javax.swing.JInternalFrame {
                         .addGap(0, 0, Short.MAX_VALUE))))
         );
 
+        setClosable(true);
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         lblV1.setText("Vista Vehiculo");

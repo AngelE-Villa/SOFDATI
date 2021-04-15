@@ -301,6 +301,7 @@ public class Vista_Servicio extends javax.swing.JInternalFrame {
                 .addContainerGap())
         );
 
+        setClosable(true);
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 48)); // NOI18N
