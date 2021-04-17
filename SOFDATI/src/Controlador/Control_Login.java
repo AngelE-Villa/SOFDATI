@@ -40,7 +40,17 @@ public class Control_Login {
         login.getBtnRegistar().addActionListener(l->AbriDialogoRegistar());
         login.getBtnDRecup().addActionListener(l->Recuperar());
         login.getBtnRecuperar().addActionListener(l->AbriDialogoRecuperar());
+        login.getBtnCerrarLogin().addActionListener(l->CerrarLogin());
            
+    }
+    
+    public void CerrarLogin(){
+        int a=JOptionPane.showConfirmDialog(login, "Esta Seguro de Salir","",JOptionPane.YES_NO_OPTION);
+        if (a==JOptionPane.YES_OPTION) {
+            JOptionPane.showMessageDialog(login, "Gracias por utilizar el programa");
+            System.exit(0); 
+           
+        }         
     }
 
     public void Ingresar() {

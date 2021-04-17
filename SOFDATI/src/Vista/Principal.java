@@ -8,8 +8,7 @@ package Vista;
 import javax.swing.JButton;
 import javax.swing.JDesktopPane;
 import javax.swing.JLabel;
-//import AppPackage.AnimationClass;
-import desplazable.Desface;
+import javax.swing.JPanel;
 
 /**
  *
@@ -17,14 +16,13 @@ import desplazable.Desface;
  */
 public class Principal extends javax.swing.JFrame {
 
-    Desface desplace;
+    
 
     /**
      * Creates new form Principal
      */
     public Principal() {
         initComponents();
-        desplace = new Desface();
     }
 
     /**
@@ -38,6 +36,8 @@ public class Principal extends javax.swing.JFrame {
 
         jpPestañas = new javax.swing.JPanel();
         jlbDesple = new javax.swing.JLabel();
+        Pantalla = new javax.swing.JDesktopPane();
+        jPanel1 = new javax.swing.JPanel();
         jpBotones1 = new javax.swing.JPanel();
         btnclientes1 = new javax.swing.JButton();
         btnEmpleadoP1 = new javax.swing.JButton();
@@ -55,42 +55,53 @@ public class Principal extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        Pantalla = new javax.swing.JDesktopPane();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        setBackground(new java.awt.Color(255, 255, 255));
 
         jpPestañas.setBackground(new java.awt.Color(253, 255, 252));
+        jpPestañas.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         jpPestañas.setForeground(new java.awt.Color(253, 255, 252));
-        jpPestañas.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jlbDesple.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/Recursos/icons8_Menu_32px_1.png"))); // NOI18N
-        jlbDesple.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jlbDespleMouseClicked(evt);
-            }
-        });
-        jpPestañas.add(jlbDesple, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, -1, -1));
 
-        getContentPane().add(jpPestañas, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 868, 40));
+        javax.swing.GroupLayout jpPestañasLayout = new javax.swing.GroupLayout(jpPestañas);
+        jpPestañas.setLayout(jpPestañasLayout);
+        jpPestañasLayout.setHorizontalGroup(
+            jpPestañasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jpPestañasLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jlbDesple)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jpPestañasLayout.setVerticalGroup(
+            jpPestañasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpPestañasLayout.createSequentialGroup()
+                .addGap(0, 11, Short.MAX_VALUE)
+                .addComponent(jlbDesple))
+        );
+
+        javax.swing.GroupLayout PantallaLayout = new javax.swing.GroupLayout(Pantalla);
+        Pantalla.setLayout(PantallaLayout);
+        PantallaLayout.setHorizontalGroup(
+            PantallaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 655, Short.MAX_VALUE)
+        );
+        PantallaLayout.setVerticalGroup(
+            PantallaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
         jpBotones1.setBackground(new java.awt.Color(255, 159, 28));
+        jpBotones1.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 10));
 
         btnclientes1.setBackground(new java.awt.Color(255, 159, 28));
         btnclientes1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/Recursos/user_thin_icon_171437.png"))); // NOI18N
         btnclientes1.setToolTipText("Ingreso Clientes ");
         btnclientes1.setBorderPainted(false);
         btnclientes1.setFocusPainted(false);
-        btnclientes1.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
-            public void mouseMoved(java.awt.event.MouseEvent evt) {
-                btnclientes1MouseMoved(evt);
-            }
-        });
-        btnclientes1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                btnclientes1MouseExited(evt);
-            }
-        });
 
         btnEmpleadoP1.setBackground(new java.awt.Color(255, 159, 28));
         btnEmpleadoP1.setForeground(new java.awt.Color(255, 159, 28));
@@ -180,43 +191,42 @@ public class Principal extends javax.swing.JFrame {
         jpBotones1Layout.setHorizontalGroup(
             jpBotones1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpBotones1Layout.createSequentialGroup()
-                .addGap(10, 10, 10)
+                .addGap(9, 9, 9)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(12, 12, 12)
                 .addComponent(btnclientes1, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(jpBotones1Layout.createSequentialGroup()
-                .addGap(16, 16, 16)
+                .addGap(15, 15, 15)
                 .addComponent(jLabel2)
                 .addGap(15, 15, 15)
                 .addComponent(btnEmpleadoP1, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(jpBotones1Layout.createSequentialGroup()
-                .addGap(36, 36, 36)
-                .addGroup(jpBotones1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel3)
-                    .addGroup(jpBotones1Layout.createSequentialGroup()
-                        .addGap(7, 7, 7)
-                        .addComponent(jLabel4)))
-                .addGap(15, 15, 15)
-                .addGroup(jpBotones1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btndetalle1, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnServicio1, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(35, 35, 35)
+                .addComponent(jLabel3)
+                .addGap(10, 10, 10)
+                .addComponent(btnServicio1, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(jpBotones1Layout.createSequentialGroup()
-                .addGap(27, 27, 27)
+                .addGap(42, 42, 42)
+                .addComponent(jLabel4)
+                .addGap(15, 15, 15)
+                .addComponent(btndetalle1, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(jpBotones1Layout.createSequentialGroup()
+                .addGap(26, 26, 26)
                 .addComponent(jLabel5)
                 .addGap(15, 15, 15)
                 .addComponent(btnVehiculos1, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(jpBotones1Layout.createSequentialGroup()
-                .addGap(23, 23, 23)
+                .addGap(22, 22, 22)
                 .addComponent(jLabel6)
                 .addGap(15, 15, 15)
                 .addComponent(btnProductos1, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(jpBotones1Layout.createSequentialGroup()
-                .addGap(20, 20, 20)
+                .addGap(19, 19, 19)
                 .addComponent(jLabel7)
                 .addGap(15, 15, 15)
                 .addComponent(btnCategorias1, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(jpBotones1Layout.createSequentialGroup()
-                .addGap(10, 10, 10)
+                .addGap(9, 9, 9)
                 .addComponent(jLabel8)
                 .addGap(15, 15, 15)
                 .addComponent(btnLocalidad1, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -224,7 +234,7 @@ public class Principal extends javax.swing.JFrame {
         jpBotones1Layout.setVerticalGroup(
             jpBotones1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpBotones1Layout.createSequentialGroup()
-                .addGap(30, 30, 30)
+                .addGap(29, 29, 29)
                 .addGroup(jpBotones1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jpBotones1Layout.createSequentialGroup()
                         .addGap(4, 4, 4)
@@ -236,19 +246,18 @@ public class Principal extends javax.swing.JFrame {
                         .addGap(5, 5, 5)
                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(btnEmpleadoP1, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(11, 11, 11)
+                .addGap(2, 2, 2)
                 .addGroup(jpBotones1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jpBotones1Layout.createSequentialGroup()
-                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(6, 6, 6)
-                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(9, 9, 9)
+                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnServicio1, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(2, 2, 2)
+                .addGroup(jpBotones1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jpBotones1Layout.createSequentialGroup()
                         .addGap(4, 4, 4)
-                        .addGroup(jpBotones1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jpBotones1Layout.createSequentialGroup()
-                                .addGap(40, 40, 40)
-                                .addComponent(btndetalle1, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(btnServicio1, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btndetalle1, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(4, 4, 4)
                 .addGroup(jpBotones1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jpBotones1Layout.createSequentialGroup()
@@ -273,43 +282,52 @@ public class Principal extends javax.swing.JFrame {
                         .addComponent(btnLocalidad1, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))))
         );
 
-        getContentPane().add(jpBotones1, new org.netbeans.lib.awtextra.AbsoluteConstraints(-130, 40, 180, 540));
-
-        javax.swing.GroupLayout PantallaLayout = new javax.swing.GroupLayout(Pantalla);
-        Pantalla.setLayout(PantallaLayout);
-        PantallaLayout.setHorizontalGroup(
-            PantallaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 820, Short.MAX_VALUE)
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addComponent(jpBotones1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 12, Short.MAX_VALUE))
         );
-        PantallaLayout.setVerticalGroup(
-            PantallaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 540, Short.MAX_VALUE)
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jpBotones1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        getContentPane().add(Pantalla, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 40, 820, 540));
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(Pantalla))
+            .addComponent(jpPestañas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jpPestañas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(Pantalla)))
+        );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void btnclientes1MouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnclientes1MouseMoved
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnclientes1MouseMoved
-
-    private void btnclientes1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnclientes1MouseExited
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnclientes1MouseExited
-
-    private void jlbDespleMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlbDespleMouseClicked
-        // TODO add your handling code here:
-        if (jpBotones1.getX() == 0) {
-            desplace.desplazarIzquierda(jpBotones1, jpBotones1.getX(), -130, 5, 10);
-        } else if (jpBotones1.getX() == -130) {
-            desplace.desplazarDerecha(jpBotones1, jpBotones1.getX(), 0, 5, 10);
-        }
-    }//GEN-LAST:event_jlbDespleMouseClicked
            
     public JButton getBtndetalle() {
         return btndetalle1;
+    }
+    
+    public JPanel getJpBotones1() {
+        return jpBotones1;
+    }
+
+    public void setJpBotones1(JPanel jpBotones1) {
+        this.jpBotones1 = jpBotones1;
     }
 
     public void setBtndetalle(JButton btndetalle) {
@@ -367,6 +385,14 @@ public class Principal extends javax.swing.JFrame {
     public JButton getBtnEmpleadoP() {
         return btnEmpleadoP1;
     }
+ 
+    public JLabel getJlbDesple() {
+        return jlbDesple;
+    }
+
+    public void setJlbDesple(JLabel jlbDesple) {
+        this.jlbDesple = jlbDesple;
+    }
 
     public void setBtnEmpleadoP(JButton btnEmpleadoP) {
         this.btnEmpleadoP1 = btnEmpleadoP;
@@ -398,6 +424,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel jlbDesple;
     private javax.swing.JPanel jpBotones1;
     private javax.swing.JPanel jpPestañas;
