@@ -117,7 +117,7 @@ public class Control_Empleado {
     }
 
     private void MostrarDialog() {
-        vista.getDialogoEmpleado().setSize(350, 400);
+        vista.getDialogoEmpleado().setSize(534, 536);
         vista.getDialogoEmpleado().setTitle("NUEVO EMPLEADO");
         vista.getDialogoEmpleado().setLocationRelativeTo(vista);
         vista.getTxtcedulaE().setText("");

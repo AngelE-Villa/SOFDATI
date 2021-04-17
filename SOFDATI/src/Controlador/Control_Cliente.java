@@ -104,7 +104,7 @@ public class Control_Cliente {
     }
      
      private void MostrarDialog() {
-        vista.getDialogCliente().setSize(384,669);
+        vista.getDialogCliente().setSize(388,635);
         vista.getDialogCliente().setTitle("NUEVO CLIENTE");
         vista.getDialogCliente().setLocationRelativeTo(vista);
         vista.getTxtcedulacli().setText("");
