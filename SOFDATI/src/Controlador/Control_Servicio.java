@@ -6,6 +6,7 @@
 package Controlador;
 
 import Modelo.Categoria;
+import Modelo.Detalle_Servicio;
 import Modelo.Empleado;
 import Modelo.Localidad;
 import Modelo.ModeloCliente;
@@ -37,6 +38,7 @@ import javax.swing.JComboBox;
 //import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
+import javax.swing.ListModel;
 //import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.xml.ws.Holder;
@@ -212,7 +214,7 @@ public class Control_Servicio {
                     String cod = ml.CodLocalizacion(ciudad);
                     if (cod.equals("")) {
                         cod_ciudad = String.valueOf(ml.NLocalizacion() + 1);
-                        Modelo_Localidad mlc = new Modelo_Localidad(cod_ciudad, "Ecuador", "", ciudad);
+                        Modelo_Localidad mlc = new Modelo_Localidad(cod_ciudad, "Ecuador", ciudad, "");
                         mlc.grabar();
                         cod_ciudad = cod_ciudad;
                     } else {
@@ -330,15 +332,47 @@ public class Control_Servicio {
         }
         return null;
     }
+    
+    public String ElegirCasillaL() {
+        String idSeleccion = "";
+        int fila = vistaS.getTablaServicios().getSelectedRow();
+        if (fila == -1) {
+        } else {
+            JTable tabla = vistaS.getTablaServicios();
+            idSeleccion = tabla.getValueAt(tabla.getSelectedRow(), 3).toString();
+            return idSeleccion;
+        }
+        return null;
+    }
+    
+        public String ElegirCasillaC () {
+        String idSeleccion = "";
+        int fila = vistaS.getTablaServicios().getSelectedRow();
+        if (fila == -1) {
+        } else {
+            JTable tabla = vistaS.getTablaServicios();
+            idSeleccion = tabla.getValueAt(tabla.getSelectedRow(), 3).toString();
+            return idSeleccion;
+        }
+        return null;
+    }
 //
 
     public void MostrarServicio() {
         String eleccion = ElegirCasilla();
+        String idloc=ElegirCasillaL();
+        Modelo_Localidad ml=new Modelo_Localidad();
+        Modelo_Categoria mc=new Modelo_Categoria();
         Modelo_Servicio ms = new Modelo_Servicio();
         List<Servicio> lista = ms.BuscarServicio(eleccion);
+        System.out.println("Lista "+lista);
         for (int i = 0; i < lista.size(); i++) {
             Servicio s = lista.get(i);
             MuestraDialogo();
+            String categoria=mc.CategNombre(idloc);
+            String ciudad=ml.Canton(idloc);
+            System.out.println(ciudad);
+            vistaS.getTxtciudadSer().setText(ciudad);
             vistaS.getTxtcodServicio().setVisible(true);
             vistaS.getTxtidcliente().setEditable(false);
             vistaS.getLbln().setVisible(true);

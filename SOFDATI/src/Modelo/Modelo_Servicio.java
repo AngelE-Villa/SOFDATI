@@ -61,7 +61,6 @@ public class Modelo_Servicio extends Servicio {
 //        }
 //        return null;
 //    }
-
     public boolean Grabar_Servicio() {
 
         String sql;
@@ -117,29 +116,29 @@ public class Modelo_Servicio extends Servicio {
 
     public List<Servicio> BuscarServicio(String codservicio) {
         try {
-            String query = "SELECT s.km_salida, s.k_llegada, s.cod_ciudad_s, s.cod_cliente_s, "
-                    + "s.cod_empleado_s, s.fecha_servicio, s.cod_vehiculo_s , s.cod_servicio, "
-                    + "s.precioservicio, l.canton, c.nombre_ct, p.nombre_producto, ds.cantidad "
+            String query = "SELECT s.km_salida as kmS, s.km_llegada as kmL, s.cod_ciudad_s as codC, s.cod_cliente_s as codCl, "
+                    + "s.cod_empleado_s as codE, s.fecha_servicio as fecha, s.cod_vehiculo_s as codV , s.cod_servicio as codS, "
+                    + "s.precioservicio as ps, l.canton as canton, c.nombre_ct as categoria, p.nombre_producto as producto, ds.cantidad as cantidad "
                     + "from servicio s "
                     + "join localidad l on s.cod_ciudad_s=l.cod_ciudad "
                     + "join detalle_servicio ds on s.cod_servicio=ds.cod_servicio_d "
                     + "join producto p on p.cod_producto=ds.cod_producto_detalle "
                     + "join categorias c on p.cod_ct_producto=c.cod_categoria "
-                    + "WHERE UPPER(cod_servicio) LIKE UPPER('" + codservicio + "%')";
+                    + "WHERE cod_servicio = '"+codservicio+"'";
             ResultSet rs = con.query(query);
             List<Servicio> listaS = new ArrayList<Servicio>();
 
             while (rs.next()) {
                 Servicio servicio = new Servicio();
-                servicio.setCodservicio(rs.getString("cod_servicio"));
-                servicio.setCodvehiculo(rs.getString("cod_vehiculo_s"));
-                servicio.setFechaServicio(rs.getDate("fecha_servicio"));
-                servicio.setCodempleado(rs.getString("cod_empleado_s"));
-                servicio.setCodcliente(rs.getString("cod_cliente_s"));
-                servicio.setCodciudad(rs.getString("cod_ciudad_s"));
-                servicio.setKm_llegada(rs.getDouble("km_llegada"));
-                servicio.setKm_salida(rs.getDouble("km_salida"));
-                servicio.setPrecioServicio(rs.getDouble("precioservicio"));
+                servicio.setCodservicio(rs.getString("codS"));
+                servicio.setCodvehiculo(rs.getString("codV"));
+                servicio.setFechaServicio(rs.getDate("fecha"));
+                servicio.setCodempleado(rs.getString("codE"));
+                servicio.setCodcliente(rs.getString("codCl"));
+                servicio.setCodciudad(rs.getString("codC"));
+                servicio.setKm_llegada(rs.getDouble("kmL"));
+                servicio.setKm_salida(rs.getDouble("kmS"));
+                servicio.setPrecioServicio(rs.getDouble("ps"));
 
                 listaS.add(servicio);
             }

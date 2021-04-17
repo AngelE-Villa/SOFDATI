@@ -200,9 +200,9 @@ public class ModeloProducto extends Productos {
 
     }
 
-    public List<Productos> BuscarProducto() {
+    public List<Productos> BuscarProducto(String prod) {
         try {
-            String query = "SELECT * FROM producto WHERE cod_producto='" + getCod_producto() + "';";
+            String query = "SELECT * FROM producto WHERE cod_producto='" + prod + "';";
             ResultSet rs = con.query(query);
             List<Productos> lista = new ArrayList<Productos>();
 

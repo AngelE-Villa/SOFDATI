@@ -114,5 +114,4 @@ public class Servicio {
     public void setCodcliente(String codcliente) {
         this.codcliente = codcliente;
     }   
-     
 }

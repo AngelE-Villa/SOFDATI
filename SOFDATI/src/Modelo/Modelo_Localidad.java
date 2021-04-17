@@ -99,9 +99,9 @@ public class Modelo_Localidad extends Localidad {
         return null;
     }
 
-    public static List<Localidad> BuscarLocalidad(String aguja) {
+    public List<Localidad> BuscarLocalidad(String aguja) {
         try {
-            String query = "SELECT * FROM localidad WHERE cod_ciudad LIKE UPPER('" + aguja + "');";
+            String query = "SELECT * FROM localidad WHERE cod_ciudad='" + aguja + "'";
             ResultSet rs = con.query(query);
             List<Localidad> lista = new ArrayList<Localidad>();
 
@@ -120,6 +120,21 @@ public class Modelo_Localidad extends Localidad {
         return null;
     }
 
+    public String Canton(String codLocal){
+        String query = "SELECT canton FROM localidad WHERE cod_ciudad='"+codLocal+"'";
+        ResultSet rs = con.query(query);
+
+        try {
+            while (rs.next()) {
+                return rs.getString("canton");
+            }
+            rs.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(Modelo_Localidad.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    
+    }
     public boolean editar() {
 
         String sql;

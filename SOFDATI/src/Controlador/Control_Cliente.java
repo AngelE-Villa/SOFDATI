@@ -4,6 +4,7 @@ package Controlador;
 import Modelo.Cliente;
 import Modelo.ModeloCliente;
 import Vista.Vista_Cliente;
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
@@ -104,7 +105,8 @@ public class Control_Cliente {
      
      private void MostrarDialog() {
         vista.getDialogCliente().setSize(350, 400);
-        vista.getDialogCliente().setTitle("NUEVO CLIENTE");
+        vista.getDialogCliente().setTitle("Nuevo Cliente");
+        vista.getDialogCliente().getTitle();
         vista.getDialogCliente().setLocationRelativeTo(vista);
         vista.getTxtcedulacli().setText("");
         vista.getTxtnombrecli().setText("");

@@ -23,6 +23,22 @@ public class Modelo_Categoria extends Categoria {
         super(cod_categoria, descripcion, nombre_categoria);
     }
     
+    public String CategNombre(String codcat){
+        String query = "SELECT nombre_ct FROM categorias WHERE cod_categoria='"+codcat+"'";
+        ResultSet rs = con.query(query);
+
+        try {
+            while (rs.next()) {
+                return rs.getString("nombre_ct");
+            }
+            rs.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(Modelo_Categoria.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    
+    }
+    
     public int NCategoria(){
         String query = "select max(cod_categoria) as num from categorias";
         ResultSet rs = con.query(query);
