@@ -23,6 +23,10 @@ public class Categoria {
         this.nombre_categoria = nombre_categoria;
     }
 
+    public Categoria(String cod_categoria) {
+        this.cod_categoria = cod_categoria;
+    }
+
     public String getNombre_categoria() {
         return nombre_categoria;
     }

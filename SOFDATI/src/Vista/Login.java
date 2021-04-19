@@ -281,7 +281,6 @@ public class Login extends javax.swing.JFrame {
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 48)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/Recursos/log_circ.png"))); // NOI18N
 
         btnRecuperar.setBackground(new java.awt.Color(1, 22, 39));
         btnRecuperar.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
@@ -309,7 +308,6 @@ public class Login extends javax.swing.JFrame {
         btnRegistar.setBorderPainted(false);
         btnRegistar.setContentAreaFilled(false);
         btnRegistar.setFocusPainted(false);
-        btnRegistar.setOpaque(false);
 
         jPanel2.setBackground(new java.awt.Color(255, 153, 51));
 

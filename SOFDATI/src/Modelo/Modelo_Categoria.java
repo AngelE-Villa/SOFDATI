@@ -22,6 +22,10 @@ public class Modelo_Categoria extends Categoria {
     public Modelo_Categoria(String cod_categoria, String descripcion, String nombre_categoria) {
         super(cod_categoria, descripcion, nombre_categoria);
     }
+
+    public Modelo_Categoria(String cod_categoria) {
+        super(cod_categoria);
+    }
     
     public String CategNombre(String codcat){
         String query = "SELECT nombre_ct FROM categorias WHERE cod_categoria='"+codcat+"'";
@@ -52,6 +56,27 @@ public class Modelo_Categoria extends Categoria {
             Logger.getLogger(Modelo_Categoria.class.getName()).log(Level.SEVERE, null, ex);
         }
         return 100;
+    }
+      public List<Categoria> BuscarCategoria() {
+        try {
+            String query = "SELECT * FROM categorias WHERE cod_categoria='" + getCod_categoria() + "';";
+            ResultSet rs = con.query(query);
+            List<Categoria> lista = new ArrayList<Categoria>();
+            byte[] bf;
+            while (rs.next()) {
+                 Categoria categoria = new Categoria();
+                categoria.setCod_categoria(rs.getString("cod_categoria"));
+                categoria.setDescripcion(rs.getString("descripcion_ct"));
+                categoria.setNombre_categoria(rs.getString("nombre_ct"));  
+                lista.add(categoria);
+                
+            }
+            rs.close();
+            return lista;
+        } catch (SQLException ex) {
+            Logger.getLogger(Modelo_Categoria.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
+        }
     }
     
         public boolean Grabar_Categoria() {
@@ -115,5 +140,14 @@ public class Modelo_Categoria extends Categoria {
         } else {
             return false;
         }   
-    }  
+    } 
+     public boolean eliminarcategoria() {
+        String sql;
+        sql = "DELETE FROM categorias WHERE cod_categoria= '" + getCod_categoria() + "';";
+        if (con.noQuery(sql) == null) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 }
