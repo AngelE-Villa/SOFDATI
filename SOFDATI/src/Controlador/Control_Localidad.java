@@ -39,6 +39,7 @@ public class Control_Localidad {
     public Control_Localidad(Modelo_Localidad modelo, Vista_Localidad vista) {
         this.modelo = modelo;
         this.vista = vista;
+        this.vista.setVisible(true);
     }
 //Metodos    
 
@@ -54,35 +55,21 @@ public class Control_Localidad {
 
             @Override
             public void keyReleased(KeyEvent e) {
-          //      cargaLista(vista.getTxtBusquedaV1().getText());
+                cargaLista(vista.getTxtBusquedaL1().getText());
             }
         };
 
         vista.getBtnBuscarL1().addActionListener(l -> cargaLista(""));
         vista.getBtnAgregarL1().addActionListener(l -> {
-            this.botonEditar = true;
+            botonEditar = true;
             muestraDialogo();
         });
         vista.getBtnGuardarL2().addActionListener(l -> switchBoton());
         vista.getBntModificarL1().addActionListener(l -> {
-            this.botonEditar = false;
+            botonEditar = false;
             mostrarDatos();
         });
-        vista.getBtnEliminarL1().addActionListener(l -> ElegirCasilla());
-        vista.getTxtBusquedaL1().addKeyListener(kl);
-        vista.getBtnSalirL1().addActionListener(l -> salirBoton());
-
-        vista.getBtnBuscarL1().addActionListener(l -> cargaLista(""));
-        vista.getBtnAgregarL1().addActionListener(l -> {
-            this.botonEditar = true;
-            muestraDialogo();
-        });
-        vista.getBtnGuardarL2().addActionListener(l -> switchBoton());
-        vista.getBntModificarL1().addActionListener(l -> {
-            this.botonEditar = false;
-            mostrarDatos();
-        });
-        vista.getBtnEliminarL1().addActionListener(l -> ElegirCasilla());
+        vista.getBtnEliminarL1().addActionListener(l -> Eliminar());
         vista.getTxtBusquedaL1().addKeyListener(kl);
         vista.getBtnSalirL1().addActionListener(l -> salirBoton());
 
@@ -98,10 +85,6 @@ public class Control_Localidad {
     }
 
     public void cargaLista(String aguja) {
-
-//        vista.getTblLocalidad().setRowHeight(100);
-//        DefaultTableCellRenderer renderer = new DefaultTableCellHeaderRenderer();
-
         DefaultTableModel tdlModel;
         tdlModel = (DefaultTableModel) vista.getTblLocalidad().getModel();
         tdlModel.setNumRows(0);
@@ -114,13 +97,29 @@ public class Control_Localidad {
             vista.getTblLocalidad().setValueAt(p1.getPais(), i.value, 1);
             vista.getTblLocalidad().setValueAt(p1.getProvincia(), i.value, 2);
             vista.getTblLocalidad().setValueAt(p1.getCanton(), i.value, 3);
+            i.value++;
+        });
+    }
 
+    public void cargaLista1() {
+        DefaultTableModel tdlModel;
+        tdlModel = (DefaultTableModel) vista.getTblLocalidad().getModel();
+        tdlModel.setNumRows(0);
+        List<Localidad> Lista = Modelo_Localidad.ListarLocalidad1();
+        int ncols = tdlModel.getColumnCount();
+        Holder<Integer> i = new Holder<>(0); // problema con paquete 
+        Lista.stream().forEach(p1 -> {
+            tdlModel.addRow(new Object[ncols]);
+            vista.getTblLocalidad().setValueAt(p1.getCod_ciudad(), i.value, 0);
+            vista.getTblLocalidad().setValueAt(p1.getPais(), i.value, 1);
+            vista.getTblLocalidad().setValueAt(p1.getProvincia(), i.value, 2);
+            vista.getTblLocalidad().setValueAt(p1.getCanton(), i.value, 3);
             i.value++;
         });
     }
 
     private void muestraDialogo() {
-        vista.getDlgLocalidad().setSize(700, 350);
+        vista.getDlgLocalidad().setSize(350, 250);
         vista.getDlgLocalidad().setTitle("Nuevo Registro - Localidad");
         vista.getDlgLocalidad().setLocationRelativeTo(vista);
         vista.getDlgLocalidad().setVisible(true);
@@ -137,10 +136,10 @@ public class Control_Localidad {
         String provincia = vista.getTxtProvincia().getText();
         String canton = vista.getTxtCanton().getText();
 
-        Modelo_Localidad localidad = new Modelo_Localidad();
+        Modelo_Localidad localidad = new Modelo_Localidad(cod_localidad, pais, canton, provincia);
 
         if (localidad.grabar()) {
-            cargaLista("");
+            cargaLista1();
             JOptionPane.showMessageDialog(vista, "Registro grabado Satisfactoriamente");
             vista.getDlgLocalidad().setVisible(false);
         } else {
@@ -154,10 +153,10 @@ public class Control_Localidad {
         String provincia = vista.getTxtProvincia().getText();
         String canton = vista.getTxtCanton().getText();
 
-        Modelo_Localidad localidad = new Modelo_Localidad();
+        Modelo_Localidad localidad = new Modelo_Localidad(cod_localidad, pais, canton, provincia);
 
         if (localidad.editar()) {
-            cargaLista("");
+            cargaLista1();
             JOptionPane.showMessageDialog(vista, "Registro Editado Satisfactoriamente");
             vista.getDlgLocalidad().setVisible(false);
         } else {
@@ -167,8 +166,9 @@ public class Control_Localidad {
 
     private void mostrarDatos() {
         String idSeleccion = ElegirCasilla();
-        Modelo_Localidad localidad = new Modelo_Localidad(idSeleccion);
+        Modelo_Localidad localidad = new Modelo_Localidad();
         List<Localidad> lista = localidad.BuscarLocalidad(idSeleccion); // preguntar a Angel
+        System.out.println("");
         for (int i = 0; i < lista.size(); i++) {
             Localidad l = lista.get(i);
             String cod_localidad = l.getCod_ciudad();
@@ -208,7 +208,7 @@ public class Control_Localidad {
             if (opcion == JOptionPane.YES_OPTION) {
                 Modelo_Localidad ml = new Modelo_Localidad(seleccion);
                 if (ml.eliminar()) {
-                    cargaLista("");
+                    cargaLista1();
                     JOptionPane.showMessageDialog(vista, "Registro Eliminado Satisfactoriamente");
                 } else {
                     JOptionPane.showMessageDialog(vista, "Error al Eliminar");

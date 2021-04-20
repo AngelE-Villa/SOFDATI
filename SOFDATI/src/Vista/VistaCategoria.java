@@ -40,172 +40,155 @@ public class VistaCategoria extends javax.swing.JInternalFrame {
         txtcodcate = new javax.swing.JTextField();
         txtnomcate = new javax.swing.JTextField();
         txtdescripcion = new javax.swing.JTextField();
-        lblfoto = new javax.swing.JLabel();
         btnaceptar = new javax.swing.JButton();
-        btnexaminar = new javax.swing.JButton();
-        btneditar = new javax.swing.JButton();
         btncancelar = new javax.swing.JButton();
-        btnagregar = new javax.swing.JButton();
-        btnmodificar = new javax.swing.JButton();
-        btnimprimir = new javax.swing.JButton();
-        btnactualizar = new javax.swing.JButton();
-        btneliminar = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tablacategoria = new javax.swing.JTable();
+        jPanel1 = new javax.swing.JPanel();
         txtbuscar = new javax.swing.JTextField();
+        btnagregar = new javax.swing.JButton();
+        btnactualizar = new javax.swing.JButton();
+        btnmodificar = new javax.swing.JButton();
+        btneliminar = new javax.swing.JButton();
+        btnimprimir = new javax.swing.JButton();
 
-        jLabel13.setText("CODIGO CATEGORIA");
+        jLabel13.setText("Codigo");
 
-        jLabel14.setText("NOMBRE CATEGORIA");
+        jLabel14.setText("Nombre");
 
-        jLabel15.setText("DESCRIPCION");
+        jLabel15.setText("Descripcion");
 
-        lblfoto.setText("jLabel1");
-        lblfoto.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        btnaceptar.setText("Aceptar");
 
-        btnaceptar.setText("ACEPTAR");
+        btncancelar.setText("Cancelar");
 
-        btnexaminar.setText("EXAMINAR");
-
-        btneditar.setText("EDITAR");
-
-        btncancelar.setText("CANCELAR");
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        jLabel1.setText("CATEGORIA");
 
         javax.swing.GroupLayout dialocategoriaLayout = new javax.swing.GroupLayout(dialocategoria.getContentPane());
         dialocategoria.getContentPane().setLayout(dialocategoriaLayout);
         dialocategoriaLayout.setHorizontalGroup(
             dialocategoriaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(dialocategoriaLayout.createSequentialGroup()
-                .addGap(66, 66, 66)
-                .addComponent(btnaceptar)
-                .addGap(96, 96, 96)
-                .addComponent(btneditar)
-                .addGap(98, 98, 98)
-                .addComponent(btncancelar)
-                .addContainerGap(109, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, dialocategoriaLayout.createSequentialGroup()
-                .addGroup(dialocategoriaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(30, 30, 30)
+                .addComponent(btncancelar)
+                .addGap(18, 18, 18)
+                .addComponent(btnaceptar)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, dialocategoriaLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(dialocategoriaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(dialocategoriaLayout.createSequentialGroup()
-                        .addGroup(dialocategoriaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jLabel15)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
+                        .addComponent(txtdescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(dialocategoriaLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGroup(dialocategoriaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(dialocategoriaLayout.createSequentialGroup()
-                                .addGap(53, 53, 53)
-                                .addComponent(jLabel15)
-                                .addGap(34, 34, 34))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, dialocategoriaLayout.createSequentialGroup()
-                                .addContainerGap()
                                 .addComponent(jLabel13)
-                                .addGap(18, 18, 18)))
-                        .addGroup(dialocategoriaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtdescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtcodcate, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, dialocategoriaLayout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel14)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(txtnomcate, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(163, 163, 163)))
-                .addGroup(dialocategoriaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnexaminar)
-                    .addComponent(lblfoto, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(49, 49, 49))
+                                .addGap(18, 18, 18)
+                                .addComponent(txtcodcate, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(dialocategoriaLayout.createSequentialGroup()
+                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(24, 24, 24))
+                            .addGroup(dialocategoriaLayout.createSequentialGroup()
+                                .addComponent(jLabel14)
+                                .addGap(18, 18, 18)
+                                .addComponent(txtnomcate, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addGap(20, 20, 20))
         );
         dialocategoriaLayout.setVerticalGroup(
             dialocategoriaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(dialocategoriaLayout.createSequentialGroup()
-                .addGroup(dialocategoriaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(dialocategoriaLayout.createSequentialGroup()
-                        .addGap(51, 51, 51)
-                        .addGroup(dialocategoriaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel13)
-                            .addComponent(txtcodcate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(98, 98, 98)
-                        .addGroup(dialocategoriaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel15)
-                            .addComponent(txtdescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(dialocategoriaLayout.createSequentialGroup()
-                        .addGap(50, 50, 50)
-                        .addGroup(dialocategoriaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lblfoto, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel14)
-                            .addComponent(txtnomcate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(36, 36, 36)
-                .addComponent(btnexaminar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 81, Short.MAX_VALUE)
+                .addContainerGap(19, Short.MAX_VALUE)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addGroup(dialocategoriaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnaceptar)
-                    .addComponent(btneditar)
-                    .addComponent(btncancelar))
-                .addGap(58, 58, 58))
+                    .addComponent(txtcodcate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel13))
+                .addGap(18, 18, 18)
+                .addGroup(dialocategoriaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtnomcate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel14))
+                .addGap(18, 18, 18)
+                .addGroup(dialocategoriaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtdescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel15))
+                .addGap(18, 18, 18)
+                .addGroup(dialocategoriaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btncancelar)
+                    .addComponent(btnaceptar))
+                .addGap(21, 21, 21))
         );
-
-        btnagregar.setText("AGREGAR");
-
-        btnmodificar.setText("MODIFICAR");
-
-        btnimprimir.setText("IMPRIMIR");
-
-        btnactualizar.setText("ACTUALIZAR");
-
-        btneliminar.setText("ELEIMINAR");
 
         tablacategoria.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "CODIGO CATEGORIA", "NOMBRE CATEGORIA", "DESCRIPCION", "CODIGO PRODUCTO", "NOMBRE PRODUCTO", "UNIDAD DE MEDIDA"
+                "Codigo", "Nombre", "Descripcion"
             }
         ));
         jScrollPane1.setViewportView(tablacategoria);
+
+        btnagregar.setText("Nuevo");
+
+        btnactualizar.setText("Actualizar");
+
+        btnmodificar.setText("Editar");
+
+        btneliminar.setText("Eliminar");
+
+        btnimprimir.setText("Imprimir");
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(txtbuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnagregar)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnmodificar)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btneliminar)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnactualizar)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
+                .addComponent(btnimprimir)
+                .addGap(21, 21, 21))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtbuscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnagregar)
+                    .addComponent(btnactualizar)
+                    .addComponent(btnmodificar)
+                    .addComponent(btneliminar)
+                    .addComponent(btnimprimir))
+                .addContainerGap(19, Short.MAX_VALUE))
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jScrollPane1)
-                .addContainerGap())
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(245, 245, 245)
-                        .addComponent(btnactualizar))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(22, 22, 22)
-                        .addComponent(txtbuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnmodificar)))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(45, 45, 45)
-                        .addComponent(btneliminar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 92, Short.MAX_VALUE)
-                        .addComponent(btnimprimir)
-                        .addGap(50, 50, 50))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(34, 34, 34)
-                        .addComponent(btnagregar)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jScrollPane1)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(btnmodificar)
-                        .addComponent(btneliminar)
-                        .addComponent(btnimprimir))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(txtbuscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnactualizar)
-                    .addComponent(btnagregar))
-                .addGap(27, 27, 27)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 377, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(12, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 209, Short.MAX_VALUE))
         );
 
         pack();
@@ -235,28 +218,12 @@ public class VistaCategoria extends javax.swing.JInternalFrame {
         this.btncancelar = btncancelar;
     }
 
-    public JButton getBtneditar() {
-        return btneditar;
-    }
-
-    public void setBtneditar(JButton btneditar) {
-        this.btneditar = btneditar;
-    }
-
     public JButton getBtneliminar() {
         return btneliminar;
     }
 
     public void setBtneliminar(JButton btneliminar) {
         this.btneliminar = btneliminar;
-    }
-
-    public JButton getBtnexaminar() {
-        return btnexaminar;
-    }
-
-    public void setBtnexaminar(JButton btnexaminar) {
-        this.btnexaminar = btnexaminar;
     }
 
     public JButton getBtnimprimir() {
@@ -306,21 +273,7 @@ public class VistaCategoria extends javax.swing.JInternalFrame {
     public void setTxtbuscar(JTextField txtbuscar) {
         this.txtbuscar = txtbuscar;
     }
-
-  
-
-
-
-    public JLabel getLblfoto() {
-        return lblfoto;
-    }
-
-    public void setLblfoto(JLabel lblfoto) {
-        this.lblfoto = lblfoto;
-    }
-
-    
-
+ 
     public JTextField getTxtcodcate() {
         return txtcodcate;
     }
@@ -353,17 +306,16 @@ public class VistaCategoria extends javax.swing.JInternalFrame {
     private javax.swing.JButton btnactualizar;
     private javax.swing.JButton btnagregar;
     private javax.swing.JButton btncancelar;
-    private javax.swing.JButton btneditar;
     private javax.swing.JButton btneliminar;
-    private javax.swing.JButton btnexaminar;
     private javax.swing.JButton btnimprimir;
     private javax.swing.JButton btnmodificar;
     private javax.swing.JDialog dialocategoria;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JLabel lblfoto;
     private javax.swing.JTable tablacategoria;
     private javax.swing.JTextField txtbuscar;
     private javax.swing.JTextField txtcodcate;

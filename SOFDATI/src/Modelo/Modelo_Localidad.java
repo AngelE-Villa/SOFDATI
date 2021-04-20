@@ -64,11 +64,11 @@ public class Modelo_Localidad extends Localidad {
     }
 
     public String CodLocalizacion(String local) {
-        String sql="select cod_ciudad from localidad where UPPER(canton)=UPPER('"+local+"')";
+        String sql="select cod_ciudad as cod from localidad where UPPER(canton)=UPPER('"+local+"')";
         ResultSet rs = con.query(sql);
         try {
             while (rs.next()) {
-                return rs.getString("canton");
+                return rs.getString("cod");
             }
             rs.close();
         } catch (SQLException ex) {
@@ -79,17 +79,20 @@ public class Modelo_Localidad extends Localidad {
     
     public static List<Localidad> ListarLocalidad(String aguja) {
         try {
-            String query = "Select * from localidad WHERE cod_ciudad LIKE UPPER('" + aguja + "%') OR UPPER(canton) LIKE UPPER('" + aguja + "%')";
+            String query = "select * from localidad where "
+                    + "UPPER (cod_ciudad) like UPPER('" + aguja + "%') OR "
+                    + "UPPER (pais) like UPPER('" + aguja + "%') OR "
+                    + "UPPER (provincia) like UPPER('" + aguja + "%') OR "
+                    + "UPPER (canton) like UPPER ('" + aguja + "%')";
             ResultSet rs = con.query(query);
             List<Localidad> lista = new ArrayList<Localidad>();
-
             while (rs.next()) {
                 Localidad localidad = new Localidad();
                 localidad.setCod_ciudad(rs.getString("cod_ciudad"));
                 localidad.setPais(rs.getString("pais"));
                 localidad.setProvincia(rs.getString("provincia"));
                 localidad.setCanton(rs.getString("canton"));
-
+                lista.add(localidad);
             }
             rs.close();
             return lista;
@@ -101,7 +104,7 @@ public class Modelo_Localidad extends Localidad {
 
     public List<Localidad> BuscarLocalidad(String aguja) {
         try {
-            String query = "SELECT * FROM localidad WHERE cod_ciudad='" + aguja + "'";
+            String query = "SELECT * FROM localidad WHERE cod_ciudad='" + aguja + "' and estado=1";
             ResultSet rs = con.query(query);
             List<Localidad> lista = new ArrayList<Localidad>();
 
@@ -111,6 +114,7 @@ public class Modelo_Localidad extends Localidad {
                 localidad.setPais(rs.getString("pais"));
                 localidad.setProvincia(rs.getString("provincia"));
                 localidad.setCanton(rs.getString("canton"));
+                lista.add(localidad);
             }
             rs.close();
             return lista;
@@ -140,7 +144,7 @@ public class Modelo_Localidad extends Localidad {
         String sql;
         sql = "UPDATE localidad SET " + "cod_ciudad='" + getCod_ciudad()
                 + "', pais='" + getPais() + "',"
-                + "provincia=" + getProvincia() + ", canton=" + getCanton() + ","
+                + "provincia='" + getProvincia() + "', canton= '" + getCanton() +"' "
                 + "WHERE cod_ciudad='" + getCod_ciudad() + "';";
         if (con.noQuery(sql) == null) {
             return true;
@@ -152,7 +156,7 @@ public class Modelo_Localidad extends Localidad {
 
     public boolean eliminar() {
         String sql;
-        sql = "DELETE FROM localidad WHERE cod_ciudad='" + getCod_ciudad() + "'";
+        sql = "UPDATE localidad set estado='0'";
         if (con.noQuery(sql) == null) {
             return true;
         } else {
@@ -160,4 +164,24 @@ public class Modelo_Localidad extends Localidad {
         }
     }
 
+    public static List<Localidad> ListarLocalidad1() {
+        try {
+            String query = "select * from localidad where estado=1";
+            ResultSet rs = con.query(query);
+            List<Localidad> lista = new ArrayList<Localidad>();
+            while (rs.next()) {
+                Localidad localidad = new Localidad();
+                localidad.setCod_ciudad(rs.getString("cod_ciudad"));
+                localidad.setPais(rs.getString("pais"));
+                localidad.setProvincia(rs.getString("provincia"));
+                localidad.setCanton(rs.getString("canton"));
+                lista.add(localidad);
+            }
+            rs.close();
+            return lista;
+        } catch (SQLException ex) {
+            Logger.getLogger(Modelo_Localidad.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
 }

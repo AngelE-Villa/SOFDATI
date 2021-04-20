@@ -1,8 +1,9 @@
 package Controlador;
 
+import Modelo.Categoria;
 import Modelo.ConexionBADA;
-import java.awt.Image;
 import Modelo.ModeloProducto;
+import Modelo.Modelo_Categoria;
 import Modelo.Productos;
 
 import Vista.VistaProducto;
@@ -10,12 +11,7 @@ import java.awt.Image;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.io.IOException;
-import java.time.Instant;
-import java.time.ZoneId;
-import java.time.ZonedDateTime;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
@@ -28,7 +24,6 @@ import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.xml.ws.Holder;
 
-
 /**
  *
  * @author daysi
@@ -37,6 +32,7 @@ public class ControlProducto {
 
     private ModeloProducto modelo;
     private VistaProducto vista;
+    private boolean validarBotonA;
 
     public ControlProducto() {
     }
@@ -66,14 +62,41 @@ public class ControlProducto {
             }
         };
         vista.getBtnvizualizar().addActionListener(l -> cargarListaProducto(""));
-        vista.getBtnagregar().addActionListener(l -> muestraDialogo());
+        vista.getBtnagregar().addActionListener(l -> {
+            this.validarBotonA = true;
+            muestraDialogo();
+            LLenarComboxCategoria();
+        });
         vista.getTxtbuscar().addKeyListener(buscar);
-        vista.getBtnaceptar().addActionListener(l -> grabarProducto());
-        vista.getBtnmodificar().addActionListener(l -> MostrarDatosProducto());
-        vista.getBtneditar().addActionListener(l -> EditarProducto());
+        vista.getBtnaceptar().addActionListener(l -> Grabar_Modificar());
+        vista.getBtnmodificar().addActionListener(l -> {
+            MostrarDatosProducto();
+            this.validarBotonA = false;
+        });
         vista.getBtneliminar().addActionListener(l -> EliminarProducto());
         vista.getBtnexaminar().addActionListener(l -> cargarImagen());
 //        vista.getBtnimprimir().addActionListener(l -> ImprimirReporte());
+        vista.getBtnAgregarNuevacategoria().addActionListener(l -> AgregarNuevaCategoria());
+    }
+    
+    private void Grabar_Modificar() {
+        if (validarBotonA) {
+            grabarProducto();
+        } else {
+            EditarProducto();
+        }
+    }
+
+    public void AgregarNuevaCategoria() {
+        String cat = JOptionPane.showInputDialog(vista, "Ingrese la Nueva Categoria");
+        Modelo_Categoria mc = new Modelo_Categoria();
+        String numCategoria = mc.NCategoria() + 1 + "";
+        Modelo_Categoria mc1 = new Modelo_Categoria(numCategoria, "", cat);
+        if (mc1.Grabar_Categoria()) {
+            System.out.println("Registro Categoria");
+        }
+        LLenarComboxCategoria();
+        vista.getCbxCategoria().setSelectedItem(cat);
     }
 
     public void cargarListaProducto(String aguja) {
@@ -95,15 +118,51 @@ public class ControlProducto {
             vista.getTablaproducto().setValueAt(p1.getUnidad_medida(), i.value, 3);
 
             //completar datos
-            Image img = p1.getFoto();
-            if (img != null) {
-                Image newimg = img.getScaledInstance(100, 100, java.awt.Image.SCALE_SMOOTH);
-                ImageIcon icon = new ImageIcon(newimg);
-                renderer.setIcon(icon);
-                vista.getTablaproducto().setValueAt(new JLabel(icon), i.value, 4);
-            } else {
-                vista.getTablaproducto().setValueAt(null, i.value, 4);
-            }
+//            Image img = p1.getFoto();
+//            if (img != null) {
+//                Image newimg = img.getScaledInstance(100, 100, java.awt.Image.SCALE_SMOOTH);
+//                ImageIcon icon = new ImageIcon(newimg);
+//                renderer.setIcon(icon);
+//                vista.getTablaproducto().setValueAt(new JLabel(icon), i.value, 4);
+//            } else {
+//                vista.getTablaproducto().setValueAt(null, i.value, 4);
+//            }
+            i.value++;
+
+        });
+
+//        
+//       
+    }
+    
+    public void cargarListaProducto1() {
+        vista.getTablaproducto().setDefaultRenderer(Object.class, new ImagenTabla());
+        vista.getTablaproducto().setRowHeight(100);
+        DefaultTableCellRenderer renderer = new DefaultTableCellRenderer();
+        DefaultTableModel tableModel;
+        tableModel = (DefaultTableModel) vista.getTablaproducto().getModel();
+        tableModel.setNumRows(0);
+        List<Productos> lista = ModeloProducto.ListarProducto1();
+        int ncols = tableModel.getColumnCount();
+        Holder<Integer> i = new Holder<Integer>(0);
+        lista.stream().forEach(p1 -> {
+
+            tableModel.addRow(new Object[ncols]);
+            vista.getTablaproducto().setValueAt(p1.getCod_producto(), i.value, 0);
+            vista.getTablaproducto().setValueAt(p1.getCod_categoria(), i.value, 1);
+            vista.getTablaproducto().setValueAt(p1.getNombre_producto(), i.value, 2);
+            vista.getTablaproducto().setValueAt(p1.getUnidad_medida(), i.value, 3);
+
+            //completar datos
+//            Image img = p1.getFoto();
+//            if (img != null) {
+//                Image newimg = img.getScaledInstance(100, 100, java.awt.Image.SCALE_SMOOTH);
+//                ImageIcon icon = new ImageIcon(newimg);
+//                renderer.setIcon(icon);
+//                vista.getTablaproducto().setValueAt(new JLabel(icon), i.value, 4);
+//            } else {
+//                vista.getTablaproducto().setValueAt(null, i.value, 4);
+//            }
             i.value++;
 
         });
@@ -114,13 +173,11 @@ public class ControlProducto {
 
     private void muestraDialogo() {
 
-        vista.getBtneditar().setVisible(false);
-        vista.getBtnaceptar().setVisible(true);
         vista.getDialogoproducto().setSize(600, 500);
         vista.setTitle("NUEVO PRODUCTO");
         vista.getDialogoproducto().setLocationRelativeTo(vista);
         vista.getTxtcodproducto().setText("");
-        vista.getTxtcodcate().setEditable(true);
+        vista.getCbxCategoria().setSelectedIndex(0);
         vista.getTxtnompro().setText("");
         vista.getTxtunidadm().setText("");
         vista.getLblfoto().setIcon(null);
@@ -129,15 +186,17 @@ public class ControlProducto {
     }
 
     private void grabarProducto() {
-        String codproducto = vista.getTxtcodproducto().getText();
-        String codcategoria = vista.getTxtcodcate().getText();
+        ModeloProducto mp = new ModeloProducto();
+        String codproducto = mp.NProducto() + 1 + "";
+        String categoria = (String) vista.getCbxCategoria().getSelectedItem();
+        Modelo_Categoria mc = new Modelo_Categoria();
+        String codcategoria = mc.codigo_Categoria(categoria);
         String nombreproducto = vista.getTxtnompro().getText();
-
         String unidad = vista.getTxtunidadm().getText();
-
-        ModeloProducto producto = new ModeloProducto(codproducto, codcategoria, nombreproducto, unidad);
-        ImageIcon ic = (ImageIcon) vista.getLblfoto().getIcon();
-        producto.setFoto(ic.getImage());
+        System.out.println(unidad);
+        ModeloProducto producto = new ModeloProducto(codproducto, nombreproducto, unidad ,codcategoria);
+//        ImageIcon ic = (ImageIcon) vista.getLblfoto().getIcon();
+//        producto.setFoto(ic.getImage());
         if (producto.grabar()) {
             cargarListaProducto("");
             JOptionPane.showMessageDialog(vista, "Registro grabado Satisfactoriamene");
@@ -150,16 +209,18 @@ public class ControlProducto {
 
     private void EditarProducto() {
         String codproducto = vista.getTxtcodproducto().getText();
-        String codcategoria = vista.getTxtcodcate().getText();
+        String categoria = (String) vista.getCbxCategoria().getSelectedItem();
+        Modelo_Categoria mc = new Modelo_Categoria();
+        String codcategoria = mc.codigo_Categoria(categoria);
         String nombreproducto = vista.getTxtnompro().getText();
 
         String unidad = vista.getTxtunidadm().getText();
 
-        ModeloProducto producto = new ModeloProducto(codproducto, codcategoria, nombreproducto, unidad);
-        ImageIcon ic = (ImageIcon) vista.getLblfoto().getIcon();
-        producto.setFoto(ic.getImage());
+        ModeloProducto producto = new ModeloProducto(codproducto, nombreproducto, unidad, codcategoria);
+//        ImageIcon ic = (ImageIcon) vista.getLblfoto().getIcon();
+//        producto.setFoto(ic.getImage());
         if (producto.editar()) {
-            cargarListaProducto("");
+            cargarListaProducto1();
             JOptionPane.showMessageDialog(vista, "Registro grabado Satisfactoriamene");
             vista.getDialogoproducto().setVisible(false);
         } else {
@@ -183,6 +244,7 @@ public class ControlProducto {
     public void MostrarDatosProducto() {
         String Seleccioncod = ElegirCasilla();
         ModeloProducto producto = new ModeloProducto(Seleccioncod);
+        LLenarComboxCategoria();
         List<Productos> lista = producto.BuscarProducto(Seleccioncod);
         for (int i = 0; i < lista.size(); i++) {
             Productos p = lista.get(i);
@@ -192,8 +254,6 @@ public class ControlProducto {
             String unidadm = p.getUnidad_medida();
 
             muestraDialogo();
-            vista.getBtnaceptar().setVisible(false);
-            vista.getBtneditar().setVisible(true);
             Image img = p.getFoto();
             if (img != null) {
                 Image newimg = img.getScaledInstance(155, 190, java.awt.Image.SCALE_SMOOTH);
@@ -206,11 +266,23 @@ public class ControlProducto {
             vista.getDialogoproducto().setTitle("EDITAR PRODUCTO");
             vista.getTxtcodproducto().setText(codproducto);
             vista.getTxtcodproducto().setEditable(false);
-            vista.getTxtcodcate().setText(codcategoria);
+            vista.getCbxCategoria().setSelectedItem(codcategoria);
             vista.getTxtnompro().setText(nombreproducto);
             vista.getTxtunidadm().setText(unidadm);
 
         }
+    }
+
+    public void LLenarComboxCategoria() {
+        List<Categoria> lista = Modelo_Categoria.ListarCategorias("");
+        vista.getCbxCategoria().removeAllItems();
+        vista.getCbxCategoria().addItem("Seleccione");
+        for (int i = 0; i < lista.size(); i++) {
+            Categoria c = lista.get(i);
+            String categoria = c.getNombre_categoria();
+            vista.getCbxCategoria().addItem(categoria);
+        }
+
     }
 
     public void EliminarProducto() {
@@ -219,7 +291,7 @@ public class ControlProducto {
         String idSeleccion = ElegirCasilla();
         ModeloProducto producto = new ModeloProducto(idSeleccion);
         if (producto.eliminar()) {
-            cargarListaProducto("");
+            cargarListaProducto1();
             JOptionPane.showMessageDialog(vista, "REGISTRO ELIMINADO");
 
         } else {
@@ -245,8 +317,10 @@ public class ControlProducto {
 
                 vista.getLblfoto().setIcon(new ImageIcon(icono));
                 vista.getLblfoto().updateUI();
+
             } catch (IOException ex) {
-                Logger.getLogger(ControlProducto.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(ControlProducto.class
+                        .getName()).log(Level.SEVERE, null, ex);
             }
 
         }

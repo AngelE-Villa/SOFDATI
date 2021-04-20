@@ -78,7 +78,8 @@ public class Modelo_Servicio extends Servicio {
         try {
             String query = "SELECT * FROM servicio WHERE UPPER(cod_servicio) LIKE UPPER('" + buscar + "%') "
                     + "OR UPPER(cod_vehiculo_s) LIKE UPPER('" + buscar + "%') OR UPPER(cod_empleado_s) LIKE UPPER('" + buscar + "%') "
-                    + "OR UPPER(cod_cliente_s) LIKE UPPER('" + buscar + "%')OR UPPER(cod_ciudad_s) LIKE UPPER('" + buscar + "%')";
+                    + "OR UPPER(cod_cliente_s) LIKE UPPER('" + buscar + "%')OR UPPER(cod_ciudad_s) LIKE UPPER('" + buscar + "%') "
+                    + "AND estado=1";
             ResultSet rs = con.query(query);
             List<Servicio> listaS = new ArrayList<Servicio>();
 
@@ -104,12 +105,17 @@ public class Modelo_Servicio extends Servicio {
         }
     }
 
-    public boolean ValidarServicio() throws SQLException {
-        String query = "SELECT * FROM servicio WHERE cod_servicio='" + getCodservicio() + "';";
-        ResultSet rs = con.query(query);
-        if (rs.next()) {
-            return true;
-        } else {
+    public boolean ValidarServicio() {
+        try {
+            String query = "SELECT * FROM servicio WHERE cod_servicio='" + getCodservicio() + "';";
+            ResultSet rs = con.query(query);
+            if (rs.next()) {
+                return true;
+            } else {
+                return false;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Modelo_Servicio.class.getName()).log(Level.SEVERE, null, ex);
             return false;
         }
     }
@@ -124,7 +130,7 @@ public class Modelo_Servicio extends Servicio {
                     + "join detalle_servicio ds on s.cod_servicio=ds.cod_servicio_d "
                     + "join producto p on p.cod_producto=ds.cod_producto_detalle "
                     + "join categorias c on p.cod_ct_producto=c.cod_categoria "
-                    + "WHERE cod_servicio = '"+codservicio+"'";
+                    + "WHERE cod_servicio = '"+codservicio+"' and estado =1";
             ResultSet rs = con.query(query);
             List<Servicio> listaS = new ArrayList<Servicio>();
 
@@ -166,7 +172,7 @@ public class Modelo_Servicio extends Servicio {
 
     public boolean EliminarServicio() {
         String sql;
-        sql = "DELETE FROM servicio  WHERE cod_servicio='" + getCodservicio() + "';";
+        sql = "UPDATE FROM servicio set estado=0 WHERE cod_servicio='" + getCodservicio() + "';";
         if (con.noQuery(sql) == null) {
             return true;
         } else {

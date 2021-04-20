@@ -47,7 +47,6 @@ public class Control_Login {
     public void CerrarLogin(){
         int a=JOptionPane.showConfirmDialog(login, "Esta Seguro de Salir","",JOptionPane.YES_NO_OPTION);
         if (a==JOptionPane.YES_OPTION) {
-            JOptionPane.showMessageDialog(login, "Gracias por utilizar el programa");
             System.exit(0); 
            
         }         

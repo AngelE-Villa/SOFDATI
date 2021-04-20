@@ -37,6 +37,7 @@ public class ControlCategoria {
 
     private Modelo_Categoria modelo;
     private VistaCategoria vista;
+    private boolean botonEditar;
 
     public ControlCategoria() {
     }
@@ -44,6 +45,7 @@ public class ControlCategoria {
     public ControlCategoria(Modelo_Categoria modelo, VistaCategoria vista) {
         this.modelo = modelo;
         this.vista = vista;
+        this.vista.setVisible(true);
     }
 
     public void iniciaControl() {
@@ -65,14 +67,28 @@ public class ControlCategoria {
             }
         };
         vista.getBtnactualizar().addActionListener(l -> cargarListaCategoria(""));
-        vista.getBtnagregar().addActionListener(l -> muestraDialogo());
+        vista.getBtnagregar().addActionListener(l -> {
+            muestraDialogo();
+            botonEditar=true;
+        });
         vista.getTxtbuscar().addKeyListener(buscar);
-        vista.getBtnaceptar().addActionListener(l -> grabarCategoria());
-        vista.getBtnmodificar().addActionListener(l -> MostrarDatosCategoria());
-        vista.getBtneditar().addActionListener(l -> EditarCategoria());
+        vista.getBtnaceptar().addActionListener(l -> switchBoton());
+        vista.getBtnmodificar().addActionListener(l -> {
+            MostrarDatosCategoria();
+            botonEditar=false;
+        });
         vista.getBtneliminar().addActionListener(l -> EliminarCategoria());
         
         vista.getBtnimprimir().addActionListener(l -> ImprimirReporte());
+    }
+    
+    public void switchBoton() {
+        if (botonEditar) {
+            grabarCategoria();
+        } else {
+            EditarCategoria();
+        }
+
     }
 
     public void cargarListaCategoria(String aguja) {
@@ -100,23 +116,46 @@ public class ControlCategoria {
             i.value++;
 
         });
-
-//        
+              
 //       
     }
+    
+        public void cargarListaCategoria1() {
+        vista.getTablacategoria().setDefaultRenderer(Object.class, new ImagenTabla());
+        vista.getTablacategoria().setRowHeight(100);
+        DefaultTableCellRenderer renderer = new DefaultTableCellRenderer();
+        DefaultTableModel tableModel;
+        tableModel = (DefaultTableModel) vista.getTablacategoria().getModel();
+        tableModel.setNumRows(0);
+        List<Categoria> lista = Modelo_Categoria.ListarCategorias1();
+        int ncols = tableModel.getColumnCount();
+        Holder<Integer> i = new Holder<Integer>(0);
+        lista.stream().forEach(p1 -> {
+
+            tableModel.addRow(new Object[ncols]);
+
+            vista.getTablacategoria().setValueAt(p1.getCod_categoria(), i.value, 0);
+             vista.getTablacategoria().setValueAt(p1.getDescripcion(), i.value, 1);
+            vista.getTablacategoria().setValueAt(p1.getNombre_categoria(), i.value, 2);
+           
+
+            //completar datos
+         
+       
+            i.value++;
+
+        });
+        
+        }
 
     private void muestraDialogo() {
-
-        vista.getBtneditar().setVisible(false);
         vista.getBtnaceptar().setVisible(true);
         vista.getDialocategoria().setSize(600, 500);
         vista.setTitle("NUEVA CATEGORIA");
         vista.getDialocategoria().setLocationRelativeTo(vista);
         vista.getTxtcodcate().setText("");
-
         vista.getTxtnomcate().setText("");
         vista.getTxtdescripcion().setText("");
-        vista.getLblfoto().setIcon(null);
         vista.getDialocategoria().setVisible(true);
 
     }
@@ -129,7 +168,7 @@ public class ControlCategoria {
         Modelo_Categoria categoria = new Modelo_Categoria(codcategoria, descripcion, nombrecate);
 
         if (categoria.Grabar_Categoria()) {
-            cargarListaCategoria("");
+            cargarListaCategoria1();
             JOptionPane.showMessageDialog(vista, "Registro grabado Satisfactoriamene");
             vista.getDialocategoria().setVisible(false);
         } else {
@@ -146,7 +185,7 @@ public class ControlCategoria {
         Modelo_Categoria categoria = new Modelo_Categoria(codcategoria, descripcion, nombrecate);
 
         if (categoria.Editar_Categoria()) {
-            cargarListaCategoria("");
+            cargarListaCategoria1();
             JOptionPane.showMessageDialog(vista, "Registro grabado Satisfactoriamene");
             vista.getDialocategoria().setVisible(false);
         } else {
@@ -178,9 +217,6 @@ public class ControlCategoria {
             String nombrecategoria = c.getNombre_categoria();
 
             muestraDialogo();
-            vista.getBtnaceptar().setVisible(false);
-            vista.getBtneditar().setVisible(true);
-
             vista.getDialocategoria().setTitle("EDITAR CATEGORIA");
             vista.getTxtcodcate().setText(codcategoria);
             vista.getTxtcodcate().setEditable(false);
@@ -191,20 +227,18 @@ public class ControlCategoria {
     }
 
     public void EliminarCategoria() {
-//        int opcion=JOptionPane.showConfirmDialog(vista, "ESTA SEGURO QUE DESEA ELIMINAR");
-//        if (opcion ==0) {
-        String idSeleccion = ElegirCasilla();
-         Modelo_Categoria categoria =new Modelo_Categoria(idSeleccion);
-        if (categoria.eliminarcategoria()) {
-            cargarListaCategoria("");
-            JOptionPane.showMessageDialog(vista, "REGISTRO ELIMINADO");
+        int opcion=JOptionPane.showConfirmDialog(vista, "ESTA SEGURO QUE DESEA ELIMINAR","Advertencia",JOptionPane.YES_NO_OPTION);
+        if (opcion ==JOptionPane.YES_OPTION) {
+            String idSeleccion = ElegirCasilla();
+            Modelo_Categoria categoria =new Modelo_Categoria(idSeleccion);
+            if (categoria.eliminarcategoria()) {
+                cargarListaCategoria1();
+                JOptionPane.showMessageDialog(vista, "REGISTRO ELIMINADO");
+            }
 
         } else {
+            JOptionPane.showMessageDialog(vista, "ERROR AL ELIMINAR");
         }
-
-//        } else {
-//            JOptionPane.showMessageDialog(vista, "ERROR AL ELIMINAR");
-//        }
     }
 
     private void ImprimirReporte() {

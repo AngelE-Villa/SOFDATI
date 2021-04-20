@@ -29,19 +29,18 @@ public class ModeloCliente extends Cliente{
         super(idCliente, cedula, nombre, apellido, fnacimineto, direccion, telefono);
     }
     
-        public String CodCliente(String cedula){
-        String query = "select cod_cliente from cliente where cedula_pe='"+cedula+"';";
-        ResultSet rs = con.query(query);
-        
+    public String CodCliente(String cedula){
         try {
+            String query = "select cod_cliente as cod from cliente where cedula_pe='"+cedula+"';";
+            ResultSet rs = con.query(query);
             while (rs.next()) {
-                return rs.getString("cod_cliente");
+                return rs.getString("cod");
             }
             rs.close();
         } catch (SQLException ex) {
-            Logger.getLogger(Modelo_Categoria.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ModeloCliente.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return "";
+        return null;
     }
 
     

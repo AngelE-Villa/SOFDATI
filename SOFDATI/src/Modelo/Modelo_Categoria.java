@@ -134,7 +134,8 @@ public class Modelo_Categoria extends Categoria {
         
     public boolean Editar_Categoria(){  
      String sql;
-        sql = "UPDATE categorias SET nombre_ct='" + getNombre_categoria() + "' WHERE cod_producto='" + getCod_categoria() + "'";
+        sql = "UPDATE categorias SET nombre_ct='" + getNombre_categoria() + "', descripcion_ct='"+getDescripcion()+"' "
+                + "WHERE cod_categoria='" + getCod_categoria() + "'";
         if (con.noQuery(sql) == null) {
             return true;
         } else {
@@ -143,11 +144,34 @@ public class Modelo_Categoria extends Categoria {
     } 
      public boolean eliminarcategoria() {
         String sql;
-        sql = "DELETE FROM categorias WHERE cod_categoria= '" + getCod_categoria() + "';";
+        sql = "UPDATE categorias SET estado= 0 where cod_categoria='"+getCod_categoria()+"';";
         if (con.noQuery(sql) == null) {
             return true;
         } else {
             return false;
         }
     }
+     
+    public static List<Categoria> ListarCategorias1() {
+        try {
+            String query = "SELECT * FROM categorias WHERE estado=1 ";
+        
+            ResultSet rs = con.query(query);
+            List<Categoria> listaD = new ArrayList<Categoria>();
+            
+            while (rs.next()) {
+                Categoria ct = new Categoria();
+                ct.setCod_categoria(rs.getString("cod_categoria"));
+                ct.setDescripcion(rs.getString("descripcion_ct"));
+                ct.setNombre_categoria(rs.getString("nombre_ct"));;
+
+                listaD.add(ct);
+            }
+            rs.close();
+            return listaD;
+        } catch (SQLException ex) {
+            Logger.getLogger(Modelo_Servicio.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
+        }
+    }  
 }

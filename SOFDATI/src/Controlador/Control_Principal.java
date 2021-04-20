@@ -1,13 +1,16 @@
 package Controlador;
 
+import Modelo.Categoria;
 import Modelo.ModeloCliente;
 import Modelo.ModeloProducto;
 import Modelo.ModeloVehiculo;
+import Modelo.Modelo_Categoria;
 import Modelo.Modelo_Detalle;
 import Modelo.Modelo_Empleado;
 import Modelo.Modelo_Localidad;
 import Modelo.Modelo_Servicio;
 import Vista.Principal;
+import Vista.VistaCategoria;
 import Vista.VistaProducto;
 import Vista.Vista_Cliente;
 import Vista.Vista_Detalle;
@@ -21,7 +24,6 @@ import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
 import static java.awt.Frame.MAXIMIZED_BOTH;
-import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
 import java.awt.event.ComponentListener;
 import java.awt.event.MouseEvent;
@@ -163,7 +165,8 @@ public class Control_Principal {
         principal.getPantalla().add(vs);
         Control_Nuevo_Servicio cs = new Control_Nuevo_Servicio(vs, ms);
         cs.IniciarBotones();
-//        cs.CargarLista("");
+        cs.LLenarComboxProducto();
+        cs.LLenarComboxVehiculo();
 
     }
 
@@ -190,19 +193,19 @@ public class Control_Principal {
         VistaProducto vp = new VistaProducto();
         ModeloProducto mp = new ModeloProducto();
         principal.getPantalla().add(vp);
-//        ControlProducto cp = new ControlProducto();
-//        cp.iniciarControl();
-//        cp.CargarLista("");
+        ControlProducto cp = new ControlProducto(mp, vp);
+        cp.iniciaControl();
+        cp.cargarListaProducto1();
 
     }
 
     public void Abrir_Categorias() {
-        Vista_Servicio vs = new Vista_Servicio();
-        Modelo_Servicio ms = new Modelo_Servicio();
-        principal.getPantalla().add(vs);
-        Control_Servicio cs = new Control_Servicio(vs, ms);
-        cs.iniciarControl();
-        cs.CargarLista("");
+        VistaCategoria vc = new VistaCategoria();
+        Modelo_Categoria mc = new Modelo_Categoria();
+        principal.getPantalla().add(vc);
+        ControlCategoria cc = new ControlCategoria(mc, vc);
+        cc.iniciaControl();
+        cc.cargarListaCategoria1();
 
     }
 
@@ -212,7 +215,7 @@ public class Control_Principal {
         principal.getPantalla().add(vl);
         Control_Localidad cl = new Control_Localidad(ml, vl);
         cl.iniciaControl();
-        cl.cargaLista("");
+        cl.cargaLista1();
 
     }
 }

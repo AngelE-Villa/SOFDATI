@@ -175,7 +175,6 @@ public class Control_Servicio {
         } else if (vistaS.getTxtkmsalida().getText().isEmpty()) {
             JOptionPane.showMessageDialog(vistaS, "Campo Kilometro Salida Vacio");
         } else {
-            try {
                 String idpe = vistaS.getTxtcodServicio().getText();
                 Modelo_Servicio ms = new Modelo_Servicio(idpe);
                 if (ms.ValidarServicio() == true) {
@@ -275,9 +274,6 @@ public class Control_Servicio {
                     }
 
                 }
-            } catch (SQLException ex) {
-                Logger.getLogger(Control_Servicio.class.getName()).log(Level.SEVERE, null, ex);
-            }
         }
     }
 
@@ -400,7 +396,6 @@ public class Control_Servicio {
             String placa = v.getMatricula();
             System.out.println(placa);
             vistaS.getCbVehiculo().addItem(placa);
-//            vistaS.getCbVehiculo().setSelectedItem(combo);
         }
 
     }

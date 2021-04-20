@@ -147,13 +147,13 @@ public class Control_DetalleServicio {
             detalle.setCod_dellate_servicio(idPersona);
             int eleccion = JOptionPane.showConfirmDialog(vista, "Esta seguro de elimar esta detalle", "advertencia", JOptionPane.YES_NO_OPTION);
             if (eleccion == JOptionPane.YES_OPTION) {
-                if (detalle.EliminarDetalle()) {
-                    JOptionPane.showMessageDialog(vista, "Detalle eliminada con exito");
-
-                } else {
-                    JOptionPane.showMessageDialog(vista, "ERROR");
-
-                }
+//                if (detalle.EliminarDetalle()) {
+//                    JOptionPane.showMessageDialog(vista, "Detalle eliminada con exito");
+//
+//                } else {
+//                    JOptionPane.showMessageDialog(vista, "ERROR");
+//
+//                }
                 CargarLista("");
             } else {
                 JOptionPane.showMessageDialog(vista, "Elimiacion Cancelada");

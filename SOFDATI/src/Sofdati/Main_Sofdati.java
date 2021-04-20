@@ -21,7 +21,7 @@ public class Main_Sofdati {
     public static void main(String[] args) {
         Inicio vi=new Inicio();
         Control_Inicio ci=new Control_Inicio(vi);
-        ci.iniciarLogin(9);
+        ci.iniciarLogin(7);
         
     }
 }
