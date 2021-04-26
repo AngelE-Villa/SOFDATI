@@ -15,9 +15,18 @@ public class Persona {
     private Date fnacimiento;
     private String direccion;
     private String telefono;
+    private String sexo;
 
     public Persona(){
         
+    }
+
+    public String getSexo() {
+        return sexo;
+    }
+
+    public void setSexo(String sexo) {
+        this.sexo = sexo;
     }
 
     public Persona(String cedula) {
@@ -28,15 +37,18 @@ public class Persona {
         this.cedula = cedula;
         this.telefono = telefono;
     }
-    
-    public Persona(String cedula, String nombre, String apellido, Date fnacimineto, String direccion, String telefono) {
+
+    public Persona(String cedula, String nombre, String apellido, Date fnacimiento, String direccion, String telefono, String sexo) {
         this.cedula = cedula;
         this.nombre = nombre;
         this.apellido = apellido;
-        this.fnacimiento = fnacimineto;
+        this.fnacimiento = fnacimiento;
         this.direccion = direccion;
         this.telefono = telefono;
+        this.sexo = sexo;
     }
+    
+    
 
     public String getCedula() {
         return cedula;

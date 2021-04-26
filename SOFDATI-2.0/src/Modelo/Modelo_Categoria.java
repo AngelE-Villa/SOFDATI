@@ -28,7 +28,7 @@ public class Modelo_Categoria extends Categoria {
     }
     
     public String CategNombre(String codcat){
-        String query = "SELECT nombre_ct FROM categorias WHERE cod_categoria='"+codcat+"'";
+        String query = "SELECT nombre_ct FROM categorias WHERE cod_categoria='"+codcat+"' and estado=1";
         ResultSet rs = con.query(query);
 
         try {
@@ -59,7 +59,7 @@ public class Modelo_Categoria extends Categoria {
     }
       public List<Categoria> BuscarCategoria() {
         try {
-            String query = "SELECT * FROM categorias WHERE cod_categoria='" + getCod_categoria() + "';";
+            String query = "SELECT * FROM categorias WHERE cod_categoria='" + getCod_categoria() + "' AND estado=1";
             ResultSet rs = con.query(query);
             List<Categoria> lista = new ArrayList<Categoria>();
             byte[] bf;
@@ -81,10 +81,9 @@ public class Modelo_Categoria extends Categoria {
     
         public boolean Grabar_Categoria() {
             String sql;
-            sql = "INSERT INTO categorias (cod_categoria, nombre_ct) "
-                    + "VALUES ('" + getCod_categoria() + "','" + getNombre_categoria() + "');";
-    //        sql += "INSERT INTO cliente (cod_cliente,cedula_pe) "
-    //                + "VALUES ('" + getIdCliente() + "','" + getCedula() + "');";
+            sql = "INSERT INTO categorias (cod_categoria, nombre_ct, estado) "
+                    + "VALUES ('" + getCod_categoria() + "','" + getNombre_categoria() + "'," + 1 + ")";
+
             if (con.noQuery(sql) == null) {
                 return true;
             } else {
@@ -94,7 +93,7 @@ public class Modelo_Categoria extends Categoria {
         
         public String codigo_Categoria(String categ) {
             
-            String query = "select cod_categoria from categorias where UPPER(nombre_ct)=UPPER('"+ categ +"')";
+            String query = "select cod_categoria from categorias where UPPER(nombre_ct)=UPPER('"+ categ +"') and estado=1";
             ResultSet rs = con.query(query);
             try {
                 while (rs.next()) {
@@ -110,8 +109,8 @@ public class Modelo_Categoria extends Categoria {
     public static List<Categoria> ListarCategorias(String buscar) {
         try {
             String query = "SELECT * FROM categorias WHERE ";
-            query += "UPPER(cod_categoria) LIKE UPPER('%" + buscar + "%') OR ";
-            query += "UPPER(nombre_ct) LIKE UPPER('%" + buscar + "%')";
+            query += "UPPER(cod_categoria) LIKE UPPER('%" + buscar + "%') and estado=1 OR ";
+            query += "UPPER(nombre_ct) LIKE UPPER('%" + buscar + "%') and estado=1";
         
             ResultSet rs = con.query(query);
             List<Categoria> listaD = new ArrayList<Categoria>();
@@ -134,7 +133,7 @@ public class Modelo_Categoria extends Categoria {
         
     public boolean Editar_Categoria(){  
      String sql;
-        sql = "UPDATE categorias SET nombre_ct='" + getNombre_categoria() + "', descripcion_ct='"+getDescripcion()+"' "
+        sql = "UPDATE categorias SET nombre_ct='" + getNombre_categoria() + "', descripcion_ct='"+getDescripcion()+"', estado="+1+" "
                 + "WHERE cod_categoria='" + getCod_categoria() + "'";
         if (con.noQuery(sql) == null) {
             return true;
@@ -150,28 +149,5 @@ public class Modelo_Categoria extends Categoria {
         } else {
             return false;
         }
-    }
-     
-    public static List<Categoria> ListarCategorias1() {
-        try {
-            String query = "SELECT * FROM categorias WHERE estado=1 ";
-        
-            ResultSet rs = con.query(query);
-            List<Categoria> listaD = new ArrayList<Categoria>();
-            
-            while (rs.next()) {
-                Categoria ct = new Categoria();
-                ct.setCod_categoria(rs.getString("cod_categoria"));
-                ct.setDescripcion(rs.getString("descripcion_ct"));
-                ct.setNombre_categoria(rs.getString("nombre_ct"));;
-
-                listaD.add(ct);
-            }
-            rs.close();
-            return listaD;
-        } catch (SQLException ex) {
-            Logger.getLogger(Modelo_Servicio.class.getName()).log(Level.SEVERE, null, ex);
-            return null;
-        }
-    }  
+    } 
 }

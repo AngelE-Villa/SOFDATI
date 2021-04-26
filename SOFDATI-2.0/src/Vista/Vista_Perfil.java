@@ -7,6 +7,7 @@ package Vista;
 
 import com.toedter.calendar.JDateChooser;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPasswordField;
 import javax.swing.JTable;
@@ -61,6 +62,8 @@ public class Vista_Perfil extends javax.swing.JFrame {
         passoculto = new javax.swing.JPasswordField();
         txtcontra1 = new javax.swing.JTextField();
         passoculto2 = new javax.swing.JPasswordField();
+        cmbSexo = new javax.swing.JComboBox<>();
+        jLabel12 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         TblVentas = new javax.swing.JTable();
         jPanel2 = new javax.swing.JPanel();
@@ -70,69 +73,84 @@ public class Vista_Perfil extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel2.setText("Nombre: ");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(28, 58, 49, 16));
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 50, 70, 16));
 
         jLabel3.setText("Apellido: ");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(28, 87, -1, -1));
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, -1, -1));
 
         jLabel4.setText("Usuario: ");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(28, 28, -1, 19));
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, -1, 19));
 
         jLabel5.setText("Fecha Nacmiento: ");
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(28, 143, -1, -1));
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 140, -1, -1));
 
         jLabel6.setText("Direccion: ");
-        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(28, 163, -1, 21));
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 10, -1, 21));
 
         jLabel7.setText("Telefono: ");
-        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(28, 107, -1, 22));
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 110, -1, -1));
 
         plblfoto.setText("foto");
         plblfoto.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 153, 51), 2));
         jPanel1.add(plblfoto, new org.netbeans.lib.awtextra.AbsoluteConstraints(523, 48, 172, 137));
 
         datachoser.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jPanel1.add(datachoser, new org.netbeans.lib.awtextra.AbsoluteConstraints(127, 136, 130, -1));
+        jPanel1.add(datachoser, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 140, 130, -1));
 
-        btnEditarPerfil.setText("Editar");
-        jPanel1.add(btnEditarPerfil, new org.netbeans.lib.awtextra.AbsoluteConstraints(713, 48, 88, -1));
+        btnEditarPerfil.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/Recursos/Editar.PNG"))); // NOI18N
+        btnEditarPerfil.setBorderPainted(false);
+        btnEditarPerfil.setContentAreaFilled(false);
+        jPanel1.add(btnEditarPerfil, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 40, 70, 40));
 
         jLabel8.setText("ID Empleado: ");
         jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(523, 23, -1, -1));
 
         plblidempelado.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jPanel1.add(plblidempelado, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 23, 75, 19));
-        jPanel1.add(ptxtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(127, 53, 130, -1));
-        jPanel1.add(ptxtApellido, new org.netbeans.lib.awtextra.AbsoluteConstraints(127, 81, 130, -1));
-        jPanel1.add(ptxtTelf, new org.netbeans.lib.awtextra.AbsoluteConstraints(127, 107, 130, -1));
-        jPanel1.add(ptxtDireccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(127, 164, 130, -1));
+        jPanel1.add(ptxtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 50, 130, -1));
+        jPanel1.add(ptxtApellido, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 80, 130, -1));
+        jPanel1.add(ptxtTelf, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 110, 130, -1));
+        jPanel1.add(ptxtDireccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 30, 130, -1));
 
-        btnExaminar.setText("Examinar");
-        jPanel1.add(btnExaminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(713, 129, 88, -1));
+        btnExaminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/Recursos/Examinar.png"))); // NOI18N
+        btnExaminar.setBorderPainted(false);
+        btnExaminar.setContentAreaFilled(false);
+        jPanel1.add(btnExaminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 100, 100, -1));
 
-        btnpGuardar.setText("Guardar");
-        jPanel1.add(btnpGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(713, 162, 88, -1));
-        jPanel1.add(txtUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(127, 26, 130, -1));
+        btnpGuardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/Recursos/AceptarP.png"))); // NOI18N
+        btnpGuardar.setBorderPainted(false);
+        btnpGuardar.setContentAreaFilled(false);
+        jPanel1.add(btnpGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 140, 100, -1));
+        jPanel1.add(txtUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 20, 130, -1));
 
         jLabel9.setText("Contraseña: ");
-        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(337, 29, -1, -1));
+        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 60, -1, -1));
 
         jLabel10.setText("Repita Contraseña: ");
-        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 84, -1, -1));
+        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 100, -1, -1));
 
         jLabel11.setText("Palabra: ");
         jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(347, 144, -1, -1));
         jPanel1.add(txtpalabra, new org.netbeans.lib.awtextra.AbsoluteConstraints(304, 164, 130, -1));
 
-        btnpVerContra.setText("ver");
-        jPanel1.add(btnpVerContra, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 52, -1, -1));
-        jPanel1.add(passoculto, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 60, 130, -1));
-        jPanel1.add(txtcontra1, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 60, 130, -1));
+        btnpVerContra.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/Recursos/ver.png"))); // NOI18N
+        btnpVerContra.setBorderPainted(false);
+        btnpVerContra.setContentAreaFilled(false);
+        jPanel1.add(btnpVerContra, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 80, 30, 20));
+        jPanel1.add(passoculto, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 80, 130, -1));
+        jPanel1.add(txtcontra1, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 80, 130, -1));
         jPanel1.add(passoculto2, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 120, 130, -1));
+
+        cmbSexo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione", "Hombre", "Mujer" }));
+        jPanel1.add(cmbSexo, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 170, 130, 20));
+
+        jLabel12.setText("Sexo: ");
+        jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 170, -1, -1));
 
         TblVentas.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 153, 51)));
         TblVentas.setModel(new javax.swing.table.DefaultTableModel(
@@ -145,61 +163,68 @@ public class Vista_Perfil extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(TblVentas);
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
+        jPanel2.setBackground(new java.awt.Color(255, 231, 47));
+
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
         jLabel1.setText("PERFIL");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(268, 268, 268)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(398, 398, 398))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(1, 1, 1))
         );
 
-        jLabel15.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
-        jLabel15.setText("VENTAS");
+        jPanel3.setBackground(new java.awt.Color(255, 255, 255));
+
+        jLabel15.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel15.setText("RESUMEN VENTAS");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(355, Short.MAX_VALUE)
                 .addComponent(jLabel15)
-                .addGap(342, 342, 342))
+                .addGap(345, 345, 345))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel15, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 60, Short.MAX_VALUE)
+            .addComponent(jLabel15, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 39, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 846, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING)
-            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(0, 0, 0)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 202, Short.MAX_VALUE))
+                .addGap(0, 0, 0)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 169, Short.MAX_VALUE))
         );
 
         pack();
@@ -267,6 +292,14 @@ public class Vista_Perfil extends javax.swing.JFrame {
 
     public void setPassoculto2(JPasswordField passoculto2) {
         this.passoculto2 = passoculto2;
+    }
+
+    public JComboBox<String> getCmbSexo() {
+        return cmbSexo;
+    }
+
+    public void setCmbSexo(JComboBox<String> cmbSexo) {
+        this.cmbSexo = cmbSexo;
     }
 
     public JLabel getPlblfoto() {
@@ -358,10 +391,12 @@ public class Vista_Perfil extends javax.swing.JFrame {
     private javax.swing.JButton btnExaminar;
     private javax.swing.JButton btnpGuardar;
     private javax.swing.JButton btnpVerContra;
+    private javax.swing.JComboBox<String> cmbSexo;
     private com.toedter.calendar.JDateChooser datachoser;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

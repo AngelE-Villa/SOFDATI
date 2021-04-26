@@ -3,6 +3,7 @@ package Controlador;
 import Modelo.Empleado;
 import Modelo.Modelo_Empleado;
 import Vista.Vista_Empleado;
+import java.awt.Color;
 import java.awt.Image;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
@@ -12,8 +13,11 @@ import java.time.Instant;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.util.List;
+import java.util.Locale;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javax.imageio.ImageIO;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
@@ -36,6 +40,11 @@ public class Control_Empleado {
         this.vista = vista;
         this.modelo = modelo;
         this.vista.setVisible(true);
+        this.vista.setLocale(Locale.UK);
+        ValidaLetras();
+        ValidaNumeros();
+        ValidaDoubles();
+
     }
 
     public void InicioControl() {
@@ -61,6 +70,7 @@ public class Control_Empleado {
         vista.getBtnNuevoE().addActionListener(p -> {
             this.validarBotonA = true;
             MostrarDialog();
+
         });
         vista.getBtnAceptarE().addActionListener(p -> OpcionBoton());
         vista.getBtnEditarE().addActionListener(p -> {
@@ -72,6 +82,7 @@ public class Control_Empleado {
         vista.getBtnExaminarE().addActionListener(p -> CargarImagen());
 //        vista.getBtnCerrarP().addActionListener(p->salir());
 //        vista.getBtnImprimir().addActionListener(P->ImprimirReporte());
+
     }
 
     public void OpcionBoton() {
@@ -102,18 +113,19 @@ public class Control_Empleado {
             vista.getTblEmpleado().setValueAt(p.getNombre(), i.value, 2);
             vista.getTblEmpleado().setValueAt(p.getApellido(), i.value, 3);
             vista.getTblEmpleado().setValueAt(p.getFnacimiento(), i.value, 4);
-            vista.getTblEmpleado().setValueAt(p.getDireccion(), i.value, 5);
-            vista.getTblEmpleado().setValueAt(p.getTelefono(), i.value, 6);
-            vista.getTblEmpleado().setValueAt(p.getCargo(), i.value, 7);
-            vista.getTblEmpleado().setValueAt(p.getSueldo(), i.value, 8);
+            vista.getTblEmpleado().setValueAt(p.getSexo(), i.value, 5);
+            vista.getTblEmpleado().setValueAt(p.getDireccion(), i.value, 6);
+            vista.getTblEmpleado().setValueAt(p.getTelefono(), i.value, 7);
+            vista.getTblEmpleado().setValueAt(p.getCargo(), i.value, 8);
+            vista.getTblEmpleado().setValueAt(p.getSueldo(), i.value, 9);
             Image img = p.getFoto();
             if (img != null) {
                 Image newimg = img.getScaledInstance(100, 100, java.awt.Image.SCALE_SMOOTH);
                 ImageIcon icon = new ImageIcon(newimg);
                 renderer.setIcon(icon);
-                vista.getTblEmpleado().setValueAt(new JLabel(icon), i.value, 9);
+                vista.getTblEmpleado().setValueAt(new JLabel(icon), i.value, 10);
             } else {
-                vista.getTblEmpleado().setValueAt(null, i.value, 9);
+                vista.getTblEmpleado().setValueAt(null, i.value, 10);
             }
 
             i.value++;
@@ -137,34 +149,101 @@ public class Control_Empleado {
         vista.getTxtcedulaE().setEditable(true);
         vista.getTxtidEmpleado().setVisible(false);
         vista.getTxtid().setVisible(false);
+        vista.getCmbxsexo().setSelectedIndex(0);
     }
 
     private void Grabar_Empleado() { //crear
         int v = modelo.NEmpleados() + 1;
         String cod_empleado = String.valueOf(v);
         String cedula = vista.getTxtcedulaE().getText();
-        String nombres = vista.getTxtnombreE().getText();
-        String apellidos = vista.getTxtapellidoE().getText();
-        Instant intate = vista.getDchfechaE().getDate().toInstant();
-        ZoneId zona = ZoneId.of("America/Guayaquil");
-        ZonedDateTime zot = ZonedDateTime.ofInstant(intate, zona);
-        Date fnacimiento = Date.valueOf(zot.toLocalDate());
-        String telefono = vista.getTxttelfE().getText();
-        String direccion = vista.getTxtdirecE().getText();
-        String cargo = vista.getCmbCargo().getSelectedItem().toString();
-        double sueldo = Double.valueOf(vista.getTxtdirecE().getText());
-
-        Modelo_Empleado em = new Modelo_Empleado(cod_empleado, sueldo, cargo, "", "", cedula, nombres, apellidos, fnacimiento, direccion, telefono);
-        ImageIcon ic = (ImageIcon) vista.getLblfotoE().getIcon();
-        em.setFoto(ic.getImage());
-
-        if (em.Grabar_Empleado()) {
-            CargarLista("");
-            vista.getDialogoEmpleado().setVisible(false);
-
-            JOptionPane.showMessageDialog(vista, "EMPLEADO NUEVO GUARDADO CORRECTAMENTE");
+        String ced = cedula;
+        if (cedula.isEmpty()) {
+            JOptionPane.showMessageDialog(vista, "Ingrese una cedula");
         } else {
-            JOptionPane.showMessageDialog(vista, "NO SE PUDO GUARDAR");
+            if (vista.getDchfechaE().getDate() == null) {
+                JOptionPane.showMessageDialog(vista, "Ingrese una fecha");
+            } else {
+                if (modelo.ValidarEmpleado1(cedula) != null) {
+                    System.out.println(modelo.ValidarEmpleado1(cedula));
+                    JOptionPane.showMessageDialog(vista, "El Empleado ya existe");
+                } else {
+                    if (modelo.ValidarEmpleado(cedula) != null) {
+                        int a = JOptionPane.showConfirmDialog(vista, "El Empleado esta desactivado \n Desea Activarlo ?", "Aviso", JOptionPane.YES_NO_OPTION);
+                        if (a == JOptionPane.YES_OPTION) {
+                            if (modelo.ReactivarEmpleado(cedula)) {
+                                JOptionPane.showMessageDialog(vista, "Cliente Reactivardo");
+                                vista.getDialogoEmpleado().setVisible(false);
+                                CargarLista("");
+                            } else {
+                                System.out.println("Error al activar Empleado");
+                            }
+                        } else {
+                            JOptionPane.showMessageDialog(vista, "Ingrese otra cedula");
+                        }
+
+                    } else {
+                        ced = cedula;
+                        String nombres = vista.getTxtnombreE().getText();
+                        String apellidos = vista.getTxtapellidoE().getText();
+                        Instant intate = vista.getDchfechaE().getDate().toInstant();
+                        ZoneId zona = ZoneId.of("America/Guayaquil");
+                        ZonedDateTime zot = ZonedDateTime.ofInstant(intate, zona);
+                        Date fnacimiento = Date.valueOf(zot.toLocalDate());
+                        String telefono = vista.getTxttelfE().getText();
+                        String direccion = vista.getTxtdirecE().getText();
+                        String cargo = vista.getCmbCargo().getSelectedItem().toString();
+                        double sueldo;
+                        if (vista.getTxtdirecE().getText().isEmpty()) {
+                            sueldo = 0;
+                        } else {
+                            sueldo = Double.valueOf(vista.getTxtdirecE().getText());
+                        }
+                        String sexo = vista.getCmbxsexo().getSelectedItem().toString();
+
+                        if (modelo.ValidarCedulaPersona(cedula)) {
+                            Modelo_Empleado em = new Modelo_Empleado(cod_empleado, sueldo, cargo, "", "", cedula, nombres, apellidos, fnacimiento, direccion, telefono, sexo);
+                            if (vista.getLblfotoE().getIcon() == null) {
+                                System.out.println("Entra");
+                                em.setFoto(null);
+                            } else {
+                                System.out.println("Entra1");
+                                ImageIcon ic = (ImageIcon) vista.getLblfotoE().getIcon();
+                                em.setFoto(ic.getImage());
+                            }
+
+                            if (em.Grabar_Solo_Empleado()) {
+                                CargarLista("");
+                                vista.getDialogoEmpleado().setVisible(false);
+
+                                JOptionPane.showMessageDialog(vista, "EMPLEADO NUEVO GUARDADO CORRECTAMENTE");
+                            } else {
+                                JOptionPane.showMessageDialog(vista, "NO SE PUDO GUARDAR");
+                            }
+
+                        } else {
+                            Modelo_Empleado em = new Modelo_Empleado(cod_empleado, sueldo, cargo, "", "", cedula, nombres, apellidos, fnacimiento, direccion, telefono, sexo);
+                            if (vista.getLblfotoE().getIcon() == null) {
+                                System.out.println("Entra");
+                                em.setFoto(null);
+                            } else {
+                                System.out.println("Entra1");
+                                ImageIcon ic = (ImageIcon) vista.getLblfotoE().getIcon();
+                                em.setFoto(ic.getImage());
+                            }
+
+                            if (em.Grabar_Empleado()) {
+                                CargarLista("");
+                                vista.getDialogoEmpleado().setVisible(false);
+
+                                JOptionPane.showMessageDialog(vista, "EMPLEADO NUEVO GUARDADO CORRECTAMENTE");
+                            } else {
+                                JOptionPane.showMessageDialog(vista, "NO SE PUDO GUARDAR");
+                            }
+                        }
+
+                    }
+                }
+            }
         }
     }
 
@@ -183,7 +262,9 @@ public class Control_Empleado {
         String cargo = vista.getCmbCargo().getSelectedItem().toString();
         double sueldo = Double.valueOf(vista.getTxtsueldoE().getText());
 
-        Modelo_Empleado em = new Modelo_Empleado(cod_empleado, sueldo, cargo, "", "", cedula, nombres, apellidos, fnacimiento, direccion, telefono);
+        String sexo = vista.getCmbxsexo().getSelectedItem().toString();
+
+        Modelo_Empleado em = new Modelo_Empleado(cod_empleado, sueldo, cargo, "", "", cedula, nombres, apellidos, fnacimiento, direccion, telefono, sexo);
         ImageIcon ic = (ImageIcon) vista.getLblfotoE().getIcon();
         em.setFoto(ic.getImage());
 
@@ -240,7 +321,7 @@ public class Control_Empleado {
             vista.getTxttelfE().setText(em.getTelefono());
             vista.getCmbCargo().setSelectedItem(em.getCargo());
             vista.getTxtsueldoE().setText(em.getSueldo() + "");
-
+            vista.getCmbxsexo().setSelectedItem(em.getSexo());
         }
     }
 
@@ -285,5 +366,141 @@ public class Control_Empleado {
 
         }
     }
+
+    public void ValidaNumeros() {
+        KeyListener ke = new KeyListener() {
+            @Override
+            public void keyTyped(KeyEvent e) {
+                char vn = e.getKeyChar();
+                if ((vn < '0' | vn > '9')) {
+                    e.consume();
+                }
+                if (vista.getTxttelfE().getText().length() == 10) {
+                    e.consume();
+                }
+            }
+
+            @Override
+            public void keyPressed(KeyEvent e) {
+
+            }
+
+            @Override
+            public void keyReleased(KeyEvent e) {
+
+            }
+        };
+
+        vista.getTxtcedulaE().addKeyListener(ke);
+        vista.getTxttelfE().addKeyListener(ke);
+    }
+
+    public void ValidaDoubles() {
+        KeyListener ke = new KeyListener() {
+            @Override
+            public void keyTyped(KeyEvent e) {
+                char vn = e.getKeyChar();
+                if ((vn < '0' | vn > '9') & (vn != 46)) {
+                    e.consume();
+                }
+            }
+
+            @Override
+            public void keyPressed(KeyEvent e) {
+
+            }
+
+            @Override
+            public void keyReleased(KeyEvent e) {
+
+            }
+        };
+
+        vista.getTxtsueldoE().addKeyListener(ke);
+    }
+
+    public void ValidaLetras() {
+        KeyListener ke = new KeyListener() {
+            @Override
+            public void keyTyped(KeyEvent e) {
+                char valida = e.getKeyChar();
+                if (((valida < 'a' | valida > 'z') & (valida < 'A' | valida > 'Z') & (valida < 'a') && (valida != KeyEvent.VK_SPACE))) {
+                    e.consume();
+                }
+            }
+
+            @Override
+            public void keyPressed(KeyEvent e) {
+
+            }
+
+            @Override
+            public void keyReleased(KeyEvent e) {
+
+            }
+        };
+
+        vista.getTxtnombreE().addKeyListener(ke);
+        vista.getTxtapellidoE().addKeyListener(ke);
+        vista.getTxtapellidoE().addKeyListener(ke);
+
+    }
+
+    public boolean ValidacionesCedula(String cedula) {
+        int c, suma = 0, acum, resta = 0;
+        try {
+            for (int i = 0; i < vista.getTxtcedulaE().getText().length() - 1; i++) {
+                c = Integer.parseInt(vista.getTxtcedulaE().getText().charAt(i) + "");
+                if (i % 2 == 0) {
+                    c = c * 2;
+                    if (c > 9) {
+                        c = c - 9;
+                    }
+                }
+                suma = suma + c;
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "La cedula Ecuatoriana no tinen letras por defecto", "ERROR", 0);
+            return false;
+        }
+        if (suma % 10 != 0) {
+            acum = ((suma / 10) + 1) * 10;
+            resta = acum - suma;
+        }
+        int ultimos = 0;
+        try {
+            ultimos = Integer.parseInt(vista.getTxtcedulaE().getText().charAt(9) + "");
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "No cumple dos 10 dijitos por defecto", "ERROR", 0);
+            return false;
+        }
+        int ultimo = ultimos;
+        if (ultimo == resta) {
+            return true;
+        } else {
+            JOptionPane.showMessageDialog(null, "la cedula es incorrecta o no existe por defecto", "ERROR", 0);
+            return false;
+        }
+    }
+
+    KeyListener ValidacionesCedula = new KeyListener() {
+        @Override
+        public void keyTyped(KeyEvent e) {
+            ValidacionesCedula("");
+        }
+
+        public void keyPressed(KeyEvent e) {
+        }
+
+        public void keyReleased(KeyEvent e) {
+            if (ValidacionesCedula(vista.getTxtcedulaE().getText()) == true) {
+                vista.getTxtcedulaE().setForeground(Color.GREEN);
+                vista.getTxtcedulaE().setText("/");
+            } else {
+                vista.getTxtcedulaE().setText("*");
+                vista.getTxtcedulaE().setForeground(Color.RED);
+            }
+        }
+    };
 
 }

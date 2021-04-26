@@ -5,35 +5,29 @@ import Modelo.ModeloCliente;
 import Modelo.ModeloProducto;
 import Modelo.ModeloVehiculo;
 import Modelo.Modelo_Categoria;
-import Modelo.Modelo_Detalle;
 import Modelo.Modelo_Empleado;
 import Modelo.Modelo_Localidad;
 import Modelo.Modelo_Servicio;
-import Modelo.Servicio;
 import Vista.Login;
 import Vista.Principal;
 import Vista.VistaCategoria;
 import Vista.VistaProducto;
 import Vista.Vista_Cliente;
-import Vista.Vista_Detalle;
+import Vista.Vista_Consultas;
 import Vista.Vista_Empleado;
+import Vista.Vista_Estadistica;
 import Vista.Vista_Localidad;
 import Vista.Vista_Nuevo_Servicio;
 import Vista.Vista_Perfil;
 import Vista.Vista_Vehiculo;
-import desplazable.Desface;
 import java.awt.Color;
-import java.awt.Dimension;
 import static java.awt.Frame.MAXIMIZED_BOTH;
-import java.awt.Image;
-import java.awt.event.ComponentEvent;
-import java.awt.event.ComponentListener;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.util.List;
-import javax.swing.ImageIcon;
-import javax.swing.table.DefaultTableModel;
-import javax.xml.ws.Holder;
+import javax.swing.JFrame;
+import javax.swing.JInternalFrame;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -42,15 +36,15 @@ import javax.xml.ws.Holder;
 public class Control_Principal {
 
     Principal principal;
-    Desface desplace;
 
     public Control_Principal(Principal principal) {
         this.principal = principal;
         this.principal.setVisible(true);
         this.principal.setExtendedState(MAXIMIZED_BOTH);
-        this.principal.setLocationRelativeTo(null);
+//        this.principal.setLocationRelativeTo(null);
+        principal.getBtnEstadistica().setVisible(false);
+        CerrarJF();
 
-        desplace = new Desface();
     }
 
     public void MandarUsuario(String cod) {
@@ -64,85 +58,61 @@ public class Control_Principal {
         }
 //        principal.getLblnombres().setText(cod);
     }
+    
+        public void CerrarJF() {
+        try {
+            principal.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+            principal.addWindowListener(new WindowAdapter() {
+                @Override
+                public void windowClosing(WindowEvent e) {
+                    confirmarSalida();
+                }
+               
+            });
+            principal.setVisible(true);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    //Confimar Cierre de Jframe
+    public void confirmarSalida() {
+        int index = JOptionPane.showConfirmDialog(principal, "Esta seguro de cerrar la aplicacion", "Advertencia", JOptionPane.YES_NO_OPTION);
+        if (index == JOptionPane.YES_NO_OPTION) {
+            System.exit(0);
+        }
+    }
 
     public void Inicia_Control() {
-        ComponentListener cl = new ComponentListener() {
-            @Override
-            public void componentResized(ComponentEvent e) {
-                principal.getJpBotones1().getSize(new Dimension(principal.getJpBotones1().getWidth(), principal.getHeight()));
 
-            }
-
-            @Override
-            public void componentMoved(ComponentEvent e) {
-//                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-            }
-
-            @Override
-            public void componentShown(ComponentEvent e) {
-//                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-            }
-
-            @Override
-            public void componentHidden(ComponentEvent e) {
-//                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-            }
-        };
-
-        MouseListener ml = new MouseListener() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-
-                desplazable();
-            }
-
-            @Override
-            public void mousePressed(MouseEvent e) {
-//                RedimnecionarPantalla();
-
-            }
-
-            @Override
-            public void mouseReleased(MouseEvent e) {
-
-//                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-            }
-
-            @Override
-            public void mouseEntered(MouseEvent e) {
-
-            }
-
-            @Override
-            public void mouseExited(MouseEvent e) {
-//                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-            }
-        };
-        principal.getJlbDesple().addMouseListener(ml);
-        principal.addComponentListener(cl);
         principal.setBackground(Color.white);
         principal.setSize(1000, 600);
         principal.setLocationRelativeTo(null);
         principal.getBtnclientes().addActionListener(l -> Abrir_Clientes());
         principal.getBtnEmpleadoP().addActionListener(l -> Abrir_Empleados());
         principal.getBtnServicio().addActionListener(l -> Abrir_Servicios());
-        principal.getBtndetalle().addActionListener(l -> Abrir_Detalle());
         principal.getBtnVehiculos().addActionListener(l -> Abrir_Vehiculos());
         principal.getBtnProductos().addActionListener(l -> Abrir_Productos());
         principal.getBtnCategorias().addActionListener(l -> Abrir_Categorias());
         principal.getBtnLocalidad().addActionListener(l -> Abrir_Localidades());
         principal.getBtnCerrarSesion().addActionListener(l -> CerrarSesion());
         principal.getBtnperfil().addActionListener(l -> perfil());
+        principal.getBtnEstadistica().addActionListener(l->Estadistica());
+        principal.getBtnConsultas().addActionListener(l->Abrir_Consultas());
     }
 
-    public void desplazable() {
-        if (principal.getJpBotones1().getX() == 0) {
-            desplace.desplazarIzquierda(principal.getJpBotones1(), principal.getJpBotones1().getX(), -130, 5, 0);
-
-        } else if (principal.getJpBotones1().getX() == -130) {
-            desplace.desplazarDerecha(principal.getJpBotones1(), principal.getJpBotones1().getX(), 0, 5, 0);
+    public void Estadistica(){
+        Vista_Estadistica ve=new Vista_Estadistica();
+        Control_Estadistica ce=new Control_Estadistica(ve);
+        ce.iniciarBotones();
+    }
+    
+    public void MostrarEstadistica(String usuario){
+        if (usuario.equals("Admin")) {
+            principal.getBtnEstadistica().setVisible(true);
+        } else {
+            principal.getBtnEstadistica().setVisible(false);
         }
-        System.out.println("Botones " + principal.getJpBotones1().getX());
     }
 
     public void Abrir_Clientes() {
@@ -167,7 +137,7 @@ public class Control_Principal {
     public void Abrir_Servicios() {
         Vista_Nuevo_Servicio vs = new Vista_Nuevo_Servicio();
         Modelo_Servicio ms = new Modelo_Servicio();
-        principal.getPantalla().add(vs);
+        CentrarVentana(vs);
         Control_Nuevo_Servicio cs = new Control_Nuevo_Servicio(vs, ms);
         String id=principal.getLblusuario().getText();
         String nom=principal.getLblnombres().getText();
@@ -178,19 +148,19 @@ public class Control_Principal {
 
     }
 
-    public void Abrir_Detalle() {
-        Vista_Detalle vds = new Vista_Detalle();
-        Modelo_Detalle mds = new Modelo_Detalle();
-        principal.getPantalla().add(vds);
-        Control_DetalleServicio cds = new Control_DetalleServicio(mds, vds);
-        cds.InicioControl();
-        cds.CargarLista("");
+    public void Abrir_Consultas() {
+        Vista_Consultas vc = new Vista_Consultas();
+        Modelo_Servicio mc = new Modelo_Servicio();
+        CentrarVentana(vc);
+        Control_Consulta cc = new Control_Consulta(vc, mc);
+        cc.iniciarControl();
+        cc.CargarLista("");
     }
 
     public void Abrir_Vehiculos() {
         Vista_Vehiculo vv = new Vista_Vehiculo();
         ModeloVehiculo mv = new ModeloVehiculo();
-        principal.getPantalla().add(vv);
+        CentrarVentana(vv);
         ControlVehiculo cv = new ControlVehiculo(mv, vv);
         cv.iniciaControl();
         cv.cargaLista("");
@@ -203,7 +173,7 @@ public class Control_Principal {
         principal.getPantalla().add(vp);
         ControlProducto cp = new ControlProducto(mp, vp);
         cp.iniciaControl();
-        cp.cargarListaProducto1();
+        cp.cargarListaProducto("");
 
     }
 
@@ -213,7 +183,7 @@ public class Control_Principal {
         principal.getPantalla().add(vc);
         ControlCategoria cc = new ControlCategoria(mc, vc);
         cc.iniciaControl();
-        cc.cargarListaCategoria1();
+        cc.cargarListaCategoria("");
 
     }
 
@@ -223,7 +193,7 @@ public class Control_Principal {
         principal.getPantalla().add(vl);
         Control_Localidad cl = new Control_Localidad(ml, vl);
         cl.iniciaControl();
-        cl.cargaLista1();
+        cl.cargaLista("");
 
     }
 
@@ -242,5 +212,18 @@ public class Control_Principal {
         cp.mostarServicio(principal.getLblusuario().getText());
         cp.iniciarBotones();
     
+    }
+    
+    public void CentrarVentana(JInternalFrame internal){
+    
+        int x=(principal.getPantalla().getWidth()/2)-internal.getWidth()/2;
+        int y=(principal.getPantalla().getHeight()/2)-internal.getHeight()/2;
+        
+        if (internal.isShowing()) {
+            internal.setLocation(x, y); 
+        } else {
+           principal.getPantalla().add(internal);
+           internal.show();
+        }
     }
 }

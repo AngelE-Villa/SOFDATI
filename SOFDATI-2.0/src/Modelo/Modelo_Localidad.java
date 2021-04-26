@@ -54,8 +54,8 @@ public class Modelo_Localidad extends Localidad {
 
     public boolean grabar() {
         String sql;
-        sql = "INSERT INTO localidad (cod_ciudad,pais,provincia,canton)";
-        sql += "VALUES('" + getCod_ciudad() + "','" + getPais() + "','" + getProvincia() + "','" + getCanton() + "')";
+        sql = "INSERT INTO localidad (cod_ciudad,pais,provincia,canton,ESTADO)";
+        sql += "VALUES('" + getCod_ciudad() + "','" + getPais() + "','" + getProvincia() + "','" + getCanton() + "'," + 1 + ")";
         if (con.noQuery(sql) == null) {
             return true;
         } else {
@@ -64,7 +64,7 @@ public class Modelo_Localidad extends Localidad {
     }
 
     public String CodLocalizacion(String local) {
-        String sql="select cod_ciudad as cod from localidad where UPPER(canton)=UPPER('"+local+"')";
+        String sql="select cod_ciudad as cod from localidad where UPPER(canton)=UPPER('"+local+"') AND estado=1";
         ResultSet rs = con.query(sql);
         try {
             while (rs.next()) {
@@ -80,10 +80,10 @@ public class Modelo_Localidad extends Localidad {
     public static List<Localidad> ListarLocalidad(String aguja) {
         try {
             String query = "select * from localidad where "
-                    + "UPPER (cod_ciudad) like UPPER('" + aguja + "%') OR "
-                    + "UPPER (pais) like UPPER('" + aguja + "%') OR "
-                    + "UPPER (provincia) like UPPER('" + aguja + "%') OR "
-                    + "UPPER (canton) like UPPER ('" + aguja + "%')";
+                    + "UPPER (cod_ciudad) like UPPER('" + aguja + "%') AND estado=1 OR "
+                    + "UPPER (pais) like UPPER('" + aguja + "%') AND estado=1 OR "
+                    + "UPPER (provincia) like UPPER('" + aguja + "%') AND estado=1 OR "
+                    + "UPPER (canton) like UPPER ('" + aguja + "%') AND estado=1";
             ResultSet rs = con.query(query);
             List<Localidad> lista = new ArrayList<Localidad>();
             while (rs.next()) {
@@ -125,7 +125,7 @@ public class Modelo_Localidad extends Localidad {
     }
 
     public String Canton(String codLocal){
-        String query = "SELECT canton FROM localidad WHERE cod_ciudad='"+codLocal+"'";
+        String query = "SELECT canton FROM localidad WHERE cod_ciudad='"+codLocal+"' and estado=1";
         ResultSet rs = con.query(query);
 
         try {
@@ -156,32 +156,11 @@ public class Modelo_Localidad extends Localidad {
 
     public boolean eliminar() {
         String sql;
-        sql = "UPDATE localidad set estado='0'";
+        sql = "UPDATE localidad set estado=0 where cod_ciudad='"+getCod_ciudad()+"'";
         if (con.noQuery(sql) == null) {
             return true;
         } else {
             return false;
         }
-    }
-
-    public static List<Localidad> ListarLocalidad1() {
-        try {
-            String query = "select * from localidad where estado=1";
-            ResultSet rs = con.query(query);
-            List<Localidad> lista = new ArrayList<Localidad>();
-            while (rs.next()) {
-                Localidad localidad = new Localidad();
-                localidad.setCod_ciudad(rs.getString("cod_ciudad"));
-                localidad.setPais(rs.getString("pais"));
-                localidad.setProvincia(rs.getString("provincia"));
-                localidad.setCanton(rs.getString("canton"));
-                lista.add(localidad);
-            }
-            rs.close();
-            return lista;
-        } catch (SQLException ex) {
-            Logger.getLogger(Modelo_Localidad.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return null;
     }
 }

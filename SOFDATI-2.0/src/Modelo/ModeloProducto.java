@@ -9,13 +9,11 @@ import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import org.postgresql.util.Base64;
 import java.util.Iterator;
 import java.util.List;
 import java.util.logging.Level;
@@ -66,7 +64,7 @@ public class ModeloProducto extends Productos {
 
     public String codigo_producto(String prod) {
 
-        String query = "select cod_producto from producto where UPPER(nombre_producto)=UPPER('" + prod + "')";
+        String query = "select cod_producto from producto where UPPER(nombre_producto)=UPPER('" + prod + "') and estado=1";
         ResultSet rs = con.query(query);
         try {
             while (rs.next()) {
@@ -134,7 +132,7 @@ public class ModeloProducto extends Productos {
 //        
         String sql;
         sql = "UPDATE producto SET nombre_producto='" + getNombre_producto() + "', medida_producto='" + getUnidad_medida() + "', "
-                + "cod_ct_producto='" + getCod_categoria() + "' "
+                + "cod_ct_producto='" + getCod_categoria() + "',estado="+1+" "
                 + "WHERE cod_producto='" + getCod_producto() + "';";
         if (con.noQuery(sql) == null) {
             return true;
@@ -157,10 +155,10 @@ public class ModeloProducto extends Productos {
 
         try {
             String query = "select * from producto where "
-                    + "UPPER (cod_producto) like UPPER('" + aguja + "%') OR "
-                    + "UPPER (nombre_producto) like UPPER('" + aguja + "%') OR "
-                    + "UPPER (medida_producto) like UPPER('" + aguja + "%') OR "
-                    + "UPPER (cod_ct_producto) like UPPER ('" + aguja + "%')";
+                    + "UPPER (cod_producto) like UPPER('" + aguja + "%') AND estado=1 OR "
+                    + "UPPER (nombre_producto) like UPPER('" + aguja + "%') AND estado=1 OR "
+                    + "UPPER (medida_producto) like UPPER('" + aguja + "%') AND estado=1 OR "
+                    + "UPPER (cod_ct_producto) like UPPER ('" + aguja + "%') AND estado=1 ";
             ResultSet rs = con.query(query);
             List<Productos> lista = new ArrayList<Productos>();
 //            byte[] bf;
@@ -218,46 +216,6 @@ public class ModeloProducto extends Productos {
         ImageReadParam param = reader.getDefaultReadParam();
         param.setSourceSubsampling(4, 4, 0, 0);
         return reader.read(0, param);
-    }
-
-    public static List<Productos> ListarProducto1() {
-
-        try {
-            String query = " select * from producto where estado = 1 ";
-            ResultSet rs = con.query(query);
-            List<Productos> lista = new ArrayList<Productos>();
-//            byte[] bf;
-            while (rs.next()) {
-                Productos producto = new Productos();
-                producto.setCod_producto(rs.getString("cod_producto"));
-                producto.setCod_categoria(rs.getString("cod_ct_producto"));
-                producto.setNombre_producto(rs.getString("nombre_producto"));
-                producto.setUnidad_medida(rs.getString("medida_producto"));
-//                bf = rs.getBytes("foto");
-//
-//                if (bf != null) {
-//                    bf = Base64.decode(bf, 0, bf.length);
-//
-//                    try {
-//                        //obtener imagen
-//                        producto.setFoto(obterImagen(bf));
-//                    } catch (IOException ex) {
-//                        producto.setFoto(null);
-//                        Logger.getLogger(ModeloProducto.class.getName()).log(Level.SEVERE, null, ex);
-//                    }
-//                } else {
-//                    producto.setFoto(null);
-//                }
-                lista.add(producto);
-
-            }
-            rs.close();
-            return lista;
-        } catch (SQLException ex) {
-
-            return null;
-        }
-
     }
 
 }

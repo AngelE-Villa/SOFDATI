@@ -29,6 +29,7 @@ public class Modelo_Servicio extends Servicio {
         super(codservicio, fechaServicio, km_llegada, km_salida, codvehiculo, codempleado, codcliente, codciudad, precioServicio, codEmpServicio);
     }
 
+   
 
 
     public Modelo_Servicio(String codservicio) {
@@ -69,7 +70,7 @@ public class Modelo_Servicio extends Servicio {
         sql = "INSERT INTO servicio (km_salida,km_llegada,cod_ciudad_s,cod_cliente_s,cod_empleado_s,fecha_servicio,cod_vehiculo_s,cod_servicio,precioservicio, estado, idempleadoserv)";
         sql += "VALUES ('" + getKm_salida() + "','" + getKm_llegada() + "','" + getCodciudad() + "','" + getCodcliente() + "',"
                 + "'" + getCodempleado() + "','" + getFechaServicio() + "','" + getCodvehiculo() + "','" + getCodservicio() + "','" + getPrecioServicio() + "',"
-                + "'1','" + getCodEmpServicio() + "')";
+                + "1,'" + getCodEmpServicio() + "')";
         if (con.noQuery(sql) == null) {
             return true;
         } else {
@@ -79,10 +80,12 @@ public class Modelo_Servicio extends Servicio {
 
     public static List<Servicio> ListarServicios(String buscar) {
         try {
-            String query = "SELECT * FROM servicio WHERE UPPER(cod_servicio) LIKE UPPER('" + buscar + "%') "
-                    + "OR UPPER(cod_vehiculo_s) LIKE UPPER('" + buscar + "%') OR UPPER(cod_empleado_s) LIKE UPPER('" + buscar + "%') "
-                    + "OR UPPER(cod_cliente_s) LIKE UPPER('" + buscar + "%')OR UPPER(cod_ciudad_s) LIKE UPPER('" + buscar + "%') "
-                    + "AND estado=1";
+            String query = "SELECT * FROM servicio WHERE "
+                    + "UPPER(cod_servicio) LIKE UPPER('" + buscar + "%') AND estado=1 OR "
+                    + "UPPER(cod_vehiculo_s) LIKE UPPER('" + buscar + "%') AND estado=1 OR "
+                    + "UPPER(cod_empleado_s) LIKE UPPER('" + buscar + "%') AND estado=1 OR "
+                    + "UPPER(cod_cliente_s) LIKE UPPER('" + buscar + "%') AND estado=1 OR "
+                    + "UPPER(cod_ciudad_s) LIKE UPPER('" + buscar + "%') AND estado=1 ";
             ResultSet rs = con.query(query);
             List<Servicio> listaS = new ArrayList<Servicio>();
 
@@ -110,7 +113,7 @@ public class Modelo_Servicio extends Servicio {
 
     public boolean ValidarServicio() {
         try {
-            String query = "SELECT * FROM servicio WHERE cod_servicio='" + getCodservicio() + "';";
+            String query = "SELECT * FROM servicio WHERE cod_servicio='" + getCodservicio() + "' AND estado=1";
             ResultSet rs = con.query(query);
             if (rs.next()) {
                 return true;
@@ -182,6 +185,16 @@ public class Modelo_Servicio extends Servicio {
             return false;
         }
     }
+    
+    public boolean EliminarServicio(String cod) {
+        String sql;
+        sql = "DELETE FROM servicio WHERE cod_servicio='" + cod + "';";
+        if (con.noQuery(sql) == null) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 
     public List<Servicio> BuscarServicoEmp(String ced) {
         try {
@@ -192,7 +205,7 @@ public class Modelo_Servicio extends Servicio {
                     + "from servicio s "
                     + "join empleado e "
                     + "on e.cod_empleado=s.idempleadoserv "
-                    + "where e.cedula_pe='"+ced+"' and estado=1";
+                    + "where e.cedula_pe='"+ced+"' and s.estado=1";
             ResultSet rs = con.query(query);
             List<Servicio> listaS = new ArrayList<Servicio>();
 

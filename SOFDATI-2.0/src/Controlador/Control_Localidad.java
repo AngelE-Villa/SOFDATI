@@ -40,6 +40,7 @@ public class Control_Localidad {
         this.modelo = modelo;
         this.vista = vista;
         this.vista.setVisible(true);
+        ValidaLetras();
     }
 //Metodos    
 
@@ -101,23 +102,6 @@ public class Control_Localidad {
         });
     }
 
-    public void cargaLista1() {
-        DefaultTableModel tdlModel;
-        tdlModel = (DefaultTableModel) vista.getTblLocalidad().getModel();
-        tdlModel.setNumRows(0);
-        List<Localidad> Lista = Modelo_Localidad.ListarLocalidad1();
-        int ncols = tdlModel.getColumnCount();
-        Holder<Integer> i = new Holder<>(0); // problema con paquete 
-        Lista.stream().forEach(p1 -> {
-            tdlModel.addRow(new Object[ncols]);
-            vista.getTblLocalidad().setValueAt(p1.getCod_ciudad(), i.value, 0);
-            vista.getTblLocalidad().setValueAt(p1.getPais(), i.value, 1);
-            vista.getTblLocalidad().setValueAt(p1.getProvincia(), i.value, 2);
-            vista.getTblLocalidad().setValueAt(p1.getCanton(), i.value, 3);
-            i.value++;
-        });
-    }
-
     private void muestraDialogo() {
         vista.getDlgLocalidad().setSize(350, 250);
         vista.getDlgLocalidad().setTitle("Nuevo Registro - Localidad");
@@ -139,7 +123,7 @@ public class Control_Localidad {
         Modelo_Localidad localidad = new Modelo_Localidad(cod_localidad, pais, canton, provincia);
 
         if (localidad.grabar()) {
-            cargaLista1();
+            cargaLista("");
             JOptionPane.showMessageDialog(vista, "Registro grabado Satisfactoriamente");
             vista.getDlgLocalidad().setVisible(false);
         } else {
@@ -156,7 +140,7 @@ public class Control_Localidad {
         Modelo_Localidad localidad = new Modelo_Localidad(cod_localidad, pais, canton, provincia);
 
         if (localidad.editar()) {
-            cargaLista1();
+            cargaLista("");
             JOptionPane.showMessageDialog(vista, "Registro Editado Satisfactoriamente");
             vista.getDlgLocalidad().setVisible(false);
         } else {
@@ -208,7 +192,7 @@ public class Control_Localidad {
             if (opcion == JOptionPane.YES_OPTION) {
                 Modelo_Localidad ml = new Modelo_Localidad(seleccion);
                 if (ml.eliminar()) {
-                    cargaLista1();
+                    cargaLista("");
                     JOptionPane.showMessageDialog(vista, "Registro Eliminado Satisfactoriamente");
                 } else {
                     JOptionPane.showMessageDialog(vista, "Error al Eliminar");
@@ -221,6 +205,32 @@ public class Control_Localidad {
 
     public void salirBoton() {
         this.vista.setVisible(false);
+    }
+    
+     public void ValidaLetras(){
+        KeyListener ke = new KeyListener() {
+            @Override
+            public void keyTyped(KeyEvent e) {
+               char valida = e.getKeyChar();
+        if (((valida < 'a' | valida > 'z') & (valida < 'A' | valida > 'Z') &(valida < 'a') && (valida != KeyEvent.VK_SPACE)))  {
+            e.consume();}
+            }
+
+            @Override
+            public void keyPressed(KeyEvent e) {
+               
+            }
+
+            @Override
+            public void keyReleased(KeyEvent e) {
+               
+            }
+        };
+        
+        vista.getTxtCanton().addKeyListener(ke);
+        vista.getTxtProvincia().addKeyListener(ke);
+        vista.getTxtPais().addKeyListener(ke);
+        
     }
 
 }

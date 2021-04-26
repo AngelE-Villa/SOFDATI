@@ -20,10 +20,12 @@ public class Cliente extends Persona{
     public Cliente(String cedula) {
         super(cedula);
     }
-    public Cliente(String idCliente, String cedula, String nombre, String apellido, Date fnacimineto, String direccion, String telefono) {
-        super(cedula, nombre, apellido, fnacimineto, direccion, telefono);
+
+    public Cliente(String idCliente, String cedula, String nombre, String apellido, Date fnacimiento, String direccion, String telefono, String sexo) {
+        super(cedula, nombre, apellido, fnacimiento, direccion, telefono, sexo);
         this.idCliente = idCliente;
     }
+    
     
     //gett y sett
 

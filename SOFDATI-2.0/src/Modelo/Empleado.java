@@ -23,14 +23,16 @@ public class Empleado extends Persona{
         super(cedula);
     }
 
-    public Empleado(String cod_empleado, Double sueldo, String cargo, String password, String palabra, String cedula, String nombre, String apellido, Date fnacimineto, String direccion, String telefono) {
-        super(cedula, nombre, apellido, fnacimineto, direccion, telefono);
+    public Empleado(String cod_empleado, Double sueldo, String cargo,String password, String palabra, String cedula, String nombre, String apellido, Date fnacimiento, String direccion, String telefono, String sexo) {
+        super(cedula, nombre, apellido, fnacimiento, direccion, telefono, sexo);
         this.cod_empleado = cod_empleado;
         this.sueldo = sueldo;
         this.cargo = cargo;
+        this.foto = foto;
         this.password = password;
         this.palabra = palabra;
     }
+
 
     public String getPassword() {
         return password;

@@ -46,6 +46,7 @@ public class ControlCategoria {
         this.modelo = modelo;
         this.vista = vista;
         this.vista.setVisible(true);
+        ValidaLetras();
     }
 
     public void iniciaControl() {
@@ -119,34 +120,6 @@ public class ControlCategoria {
               
 //       
     }
-    
-        public void cargarListaCategoria1() {
-        vista.getTablacategoria().setDefaultRenderer(Object.class, new ImagenTabla());
-        vista.getTablacategoria().setRowHeight(100);
-        DefaultTableCellRenderer renderer = new DefaultTableCellRenderer();
-        DefaultTableModel tableModel;
-        tableModel = (DefaultTableModel) vista.getTablacategoria().getModel();
-        tableModel.setNumRows(0);
-        List<Categoria> lista = Modelo_Categoria.ListarCategorias1();
-        int ncols = tableModel.getColumnCount();
-        Holder<Integer> i = new Holder<Integer>(0);
-        lista.stream().forEach(p1 -> {
-
-            tableModel.addRow(new Object[ncols]);
-
-            vista.getTablacategoria().setValueAt(p1.getCod_categoria(), i.value, 0);
-             vista.getTablacategoria().setValueAt(p1.getDescripcion(), i.value, 1);
-            vista.getTablacategoria().setValueAt(p1.getNombre_categoria(), i.value, 2);
-           
-
-            //completar datos
-         
-       
-            i.value++;
-
-        });
-        
-        }
 
     private void muestraDialogo() {
         vista.getBtnaceptar().setVisible(true);
@@ -168,7 +141,7 @@ public class ControlCategoria {
         Modelo_Categoria categoria = new Modelo_Categoria(codcategoria, descripcion, nombrecate);
 
         if (categoria.Grabar_Categoria()) {
-            cargarListaCategoria1();
+            cargarListaCategoria("");
             JOptionPane.showMessageDialog(vista, "Registro grabado Satisfactoriamene");
             vista.getDialocategoria().setVisible(false);
         } else {
@@ -185,7 +158,7 @@ public class ControlCategoria {
         Modelo_Categoria categoria = new Modelo_Categoria(codcategoria, descripcion, nombrecate);
 
         if (categoria.Editar_Categoria()) {
-            cargarListaCategoria1();
+            cargarListaCategoria("");
             JOptionPane.showMessageDialog(vista, "Registro grabado Satisfactoriamene");
             vista.getDialocategoria().setVisible(false);
         } else {
@@ -227,13 +200,13 @@ public class ControlCategoria {
     }
 
     public void EliminarCategoria() {
-        int opcion=JOptionPane.showConfirmDialog(vista, "ESTA SEGURO QUE DESEA ELIMINAR","Advertencia",JOptionPane.YES_NO_OPTION);
+        int opcion=JOptionPane.showConfirmDialog(vista, "Esta seguro de Elimar esta Categoria","Advertencia",JOptionPane.YES_NO_OPTION);
         if (opcion ==JOptionPane.YES_OPTION) {
             String idSeleccion = ElegirCasilla();
             Modelo_Categoria categoria =new Modelo_Categoria(idSeleccion);
             if (categoria.eliminarcategoria()) {
-                cargarListaCategoria1();
-                JOptionPane.showMessageDialog(vista, "REGISTRO ELIMINADO");
+                cargarListaCategoria("");
+                JOptionPane.showMessageDialog(vista, "Registro Eliminado");
             }
 
         } else {
@@ -257,6 +230,32 @@ public class ControlCategoria {
 //            Logger.getLogger(ControlCategoria.class.getName()).log(Level.SEVERE, null, ex);
 //        }
 
+    }
+    
+    public void ValidaLetras(){
+        KeyListener ke = new KeyListener() {
+            @Override
+            public void keyTyped(KeyEvent e) {
+               char valida = e.getKeyChar();
+        if (((valida < 'a' | valida > 'z') & (valida < 'A' | valida > 'Z') &(valida < 'a') && (valida != KeyEvent.VK_SPACE)))  {
+            e.consume();}
+            }
+
+            @Override
+            public void keyPressed(KeyEvent e) {
+               
+            }
+
+            @Override
+            public void keyReleased(KeyEvent e) {
+               
+            }
+        };
+        
+        vista.getTxtnomcate().addKeyListener(ke);
+        vista.getTxtdescripcion().addKeyListener(ke);
+       
+        
     }
 
 }

@@ -11,6 +11,8 @@ import Modelo.Modelo_Servicio;
 import Modelo.Servicio;
 import Vista.Vista_Perfil;
 import java.awt.Image;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.io.IOException;
 import java.sql.Date;
 import java.time.Instant;
@@ -45,6 +47,8 @@ public class Control_Perfil {
         vp.getPassoculto().setVisible(true);
         vp.getTxtcontra1().setVisible(false);
         vp.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        ValidaLetras();
+        ValidaNumeros();
     }
 
     public void iniciarBotones() {
@@ -66,6 +70,12 @@ public class Control_Perfil {
         vp.getPtxtDireccion().setEnabled(false);
         vp.getDatachoser().setEnabled(false);
         vp.getTxtUsuario().setEditable(false);
+        vp.getPassoculto().setEditable(false);
+        vp.getPassoculto2().setEditable(false);
+        vp.getTxtpalabra().setEditable(false);
+        vp.getBtnpVerContra().setVisible(false);
+        vp.getTxtcontra1().setEditable(false);
+        vp.getCmbSexo().setEditable(false);
         List<Empleado> lista = me.BuscarporID(usuario);
         System.out.println(lista);
         for (int i = 0; i < lista.size(); i++) {
@@ -80,6 +90,7 @@ public class Control_Perfil {
             vp.getPassoculto().setText(e.getPassword());
             vp.getPassoculto2().setText(e.getPassword());
             vp.getTxtpalabra().setText(e.getPalabra());
+            vp.getCmbSexo().setSelectedItem(e.getSexo());
             Image img = e.getFoto();
             if (img != null) {
                 Image newimg = img.getScaledInstance(165, 150, java.awt.Image.SCALE_SMOOTH);
@@ -124,6 +135,13 @@ public class Control_Perfil {
         vp.getBtnEditarPerfil().setVisible(false);
         vp.getBtnExaminar().setVisible(true);
         vp.getBtnpGuardar().setVisible(true);
+        vp.getPassoculto().setEditable(true);
+        vp.getPassoculto2().setEditable(true);
+        vp.getTxtpalabra().setEditable(true);
+        vp.getBtnpVerContra().setVisible(true);
+        vp.getTxtcontra1().setEditable(true);
+        vp.getCmbSexo().setEditable(true);
+        
     }
 
     public void CargarImagen() {
@@ -165,9 +183,10 @@ public class Control_Perfil {
         String contra1 = String.valueOf(vp.getPassoculto().getPassword());
         String contra2 = String.valueOf(vp.getPassoculto2().getPassword());
         String contraver = vp.getTxtcontra1().getText();
+        String sexo=(String) vp.getCmbSexo().getSelectedItem();
 
         if (contra1.equals(contra2) || contraver.equals(contra2)) {
-            Modelo_Empleado mr = new Modelo_Empleado(cod, 0.0, "Servicio Cliente", contra1, palabra, ced, nom, apel, fnam, dir, tel);
+            Modelo_Empleado mr = new Modelo_Empleado(cod, 0.0, "Servicio Cliente", contra1, palabra, ced, nom, apel, fnam, dir, tel,sexo);
             if (vp.getPlblfoto().equals(' ')) {
 
             } else {
@@ -189,17 +208,72 @@ public class Control_Perfil {
 
     public void Botonver() {
         if (mostrar) {
+            ImageIcon iconobtn = new ImageIcon("src/Vista/Recursos/ocultar.png");
             vp.getPassoculto().setVisible(false);
             vp.getTxtcontra1().setVisible(true);
             mostrar = false;
             vp.getTxtcontra1().setText(String.valueOf(vp.getPassoculto().getPassword()));
-            vp.getBtnpVerContra().setText("Ocultar");
+            vp.getBtnpVerContra().setIcon(iconobtn);
         } else {
+            ImageIcon iconolbl = new ImageIcon("src/Vista/Recursos/ver.png");
             vp.getPassoculto().setVisible(true);
             vp.getTxtcontra1().setVisible(false);
             vp.getPassoculto().setText(vp.getTxtcontra1().getText());
-            vp.getBtnpVerContra().setText("Ver");
+            vp.getBtnpVerContra().setIcon(iconolbl);
             mostrar = true;
         }
+    }
+    
+     public void ValidaLetras(){
+        KeyListener ke = new KeyListener() {
+            @Override
+            public void keyTyped(KeyEvent e) {
+               char valida = e.getKeyChar();
+        if (((valida < 'a' | valida > 'z') & (valida < 'A' | valida > 'Z') &(valida < 'a') && (valida != KeyEvent.VK_SPACE)))  {
+            e.consume();}
+            }
+
+            @Override
+            public void keyPressed(KeyEvent e) {
+               
+            }
+
+            @Override
+            public void keyReleased(KeyEvent e) {
+               
+            }
+        };
+        
+        vp.getTxtUsuario().addKeyListener(ke);
+        vp.getTxtpalabra().addKeyListener(ke);
+        vp.getPtxtApellido().addKeyListener(ke);
+        vp.getPtxtNombre().addKeyListener(ke);
+        
+    }
+     
+      public void ValidaNumeros(){
+        KeyListener ke = new KeyListener() {
+            @Override
+            public void keyTyped(KeyEvent e) {
+               char vn = e.getKeyChar();
+        if ((vn < '0' | vn > '9')){
+            e.consume();}
+        if(vp.getPtxtTelf().getText().length()==10){
+            e.consume();}
+            }
+          
+            @Override
+            public void keyPressed(KeyEvent e) {
+              
+            }
+
+            @Override
+            public void keyReleased(KeyEvent e) {
+              
+            }
+        };
+        
+        vp.getPtxtTelf().addKeyListener(ke);
+            
     }
 }

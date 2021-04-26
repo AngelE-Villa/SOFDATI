@@ -11,6 +11,8 @@ import Vista.Login;
 import Vista.Principal;
 import java.awt.Color;
 import java.awt.Image;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.io.IOException;
 import java.sql.Date;
 import java.time.Instant;
@@ -38,7 +40,7 @@ public class Control_Login {
         this.login.setLocationRelativeTo(null);
         this.login.getTxtpassword().setVisible(true);
         this.login.getPassvisible().setVisible(false);
-
+        ValidaLetras();
     }
 
     public void Iniciar_Controles() {
@@ -48,7 +50,6 @@ public class Control_Login {
         login.getBtnDRecup().addActionListener(l -> Recuperar());
         login.getBtnRecuperar().addActionListener(l -> AbriDialogoRecuperar());
         login.getBtnCerrarLogin().addActionListener(l -> CerrarLogin());
-        login.getBtnExaminarReg().addActionListener(l -> CargarImagen());
         login.getBtnver().addActionListener(l -> Botonver());
 
     }
@@ -62,8 +63,12 @@ public class Control_Login {
     }
 
     public void Ingresar() {
+//        String con=login.getPassvisible().getText();
+//        String con1=String.valueOf(login.getTxtpassword().getPassword());
+//        con=con1;
+//        String cont=con;
 //        modelo.setCedula(login.getTxtUsuario().getText());
-//        modelo.setPassword(String.valueOf(login.getTxtpassword().getPassword()));
+//        modelo.setPassword(cont);
 
         modelo.setCedula("1400995010");
         modelo.setPassword("Valeria");
@@ -74,6 +79,7 @@ public class Control_Login {
             Control_Principal cp = new Control_Principal(p);
             cp.MandarUsuario(modelo.getCedula());
             cp.Inicia_Control();
+            cp.MostrarEstadistica(login.getTxtUsuario().getText());
         } else {
             JOptionPane.showMessageDialog(login, "Usuario o Contraseña Invalidos");
             login.getTxtpassword().setText("");
@@ -82,7 +88,7 @@ public class Control_Login {
 
     public void AbriDialogoRegistar() {
         login.getRegistarLogin().setVisible(true);
-        login.getRegistarLogin().setSize(300, 450);
+        login.getRegistarLogin().setSize(270, 370);
         login.getRegistarLogin().setLocationRelativeTo(login);
         login.getTxtcedulaReg().setText("");
         login.getTxtcontra1reg().setText("");
@@ -94,39 +100,19 @@ public class Control_Login {
         String ced = login.getTxtcedulaReg().getText();
         String contra1 = String.valueOf(login.getTxtcontra1reg().getPassword());
         String palabra = login.getTxtpalabra().getText();
+        String contra2 = String.valueOf(login.getTxtcontra1reg().getPassword());
         if (modelo.buscarEmpleado(ced)) {
-            System.out.println("Empleado existe");
-            if (modelo.Editar_EmpleadoAd(ced, contra1, palabra)) {
-                JOptionPane.showMessageDialog(login, "Regsitro Exitoso");
-            }
-
-        } else {
-            String cod = modelo.NEmpleados() + 1 + "";
-            String nom = login.getTxnombrereg().getText();
-            String apel = login.getTxtapellidoreg().getText();
-            String tel = login.getTxttelefReg().getText();
-            String dir = login.getTxtdireccionReg().getText();
-            Instant intate = login.getDatachoserReg().getDate().toInstant();
-            ZoneId zona = ZoneId.of("America/Guayaquil");
-            ZonedDateTime zot = ZonedDateTime.ofInstant(intate, zona);
-            Date fnam = Date.valueOf(zot.toLocalDate());
-            String contra2 = String.valueOf(login.getTxtcontra1reg().getPassword());
-
             if (contra1.equals(contra2)) {
-                Modelo_Empleado mr = new Modelo_Empleado(cod, 0.0, "Servicio Cliente", contra1, palabra, ced, nom, apel, fnam, dir, tel);
-                ImageIcon ic = (ImageIcon) login.getLblfoto().getIcon();
-                mr.setFoto(ic.getImage());
-
-                if (mr.Grabar_Empleado()) {
-                    JOptionPane.showMessageDialog(login, "Registro Exitoso");
-                    login.getRegistarLogin().setVisible(false);
-                } else {
-                    JOptionPane.showMessageDialog(login, "Error al Registrar");
+                System.out.println("Empleado existe");
+                if (modelo.Editar_EmpleadoAd(ced, contra1, palabra)) {
+                    JOptionPane.showMessageDialog(login, "Regsitro Exitoso");
                 }
 
             } else {
                 JOptionPane.showMessageDialog(login, "Las contraseñas no coinciden");
             }
+        } else {
+            JOptionPane.showMessageDialog(login,"No eres empleado de SOFDATI");
         }
 
     }
@@ -157,30 +143,6 @@ public class Control_Login {
         }
     }
 
-    public void CargarImagen() {
-
-        JFileChooser jfc = new JFileChooser();
-        jfc.setFileSelectionMode(JFileChooser.FILES_ONLY);
-        int estado = jfc.showOpenDialog(null);
-        if (estado == JFileChooser.APPROVE_OPTION) {
-            try {
-                Image icono = ImageIO.read(jfc.getSelectedFile()).getScaledInstance(
-                        login.getLblfoto().getWidth(),
-                        login.getLblfoto().getHeight(),
-                        Image.SCALE_DEFAULT
-                );
-                Icon ic = new ImageIcon(icono);
-                login.getLblfoto().setIcon(ic);
-                login.getLblfoto().updateUI();
-
-            } catch (IOException ex) {
-                Logger.getLogger(Control_Empleado.class
-                        .getName()).log(Level.SEVERE, null, ex);
-            }
-
-        }
-    }
-
     public void Botonver() {
         if (mostrar) {
             ImageIcon iconobtn = new ImageIcon("src/Vista/Recursos/ocultar.png");
@@ -198,4 +160,86 @@ public class Control_Login {
             mostrar = true;
         }
     }
+
+    public boolean ValidacionesCedula(String cedula) {
+        int c, suma = 0, acum, resta = 0;
+        try {
+            for (int i = 0; i < login.getTxtcedulaReg().getText().length() - 1; i++) {
+                c = Integer.parseInt(login.getTxtcedulaReg().getText().charAt(i) + "");
+                if (i % 2 == 0) {
+                    c = c * 2;
+                    if (c > 9) {
+                        c = c - 9;
+                    }
+                }
+                suma = suma + c;
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "La cedula Ecuatoriana no tinen letras por defecto", "ERROR", 0);
+            return false;
+        }
+        if (suma % 10 != 0) {
+            acum = ((suma / 10) + 1) * 10;
+            resta = acum - suma;
+        }
+        int ultimos = 0;
+        try {
+            ultimos = Integer.parseInt(login.getTxtcedulaReg().getText().charAt(9) + "");
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "No cumple dos 10 dijitos por defecto", "ERROR", 0);
+            return false;
+        }
+        int ultimo = ultimos;
+        if (ultimo == resta) {
+            return true;
+        } else {
+            JOptionPane.showMessageDialog(null, "la cedula es incorrecta o no existe por defecto", "ERROR", 0);
+            return false;
+        }
+    }
+
+    KeyListener ValidacionesCedula = new KeyListener() {
+        @Override
+        public void keyTyped(KeyEvent e) {
+            ValidacionesCedula("");
+        }
+
+        public void keyPressed(KeyEvent e) {
+        }
+
+        public void keyReleased(KeyEvent e) {
+            if (ValidacionesCedula(login.getTxtcedulaReg().getText()) == true) {
+                login.getTxtcedulaReg().setForeground(Color.GREEN);
+                login.getTxtcedulaReg().setText("/");
+            } else {
+                login.getTxtcedulaReg().setText("*");
+                login.getTxtcedulaReg().setForeground(Color.RED);
+            }
+        }
+    };
+
+    public void ValidaLetras() {
+        KeyListener ke = new KeyListener() {
+            @Override
+            public void keyTyped(KeyEvent e) {
+                char valida = e.getKeyChar();
+                if (((valida < 'a' | valida > 'z') & (valida < 'A' | valida > 'Z') & (valida < 'a') && (valida != KeyEvent.VK_SPACE))) {
+                    e.consume();
+                }
+            }
+
+            @Override
+            public void keyPressed(KeyEvent e) {
+
+            }
+
+            @Override
+            public void keyReleased(KeyEvent e) {
+
+            }
+        };
+        login.getTxtpalabra().addKeyListener(ke);
+
+    }
+
 }
