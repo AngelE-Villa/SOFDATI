@@ -80,7 +80,7 @@ public class ControlCategoria {
         });
         vista.getBtneliminar().addActionListener(l -> EliminarCategoria());
         
-        vista.getBtnimprimir().addActionListener(l -> ImprimirReporte());
+//        vista.getBtnimprimir().addActionListener(l -> ImprimirReporte());
     }
     
     public void switchBoton() {
@@ -107,8 +107,8 @@ public class ControlCategoria {
             tableModel.addRow(new Object[ncols]);
 
             vista.getTablacategoria().setValueAt(p1.getCod_categoria(), i.value, 0);
-             vista.getTablacategoria().setValueAt(p1.getDescripcion(), i.value, 1);
-            vista.getTablacategoria().setValueAt(p1.getNombre_categoria(), i.value, 2);
+             vista.getTablacategoria().setValueAt(p1.getNombre_categoria(), i.value, 1);
+            vista.getTablacategoria().setValueAt(p1.getDescripcion(), i.value, 2);
            
 
             //completar datos
@@ -123,10 +123,12 @@ public class ControlCategoria {
 
     private void muestraDialogo() {
         vista.getBtnaceptar().setVisible(true);
-        vista.getDialocategoria().setSize(600, 500);
+        vista.getDialocategoria().setSize(300, 270);
         vista.setTitle("NUEVA CATEGORIA");
         vista.getDialocategoria().setLocationRelativeTo(vista);
         vista.getTxtcodcate().setText("");
+        vista.getTxtcodcate().setVisible(false);
+        vista.getLblcodigocat().setVisible(false);
         vista.getTxtnomcate().setText("");
         vista.getTxtdescripcion().setText("");
         vista.getDialocategoria().setVisible(true);
@@ -134,7 +136,8 @@ public class ControlCategoria {
     }
 
     private void grabarCategoria() {
-        String codcategoria = vista.getTxtcodcate().getText();
+        Modelo_Categoria mc=new Modelo_Categoria();
+        String codcategoria=mc.NCategoria()+1+"";
         String nombrecate = vista.getTxtnomcate().getText();
         String descripcion = vista.getTxtdescripcion().getText();
 
@@ -185,6 +188,8 @@ public class ControlCategoria {
         List<Categoria> lista = categoria.BuscarCategoria();
         for (int i = 0; i < lista.size(); i++) {
             Categoria c = lista.get(i);
+            vista.getTxtcodcate().setVisible(true);
+            vista.getLblcodigocat().setVisible(true);
             String codcategoria = c.getCod_categoria();
             String descripcion = c.getDescripcion();
             String nombrecategoria = c.getNombre_categoria();
@@ -193,6 +198,7 @@ public class ControlCategoria {
             vista.getDialocategoria().setTitle("EDITAR CATEGORIA");
             vista.getTxtcodcate().setText(codcategoria);
             vista.getTxtcodcate().setEditable(false);
+            vista.getLblcodigocat().setVisible(true);
             vista.getTxtdescripcion().setText(descripcion);
             vista.getTxtnomcate().setText(nombrecategoria);
 
@@ -214,24 +220,24 @@ public class ControlCategoria {
         }
     }
 
-    private void ImprimirReporte() {
-        ConexionBADA con = new ConexionBADA();
-//        try {
+//    private void ImprimirReporte() {
+//        ConexionBADA con = new ConexionBADA();
+////        try {
+////
+////            JasperReport jr = (JasperReport) JRLoader.loadObject(getClass().getResource("/vista/Reportes/Personas/rptpersonas.jasper"));
+//////            JasperPrint jp= JasperFillManager.fillReport(jr,null, con.getCon());
+////            String aguja = vista.getTxtbuscar().getText();
+////            Map<String, Object> parametros = new HashMap<String, Object>();
+////            parametros.put("aguja", "%" + aguja + "%");
+////            JasperPrint jp = JasperFillManager.fillReport(jr, parametros, con.getCon());
+////            JasperViewer jv = new JasperViewer(jp);
+////            jv.setVisible(true);
+////        } catch (JRException ex) {
+////            Logger.getLogger(ControlCategoria.class.getName()).log(Level.SEVERE, null, ex);
+////        }
 //
-//            JasperReport jr = (JasperReport) JRLoader.loadObject(getClass().getResource("/vista/Reportes/Personas/rptpersonas.jasper"));
-////            JasperPrint jp= JasperFillManager.fillReport(jr,null, con.getCon());
-//            String aguja = vista.getTxtbuscar().getText();
-//            Map<String, Object> parametros = new HashMap<String, Object>();
-//            parametros.put("aguja", "%" + aguja + "%");
-//            JasperPrint jp = JasperFillManager.fillReport(jr, parametros, con.getCon());
-//            JasperViewer jv = new JasperViewer(jp);
-//            jv.setVisible(true);
-//        } catch (JRException ex) {
-//            Logger.getLogger(ControlCategoria.class.getName()).log(Level.SEVERE, null, ex);
-//        }
-
-    }
-    
+//    }
+//    
     public void ValidaLetras(){
         KeyListener ke = new KeyListener() {
             @Override

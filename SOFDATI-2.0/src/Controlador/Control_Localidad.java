@@ -5,23 +5,35 @@
  */
 package Controlador;
 
+import Modelo.ConexionBADA;
 import Modelo.Localidad;
 import Modelo.ModeloVehiculo;
 import Modelo.Modelo_Localidad;
 import Modelo.Vehiculo;
 import Vista.Vista_Localidad;
+import com.sun.org.apache.bcel.internal.generic.AALOAD;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.sql.Date;
 import java.time.Instant;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.xml.ws.Holder;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.util.JRLoader;
+import net.sf.jasperreports.view.JasperViewer;
 //import sun.swing.table.DefaultTableCellHeaderRenderer;
 
 /**
@@ -71,8 +83,9 @@ public class Control_Localidad {
             mostrarDatos();
         });
         vista.getBtnEliminarL1().addActionListener(l -> Eliminar());
+        vista.getBtnImprimir().addActionListener(l -> imprimirLocalidades());
         vista.getTxtBusquedaL1().addKeyListener(kl);
-        vista.getBtnSalirL1().addActionListener(l -> salirBoton());
+//        vista.getBtnSalirL1().addActionListener(l -> salirBoton());
 
     }
 
@@ -103,7 +116,9 @@ public class Control_Localidad {
     }
 
     private void muestraDialogo() {
-        vista.getDlgLocalidad().setSize(350, 250);
+        vista.getDlgLocalidad().setSize(350, 300);
+        vista.getLblcodigolocal().setVisible(false);
+        vista.getTxtCodLocal().setVisible(false);
         vista.getDlgLocalidad().setTitle("Nuevo Registro - Localidad");
         vista.getDlgLocalidad().setLocationRelativeTo(vista);
         vista.getDlgLocalidad().setVisible(true);
@@ -115,7 +130,8 @@ public class Control_Localidad {
     }
 
     private void grabarLocalidad() {
-        String cod_localidad = vista.getTxtCodLocal().getText();
+        Modelo_Localidad mc=new Modelo_Localidad();
+        String cod_localidad = mc.NLocalizacion()+1+"";
         String pais = vista.getTxtPais().getText();
         String provincia = vista.getTxtProvincia().getText();
         String canton = vista.getTxtCanton().getText();
@@ -158,15 +174,17 @@ public class Control_Localidad {
             String cod_localidad = l.getCod_ciudad();
             String pais = l.getPais();
             String provincia = l.getProvincia();
-            String canton = l.getCanton();      
+            String canton = l.getCanton();
             muestraDialogo();
+            vista.getLblcodigolocal().setVisible(true);
+            vista.getTxtCodLocal().setVisible(true);
             vista.getDlgLocalidad().setTitle("EDITAR LOCALIDAD");
             vista.getTxtCodLocal().setText(cod_localidad);
             vista.getTxtCodLocal().setEditable(false);
             vista.getTxtPais().setText(pais);
             vista.getTxtProvincia().setText(provincia);
             vista.getTxtCanton().setText(canton);
-            
+
         }
 
     }
@@ -206,31 +224,49 @@ public class Control_Localidad {
     public void salirBoton() {
         this.vista.setVisible(false);
     }
-    
-     public void ValidaLetras(){
+
+    public void ValidaLetras() {
         KeyListener ke = new KeyListener() {
             @Override
             public void keyTyped(KeyEvent e) {
-               char valida = e.getKeyChar();
-        if (((valida < 'a' | valida > 'z') & (valida < 'A' | valida > 'Z') &(valida < 'a') && (valida != KeyEvent.VK_SPACE)))  {
-            e.consume();}
+                char valida = e.getKeyChar();
+                if (((valida < 'a' | valida > 'z') & (valida < 'A' | valida > 'Z') & (valida < 'a') && (valida != KeyEvent.VK_SPACE))) {
+                    e.consume();
+                }
             }
 
             @Override
             public void keyPressed(KeyEvent e) {
-               
+
             }
 
             @Override
             public void keyReleased(KeyEvent e) {
-               
+
             }
         };
-        
+
         vista.getTxtCanton().addKeyListener(ke);
         vista.getTxtProvincia().addKeyListener(ke);
         vista.getTxtPais().addKeyListener(ke);
-        
+
+    }
+
+    public void imprimirLocalidades() {
+        ConexionBADA con = new ConexionBADA();
+        try {
+            String emp = vista.getTxtBusquedaL1().getText();
+            System.out.println(emp);
+            JasperReport jr = (JasperReport) JRLoader.loadObject(getClass().getResource("/Vista/Reportes/Reporte_Localidad/Localidades.jasper"));
+//            JasperPrint jp=JasperFillManager.fillReport(jr, null,con.getCon());
+            Map<String, Object> parametros = new HashMap<String, Object>();
+            parametros.put("aguja", "%"+emp+"%");
+            JasperPrint jp = JasperFillManager.fillReport(jr, parametros, con.getCon());
+            JasperViewer jv = new JasperViewer(jp);
+            jv.setVisible(true);
+        } catch (JRException ex) {
+            Logger.getLogger(Control_Localidad.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
 }

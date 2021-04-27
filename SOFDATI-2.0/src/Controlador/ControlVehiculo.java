@@ -5,6 +5,7 @@
  */
 package Controlador;
 
+import Modelo.ConexionBADA;
 import Modelo.ModeloVehiculo;
 import Modelo.Persona;
 import Modelo.Vehiculo;
@@ -17,7 +18,9 @@ import java.sql.Date;
 import java.time.Instant;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
@@ -30,6 +33,12 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.xml.ws.Holder;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.util.JRLoader;
+import net.sf.jasperreports.view.JasperViewer;
 import sun.swing.table.DefaultTableCellHeaderRenderer;
 //import sun.swing.table.DefaultTableCellHeaderRenderer;
 
@@ -80,10 +89,11 @@ public class ControlVehiculo {
             this.botonEditar = false;
             mostrarDatos();
         });
-        vista.getBtnEliminarV1().addActionListener(l -> ElegirCasilla());
+        vista.getBtnEliminarV1().addActionListener(l ->Eliminiar());
         vista.getTxtBusquedaV1().addKeyListener(kl);
-        vista.getBtnSalirV1().addActionListener(l -> salirBoton());
-        vista.getBtnExaminar().addActionListener(l->CargarImagen());
+//        vista.getBtnSalirV1().addActionListener(l -> salirBoton());
+        vista.getBtnExaminar().addActionListener(l -> CargarImagen());
+        vista.getBtnImprimir().addActionListener(l -> imprimirVehiculo());
 
     }
 
@@ -128,7 +138,8 @@ public class ControlVehiculo {
     }
 
     private void muestraDialogo() {
-        vista.getDlgVehiculo().setSize(700, 350);
+        vista.getTxtMatricula().setEditable(true);
+        vista.getDlgVehiculo().setSize(450, 295);
         vista.getDlgVehiculo().setTitle("Nuevo Registro - Vehiculo");
         vista.getDlgVehiculo().setLocationRelativeTo(vista);
         vista.getDlgVehiculo().setVisible(true);
@@ -136,7 +147,7 @@ public class ControlVehiculo {
         vista.getTxtPais().setText("");
         vista.getTxtColor().setText("");
         vista.getJdtFCaduce().setDate(null);
-        vista.getLblfotoVeh().setText("");
+        vista.getLblfotoVeh().setIcon(null);
 
     }
 
@@ -186,7 +197,7 @@ public class ControlVehiculo {
 
     private void mostrarDatos() {
         String idSeleccion = ElegirCasilla();
-        ModeloVehiculo vehiculo = new ModeloVehiculo(idSeleccion);
+        ModeloVehiculo vehiculo = new ModeloVehiculo();
         List<Vehiculo> lista = vehiculo.BuscarVehiculo(idSeleccion); // preguntar a Angel
         for (int i = 0; i < lista.size(); i++) {
             Vehiculo v = lista.get(i);
@@ -194,15 +205,16 @@ public class ControlVehiculo {
             String pais = v.getPais();
             String color = v.getColor();
             Date fechaCaduce = (Date) v.getFecha_matricula();
+            muestraDialogo();
             Image img = v.getFoto();
             if (img != null) {
-                Image newimg = img.getScaledInstance(165, 150, java.awt.Image.SCALE_SMOOTH);
+                Image newimg = img.getScaledInstance(125, 120, java.awt.Image.SCALE_SMOOTH);
                 ImageIcon icon = new ImageIcon(newimg);
                 vista.getLblfotoVeh().setIcon(icon);
             } else {
                 vista.getLblfotoVeh().setIcon(null);
             }
-            muestraDialogo();
+            
             vista.getDlgVehiculo().setTitle("EDITAR VEHICULO");
             vista.getTxtMatricula().setText(matricula);
             vista.getTxtMatricula().setEditable(false);
@@ -248,8 +260,8 @@ public class ControlVehiculo {
     public void salirBoton() {
         this.vista.setVisible(false);
     }
-    
-        public void CargarImagen() {
+
+    public void CargarImagen() {
 
         JFileChooser jfc = new JFileChooser();
         jfc.setFileSelectionMode(JFileChooser.FILES_ONLY);
@@ -272,56 +284,74 @@ public class ControlVehiculo {
 
         }
     }
-    
-     public void ValidaLetras(){
+
+    public void ValidaLetras() {
         KeyListener ke = new KeyListener() {
             @Override
             public void keyTyped(KeyEvent e) {
-               char valida = e.getKeyChar();
-        if (((valida < 'a' | valida > 'z') & (valida < 'A' | valida > 'Z') &(valida < 'a') && (valida != KeyEvent.VK_SPACE)))  {
-            e.consume();}
+                char valida = e.getKeyChar();
+                if (((valida < 'a' | valida > 'z') & (valida < 'A' | valida > 'Z') & (valida < 'a') && (valida != KeyEvent.VK_SPACE))) {
+                    e.consume();
+                }
             }
 
             @Override
             public void keyPressed(KeyEvent e) {
-               
+
             }
 
             @Override
             public void keyReleased(KeyEvent e) {
-               
+
             }
         };
-        
+
         vista.getTxtPais().addKeyListener(ke);
         vista.getTxtColor().addKeyListener(ke);
-   
-    }    
-     
-     public void ValidaNumeros(){
+
+    }
+
+    public void ValidaNumeros() {
         KeyListener ke = new KeyListener() {
             @Override
             public void keyTyped(KeyEvent e) {
-               char vn = e.getKeyChar();
-        if ((vn < '0' | vn > '9')){
-            e.consume();}
-        
+                char vn = e.getKeyChar();
+                if ((vn < '0' | vn > '9')) {
+                    e.consume();
+                }
+
             }
-          
+
             @Override
             public void keyPressed(KeyEvent e) {
-              
+
             }
 
             @Override
             public void keyReleased(KeyEvent e) {
-              
+
             }
         };
-        
-        vista.getTxtMatricula().addKeyListener(ke);
-         
+
+//        vista.getTxtMatricula().addKeyListener(ke);
+
     }
-     
+
+    public void imprimirVehiculo() {
+        ConexionBADA con = new ConexionBADA();
+        try {
+            String emp = vista.getTxtBusquedaV1().getText();
+            System.out.println(emp);
+                JasperReport jr = (JasperReport) JRLoader.loadObject(getClass().getResource("/Vista/Reportes/Reporte_Vehiculo/Vehiculo.jasper"));
+//            JasperPrint jp=JasperFillManager.fillReport(jr, null,con.getCon());
+            Map<String, Object> parametros = new HashMap<String, Object>();
+            parametros.put("aguja", "%"+emp+"%");
+            JasperPrint jp = JasperFillManager.fillReport(jr, parametros, con.getCon());
+            JasperViewer jv = new JasperViewer(jp);
+            jv.setVisible(true);
+        } catch (JRException ex) {
+            Logger.getLogger(ControlVehiculo.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 
 }

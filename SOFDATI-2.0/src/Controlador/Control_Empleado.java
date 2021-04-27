@@ -1,5 +1,6 @@
 package Controlador;
 
+import Modelo.ConexionBADA;
 import Modelo.Empleado;
 import Modelo.Modelo_Empleado;
 import Vista.Vista_Empleado;
@@ -12,8 +13,10 @@ import java.sql.Date;
 import java.time.Instant;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.regex.Matcher;
@@ -28,6 +31,12 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.xml.ws.Holder;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.util.JRLoader;
+import net.sf.jasperreports.view.JasperViewer;
 import sun.swing.table.DefaultTableCellHeaderRenderer;
 
 public class Control_Empleado {
@@ -81,7 +90,7 @@ public class Control_Empleado {
         vista.getTxtBuscarE().addKeyListener(kl);
         vista.getBtnExaminarE().addActionListener(p -> CargarImagen());
 //        vista.getBtnCerrarP().addActionListener(p->salir());
-//        vista.getBtnImprimir().addActionListener(P->ImprimirReporte());
+        vista.getBtnImprimirE().addActionListener(P -> imprimirEmpleados());
 
     }
 
@@ -134,7 +143,7 @@ public class Control_Empleado {
     }
 
     private void MostrarDialog() {
-        vista.getDialogoEmpleado().setSize(534, 536);
+        vista.getDialogoEmpleado().setSize(514, 516);
         vista.getDialogoEmpleado().setTitle("NUEVO EMPLEADO");
         vista.getDialogoEmpleado().setLocationRelativeTo(vista);
         vista.getTxtcedulaE().setText("");
@@ -196,7 +205,7 @@ public class Control_Empleado {
                         if (vista.getTxtdirecE().getText().isEmpty()) {
                             sueldo = 0;
                         } else {
-                            sueldo = Double.valueOf(vista.getTxtdirecE().getText());
+                            sueldo = Double.valueOf(vista.getTxtsueldoE().getText());
                         }
                         String sexo = vista.getCmbxsexo().getSelectedItem().toString();
 
@@ -328,7 +337,7 @@ public class Control_Empleado {
     public void EliminarCliente() {
         String eleccion = ElegirCasilla();
         if (eleccion != null) {
-            int opcion = JOptionPane.showConfirmDialog(vista, "Esta seguro en eliminar este Empkeado", "Advertencia", JOptionPane.YES_NO_OPTION);
+            int opcion = JOptionPane.showConfirmDialog(vista, "Esta seguro en eliminar este Empleado", "Advertencia", JOptionPane.YES_NO_OPTION);
             if (opcion == JOptionPane.YES_OPTION) {
                 Modelo_Empleado me = new Modelo_Empleado(eleccion);
                 if (me.Eliminar_Empleado()) {
@@ -502,5 +511,22 @@ public class Control_Empleado {
             }
         }
     };
+
+    public void imprimirEmpleados() {
+        ConexionBADA con = new ConexionBADA();
+        try {
+            String emp = vista.getTxtBuscarE().getText();
+            System.out.println(emp);
+            JasperReport jr = (JasperReport) JRLoader.loadObject(getClass().getResource("/Vista/Reportes/Reporte_Empleado/Empleados.jasper"));
+//            JasperPrint jp=JasperFillManager.fillReport(jr, null,con.getCon());
+            Map<String, Object> parametros = new HashMap<String, Object>();
+            parametros.put("aguja", "%" + emp + "%");
+            JasperPrint jp = JasperFillManager.fillReport(jr, parametros, con.getCon());
+            JasperViewer jv = new JasperViewer(jp);
+            jv.setVisible(true);
+        } catch (JRException ex) {
+            Logger.getLogger(Control_Empleado.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 
 }

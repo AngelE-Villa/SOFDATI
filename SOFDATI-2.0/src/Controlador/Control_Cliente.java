@@ -1,6 +1,7 @@
 package Controlador;
 
 import Modelo.Cliente;
+import Modelo.ConexionBADA;
 import Modelo.ModeloCliente;
 import Vista.Vista_Cliente;
 import java.awt.Color;
@@ -10,11 +11,22 @@ import java.sql.Date;
 import java.time.Instant;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.xml.ws.Holder;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.util.JRLoader;
+import net.sf.jasperreports.view.JasperViewer;
 
 /**
  *
@@ -29,7 +41,7 @@ public class Control_Cliente {
     public Control_Cliente(ModeloCliente modelo, Vista_Cliente vista) {
         this.modelo = modelo;
         this.vista = vista;
-        vista.setVisible(true);//aqui mostramos la vista
+        vista.setVisible(true);//aqui mostramos la vista 
         ValidaLetras();
         ValidaNumeros();
         cedula();
@@ -69,7 +81,7 @@ public class Control_Cliente {
         vista.getTxtBuscar().addKeyListener(kl);
 //        vista.getBtnExaminar().addActionListener(P -> CargarFoto());
 //        vista.getBtnCerrarP().addActionListener(p->salir());
-//        vista.getBtnImprimir().addActionListener(P->ImprimirReporte());
+        vista.getBtnImprimircli().addActionListener(P->imprimirCliente());
         vista.getBtnCancelarcli().addActionListener(l -> salir());
     }
 
@@ -178,7 +190,7 @@ public class Control_Cliente {
 
                         } else {
                             ModeloCliente cli = new ModeloCliente(idCliente, cedula, nombres, apellidos, fnacimiento, direccion, telefono, sexo);
-                            if (cli.Grabar_Solo_Cliente()) {
+                            if (cli.Grabar_Cliente()) {
                                 CargarLista("");
                                 vista.getDialogCliente().setVisible(false);
 
@@ -397,4 +409,21 @@ public class Control_Cliente {
         };
     }
 
+    public void imprimirCliente() {
+        ConexionBADA con = new ConexionBADA();
+        try {
+            String servicio = vista.getTxtBuscar().getText();
+            System.out.println(servicio);
+            JasperReport jr = (JasperReport) JRLoader.loadObject(getClass().getResource("/Vista/Reportes/Reportes_Cliente/Clientes.jasper"));
+//            JasperPrint jp=JasperFillManager.fillReport(jr, null,con.getCon());
+            Map<String, Object> parametros = new HashMap<String, Object>();
+            parametros.put("aguja","%"+servicio+"%");
+            JasperPrint jp = JasperFillManager.fillReport(jr, parametros, con.getCon());
+            JasperViewer jv = new JasperViewer(jp);
+            jv.setVisible(true);
+        } catch (JRException ex) {
+            Logger.getLogger(Control_Cliente.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
 }

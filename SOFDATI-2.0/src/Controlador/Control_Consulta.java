@@ -9,13 +9,8 @@ import Modelo.ConexionBADA;
 import Modelo.Modelo_Servicio;
 import Modelo.Servicio;
 import Vista.Vista_Consultas;
-import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import java.sql.Date;
-import java.time.Instant;
-import java.time.ZoneId;
-import java.time.ZonedDateTime;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -41,6 +36,8 @@ public class Control_Consulta {
     public Control_Consulta(Vista_Consultas vistaS, Modelo_Servicio modelo) {
         this.vistaS = vistaS;
         this.modelo = modelo;
+//        vistaS.getBtnmodificarS().setVisible(false);
+        vistaS.getBtneliminarS().setVisible(false);
     }
 
     public void iniciarControl() {
@@ -59,9 +56,11 @@ public class Control_Consulta {
             }
         };
         vistaS.getBtnactualizar().addActionListener(l -> CargarLista(""));
-
+        vistaS.getTxtbuscarS().addKeyListener(kl);
         vistaS.getBtneliminarS().addActionListener(l -> EliminarServicio());
         vistaS.getBtnimprimirS().addActionListener(l -> imprimirReporteServicio());
+        vistaS.getBtnmodificarS().addActionListener(l -> Editar());
+        vistaS.getBtnDeudas().addActionListener(l -> imprimirReporteServicioDeudas());
 
 //        vistaS.getBtnCerrarJF().addActionListener(l -> CerrarJF());
     }
@@ -87,11 +86,12 @@ public class Control_Consulta {
             vistaS.getTablaServicios().setValueAt(p1.getCodempleado(), i.value, 5);
             vistaS.getTablaServicios().setValueAt(p1.getKm_salida(), i.value, 6);
             vistaS.getTablaServicios().setValueAt(p1.getKm_llegada(), i.value, 7);
+            vistaS.getTablaServicios().setValueAt(p1.getPrecioServicio(), i.value, 8);
             i.value++;
         });
     }
-    
-        public String ElegirCasilla() {
+
+    public String ElegirCasilla() {
         String idSeleccion = "";
         int fila = vistaS.getTablaServicios().getSelectedRow();
         if (fila == -1) {
@@ -103,7 +103,7 @@ public class Control_Consulta {
         }
         return null;
     }
-    
+
     public void EliminarServicio() {
         String eleccion = ElegirCasilla();
         if (eleccion != null) {
@@ -121,7 +121,17 @@ public class Control_Consulta {
             }
         }
     }
-    
+
+    public void Editar() {
+        String a = ElegirCasilla();
+        String b = JOptionPane.showInputDialog(null, "Ingrese el Precio del Servicio");
+        Modelo_Servicio ms = new Modelo_Servicio(a);
+        if (ms.Editar_Sueldo(Double.parseDouble(b))) {
+            JOptionPane.showMessageDialog(vistaS, "Modificado");
+            CargarLista("");
+        }
+    }
+
     public String ElegirCasillaCon() {
 
         String idSeleccion = "";
@@ -135,19 +145,45 @@ public class Control_Consulta {
         }
         return null;
     }
-    public void imprimirReporteServicio(){
-        ConexionBADA con=new ConexionBADA();
-        try {
-            String servicio=ElegirCasillaCon();
-            System.out.println(servicio);
-            JasperReport jr= (JasperReport) JRLoader.loadObject(getClass().getResource("/Vista/Reportes/Reporte_Servicios/Reporte_Servicio.jasper"));       
+
+    public void imprimirReporteServicio() {
+        ConexionBADA con = new ConexionBADA();
+
+        String servicio = ElegirCasilla();
+        if (servicio.isEmpty()) {
+
+        } else {
+            try {
+                JasperReport jr = (JasperReport) JRLoader.loadObject(getClass().getResource("/Vista/Reportes/Reporte_Servicios/Reporte_Servicio.jasper"));
 //            JasperPrint jp=JasperFillManager.fillReport(jr, null,con.getCon());
-            Map<String,Object> parametros= new HashMap<String,Object>();
-            parametros.put("servicio",servicio);
-            JasperPrint jp=JasperFillManager.fillReport(jr,parametros,con.getCon());
-             jv=new JasperViewer(jp,true);
+                Map<String, Object> parametros = new HashMap<String, Object>();
+                parametros.put("servicio", servicio);
+                JasperPrint jp = JasperFillManager.fillReport(jr, parametros, con.getCon());
+                JasperViewer jv = new JasperViewer(jp);
+                jv.setVisible(true);
+            } catch (JRException ex) {
+                Logger.getLogger(ControlProducto.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+        }
+
+    }
+
+    public void imprimirReporteServicioDeudas() {
+        ConexionBADA con = new ConexionBADA();
+        String a = vistaS.getTxtbuscarS().getText();
+        try {
+            JasperReport jr = (JasperReport) JRLoader.loadObject(getClass().getResource("/Vista/Reportes/Reporte_Servicios/Deudas.jasper"));
+//            JasperPrint jp=JasperFillManager.fillReport(jr, null,con.getCon());
+            Map<String, Object> parametros = new HashMap<String, Object>();
+            parametros.put("aguja", "%"+a+"%");
+            JasperPrint jp = JasperFillManager.fillReport(jr, parametros, con.getCon());
+            JasperViewer jv = new JasperViewer(jp);
+            jv.setVisible(true);
+
         } catch (JRException ex) {
-            Logger.getLogger(ControlProducto.class.getName()).log(Level.SEVERE, null, ex);
-        }   
+            Logger.getLogger(ControlProducto.class
+                    .getName()).log(Level.SEVERE, null, ex);
+        }
     }
 }

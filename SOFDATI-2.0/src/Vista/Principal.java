@@ -231,6 +231,7 @@ public class Principal extends javax.swing.JFrame {
         btnConsultas.setToolTipText("Ingreso Detalle de Nuevo Servicio");
         btnConsultas.setBorderPainted(false);
         btnConsultas.setContentAreaFilled(false);
+        btnConsultas.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         btnConsultas.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
 
         jLabel11.setFont(new java.awt.Font("Tahoma", 1, 48)); // NOI18N
@@ -240,7 +241,7 @@ public class Principal extends javax.swing.JFrame {
         btnEstadistica.setFont(new java.awt.Font("Segoe UI Light", 1, 14)); // NOI18N
         btnEstadistica.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/Recursos/statistic_charts_chart_bars_icon_152105.png"))); // NOI18N
         btnEstadistica.setText("Estadisticas");
-        btnEstadistica.setToolTipText("Localidades Destinos");
+        btnEstadistica.setToolTipText("Estadisticas Genereales");
         btnEstadistica.setBorderPainted(false);
         btnEstadistica.setContentAreaFilled(false);
         btnEstadistica.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
@@ -324,7 +325,7 @@ public class Principal extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jpBotones1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
                 .addComponent(jpPestañas, javax.swing.GroupLayout.PREFERRED_SIZE, 0, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)

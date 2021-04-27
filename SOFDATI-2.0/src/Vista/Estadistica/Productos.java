@@ -5,6 +5,8 @@
  */
 package Vista.Estadistica;
 
+import javax.swing.JButton;
+
 /**
  *
  * @author Usuario
@@ -16,6 +18,14 @@ public class Productos extends javax.swing.JPanel {
      */
     public Productos() {
         initComponents();
+    }
+
+    public JButton getBtnMasVendido() {
+        return btnMasVendido;
+    }
+
+    public void setBtnMasVendido(JButton btnMasVendido) {
+        this.btnMasVendido = btnMasVendido;
     }
 
     /**
@@ -30,7 +40,7 @@ public class Productos extends javax.swing.JPanel {
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
+        btnMasVendido = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
 
         setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 51), 3));
@@ -59,12 +69,12 @@ public class Productos extends javax.swing.JPanel {
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
-        jButton1.setFont(new java.awt.Font("Segoe UI Emoji", 1, 18)); // NOI18N
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/Recursos/Mas_Vendido.png"))); // NOI18N
-        jButton1.setText("MAS VENDIDO   ");
-        jButton1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jButton1.setContentAreaFilled(false);
-        jButton1.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
+        btnMasVendido.setFont(new java.awt.Font("Segoe UI Emoji", 1, 18)); // NOI18N
+        btnMasVendido.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/Recursos/Mas_Vendido.png"))); // NOI18N
+        btnMasVendido.setText("MAS VENDIDO   ");
+        btnMasVendido.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        btnMasVendido.setContentAreaFilled(false);
+        btnMasVendido.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -78,7 +88,7 @@ public class Productos extends javax.swing.JPanel {
             .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(42, 42, 42)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 254, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnMasVendido, javax.swing.GroupLayout.PREFERRED_SIZE, 254, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(48, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -86,7 +96,7 @@ public class Productos extends javax.swing.JPanel {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(44, 44, 44)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnMasVendido, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(71, Short.MAX_VALUE))
         );
 
@@ -108,7 +118,7 @@ public class Productos extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton btnMasVendido;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;

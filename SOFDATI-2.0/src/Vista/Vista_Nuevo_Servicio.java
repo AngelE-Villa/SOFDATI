@@ -765,7 +765,6 @@ public class Vista_Nuevo_Servicio extends javax.swing.JInternalFrame {
         jButton1.setText("jButton1");
 
         dialogoproducto.setBackground(new java.awt.Color(255, 255, 255));
-        dialogoproducto.setPreferredSize(new java.awt.Dimension(320, 280));
 
         jPanel5.setBackground(new java.awt.Color(255, 231, 47));
 
@@ -882,6 +881,8 @@ public class Vista_Nuevo_Servicio extends javax.swing.JInternalFrame {
                 .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
+        setClosable(true);
+
         jPanel1.setBackground(new java.awt.Color(255, 231, 47));
         jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
@@ -958,7 +959,7 @@ public class Vista_Nuevo_Servicio extends javax.swing.JInternalFrame {
 
         txtempleado.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        btnbuscarEmpleado.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/Recursos/Asignar.PNG"))); // NOI18N
+        btnbuscarEmpleado.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/Recursos/Aceptar_1.PNG"))); // NOI18N
         btnbuscarEmpleado.setBorderPainted(false);
         btnbuscarEmpleado.setContentAreaFilled(false);
 
@@ -997,11 +998,11 @@ public class Vista_Nuevo_Servicio extends javax.swing.JInternalFrame {
         btnAgregarNuevoProducto.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         btnAgregarNuevoProducto.setText("Agregar Nuevo ");
 
-        MasProductos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/Recursos/Agregar.PNG"))); // NOI18N
+        MasProductos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/Recursos/AceptarP.png"))); // NOI18N
         MasProductos.setBorderPainted(false);
         MasProductos.setContentAreaFilled(false);
 
-        btnQuitarProducto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/Recursos/Quitar.PNG"))); // NOI18N
+        btnQuitarProducto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/Recursos/Eliminar.PNG"))); // NOI18N
         btnQuitarProducto.setBorderPainted(false);
         btnQuitarProducto.setContentAreaFilled(false);
 
@@ -1218,13 +1219,13 @@ public class Vista_Nuevo_Servicio extends javax.swing.JInternalFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 9, Short.MAX_VALUE)
+                .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0))
         );

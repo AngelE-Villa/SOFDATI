@@ -80,8 +80,8 @@ public class ModeloVehiculo extends Vehiculo {
 
     public boolean grabar() {
         String sql;
-        sql = "INSERT INTO vehiculo (matricula,pais,color,fecha_matricula,estado)";
-        sql += "VALUES('" + getMatricula() + "','" + getPais() + "','" + getColor() + "','" + getFecha_matricula() + "'," + 1 + ")";
+        sql = "INSERT INTO vehiculo (matricula,pais,color,fecha_matricula,estado ,foto)";
+        sql += "VALUES('" + getMatricula() + "','" + getPais() + "','" + getColor() + "','" + getFecha_matricula() + "'," + 1 + ",'" + foto64()+ "')";
         if (con.noQuery(sql) == null) {
             return true;
         } else {
@@ -104,8 +104,8 @@ public class ModeloVehiculo extends Vehiculo {
     public static List<Vehiculo> ListarVehiculo(String aguja) {
         try {
             String query = "Select * from vehiculo WHERE "
-                    + "UPPER(matricula) LIKE '" + aguja + "%' AND estado=1 OR "
-                    + "UPPER(color) LIKE '" + aguja + "%' AND estado=1";
+                    + "UPPER(matricula) LIKE UPPER('" + aguja + "%') AND estado=1 OR "
+                    + "UPPER(color) LIKE UPPER('" + aguja + "%') AND estado=1";
             ResultSet rs = con.query(query);
             List<Vehiculo> lista = new ArrayList<Vehiculo>();
             byte[] bf;
@@ -180,9 +180,9 @@ public class ModeloVehiculo extends Vehiculo {
     public boolean editar() {
 
         String sql;
-        sql = "UPDATE vehiculo SET pais=" + getPais() + ", color=" + getColor() + ","
-                + "fecha_matricula='" + getFecha_matricula() + "',estado=" + 1 + " "
-                + "WHERE matricula='" + getMatricula() + "';";
+        sql = "UPDATE vehiculo SET pais='" + getPais() + "', color='" + getColor() + "',"
+                + "fecha_matricula='" + getFecha_matricula() + "',estado=1, foto='" + foto64() + "' "
+                + "WHERE matricula='" + getMatricula() + "'";
         if (con.noQuery(sql) == null) {
             return true;
         } else {

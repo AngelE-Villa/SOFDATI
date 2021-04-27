@@ -11,7 +11,9 @@ import java.awt.Image;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
@@ -23,6 +25,12 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.xml.ws.Holder;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.util.JRLoader;
+import net.sf.jasperreports.view.JasperViewer;
 
 /**
  *
@@ -42,7 +50,7 @@ public class ControlProducto {
         this.vista = vista;
         vista.setVisible(true);//MOSTRAR LA 
         ValidaLetras();
-        
+
     }
 
     public void iniciaControl() {
@@ -77,7 +85,7 @@ public class ControlProducto {
         });
         vista.getBtneliminar().addActionListener(l -> EliminarProducto());
 //        vista.getBtnexaminar().addActionListener(l -> cargarImagen());
-//        vista.getBtnimprimir().addActionListener(l -> ImprimirReporte());
+        vista.getBtnimprimir().addActionListener(l -> imprimirProducto());
         vista.getBtnAgregarNuevacategoria().addActionListener(l -> AgregarNuevaCategoria());
     }
 
@@ -139,10 +147,11 @@ public class ControlProducto {
 
     private void muestraDialogo() {
 
-        vista.getDialogoproducto().setSize(600, 500);
+        vista.getDialogoproducto().setSize(355, 315);
         vista.setTitle("NUEVO PRODUCTO");
         vista.getDialogoproducto().setLocationRelativeTo(vista);
-        vista.getTxtcodproducto().setText("");
+        vista.getTxtcodproducto().setVisible(false);
+        vista.getLblcodpro().setVisible(false);
         vista.getCbxCategoria().setSelectedIndex(0);
         vista.getTxtnompro().setText("");
         vista.getTxtunidadm().setText("");
@@ -187,7 +196,7 @@ public class ControlProducto {
 //        producto.setFoto(ic.getImage());
         if (producto.editar()) {
             cargarListaProducto("");
-            JOptionPane.showMessageDialog(vista, "Registro grabado Satisfactoriamene");
+            JOptionPane.showMessageDialog(vista, "Registro Editado Satisfactoriamene");
             vista.getDialogoproducto().setVisible(false);
         } else {
             JOptionPane.showMessageDialog(vista, "ERROR");
@@ -231,6 +240,8 @@ public class ControlProducto {
 //            }
             vista.getDialogoproducto().setTitle("EDITAR PRODUCTO");
             vista.getTxtcodproducto().setText(codproducto);
+            vista.getTxtcodproducto().setVisible(true);
+            vista.getLblcodpro().setVisible(true                                                                            );
             vista.getTxtcodproducto().setEditable(false);
             vista.getCbxCategoria().setSelectedItem(codcategoria);
             vista.getTxtnompro().setText(nombreproducto);
@@ -261,10 +272,10 @@ public class ControlProducto {
                 JOptionPane.showMessageDialog(vista, "REGISTRO ELIMINADO");
 
             } else {
-                System.out.println("ERROR AL ELIMINAR");       
+                System.out.println("ERROR AL ELIMINAR");
             }
-        }else {
-            JOptionPane.showMessageDialog(vista,"Eliminacion Cancelada");
+        } else {
+            JOptionPane.showMessageDialog(vista, "Eliminacion Cancelada");
         }
 
     }
@@ -292,48 +303,46 @@ public class ControlProducto {
 //
 //        }
 //    }
-    private void ImprimirReporte() {
+    public void imprimirProducto() {
         ConexionBADA con = new ConexionBADA();
-//        try {
-//            
-//
-//            JasperReport jr = (JasperReport) JRLoader.loadObject(getClass().getResource("/vista/Reportes/Personas/rptpersonas.jasper"));
-//            JasperPrint jp= JasperFillManager.fillReport(jr,null, con.getCon());
-//            String aguja = vista.getTxtbuscar().getText();
-//            Map<String, Object> parametros = new HashMap<String, Object>();
-//            parametros.put("aguja", "%" + aguja + "%");
-//            JasperPrint jp = JasperFillManager.fillReport(jr, parametros, con.getCon());
-//            JasperViewer jv = new JasperViewer(jp);
-//            jv.setVisible(true);
-//        } catch (JRException ex) {
-//            Logger.getLogger(ControlProducto.class.getName()).log(Level.SEVERE, null, ex);
-//        }
-
+        try {
+            String emp = vista.getTxtbuscar().getText();
+            System.out.println(emp);
+            JasperReport jr = (JasperReport) JRLoader.loadObject(getClass().getResource("/Vista/Reportes/Reporte_Producto/Productos.jasper"));
+//            JasperPrint jp=JasperFillManager.fillReport(jr, null,con.getCon());
+            Map<String, Object> parametros = new HashMap<String, Object>();
+            parametros.put("aguja", "%"+emp+"%");
+            JasperPrint jp = JasperFillManager.fillReport(jr, parametros, con.getCon());
+            JasperViewer jv = new JasperViewer(jp);
+            jv.setVisible(true);
+        } catch (JRException ex) {
+            Logger.getLogger(ControlProducto.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
-    
-     public void ValidaLetras(){
+
+    public void ValidaLetras() {
         KeyListener ke = new KeyListener() {
             @Override
             public void keyTyped(KeyEvent e) {
-               char valida = e.getKeyChar();
-        if (((valida < 'a' | valida > 'z') & (valida < 'A' | valida > 'Z') &(valida < 'a') && (valida != KeyEvent.VK_SPACE)))  {
-            e.consume();}
+                char valida = e.getKeyChar();
+                if (((valida < 'a' | valida > 'z') & (valida < 'A' | valida > 'Z') & (valida < 'a') && (valida != KeyEvent.VK_SPACE))) {
+                    e.consume();
+                }
             }
 
             @Override
             public void keyPressed(KeyEvent e) {
-               
+
             }
 
             @Override
             public void keyReleased(KeyEvent e) {
-               
+
             }
         };
-        
+
         vista.getTxtnompro().addKeyListener(ke);
-        
-        
+
     }
 
 }

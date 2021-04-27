@@ -81,8 +81,8 @@ public class Modelo_Categoria extends Categoria {
     
         public boolean Grabar_Categoria() {
             String sql;
-            sql = "INSERT INTO categorias (cod_categoria, nombre_ct, estado) "
-                    + "VALUES ('" + getCod_categoria() + "','" + getNombre_categoria() + "'," + 1 + ")";
+            sql = "INSERT INTO categorias (cod_categoria, nombre_ct, estado, descripcion_ct) "
+                    + "VALUES ('" + getCod_categoria() + "','" + getNombre_categoria() + "'," + 1 + ",'" + getDescripcion()+ "')";
 
             if (con.noQuery(sql) == null) {
                 return true;

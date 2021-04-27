@@ -98,7 +98,7 @@ public class Modelo_Empleado extends Empleado {
 
     
     public String CodEm_Servicio(String cod) {
-        String query = "select cod_empleado from empleado as cod where cedula_pe= '"+cod+"'";
+        String query = "select cod_empleado as cod from empleado  where cedula_pe= '"+cod+"'";
         ResultSet rs = con.query(query);
         try {
             while (rs.next()) {

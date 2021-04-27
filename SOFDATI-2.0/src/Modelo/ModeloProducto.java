@@ -185,7 +185,7 @@ public class ModeloProducto extends Productos {
                     + "FROM producto p "
                     + "JOIN categorias c "
                     + "ON p.cod_ct_producto=c.cod_categoria "
-                    + "WHERE cod_producto='" + prod + "' AND estado=1;";
+                    + "WHERE cod_producto='" + prod + "' AND p.estado=1;";
             ResultSet rs = con.query(query);
             List<Productos> lista = new ArrayList<Productos>();
 

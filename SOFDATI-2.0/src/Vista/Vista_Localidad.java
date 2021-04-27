@@ -7,6 +7,7 @@ package Vista;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
+import javax.swing.JLabel;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 
@@ -23,6 +24,14 @@ public class Vista_Localidad extends javax.swing.JInternalFrame {
         initComponents();
     }
 
+    public JLabel getLblcodigolocal() {
+        return lblcodigolocal;
+    }
+
+    public void setLblcodigolocal(JLabel lblcodigolocal) {
+        this.lblcodigolocal = lblcodigolocal;
+    }
+
     public JTable getTblLocalidad() {
         return TblLocalidad;
     }
@@ -37,6 +46,14 @@ public class Vista_Localidad extends javax.swing.JInternalFrame {
 
     public void setBntModificarL1(JButton bntModificarL1) {
         this.bntModificarL1 = bntModificarL1;
+    }
+
+    public JButton getBtnImprimir() {
+        return btnImprimir;
+    }
+
+    public void setBtnImprimir(JButton btnImprimir) {
+        this.btnImprimir = btnImprimir;
     }
 
     public JButton getBtnAgregarL1() {
@@ -77,14 +94,6 @@ public class Vista_Localidad extends javax.swing.JInternalFrame {
 
     public void setBtnGuardarL2(JButton btnGuardarL2) {
         this.btnGuardarL2 = btnGuardarL2;
-    }
-
-    public JButton getBtnSalirL1() {
-        return btnSalirL1;
-    }
-
-    public void setBtnSalirL1(JButton btnSalirL1) {
-        this.btnSalirL1 = btnSalirL1;
     }
 
     public JDialog getDlgLocalidad() {
@@ -152,7 +161,7 @@ public class Vista_Localidad extends javax.swing.JInternalFrame {
         jLabel4 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         txtCodLocal = new javax.swing.JTextField();
-        jLabel2 = new javax.swing.JLabel();
+        lblcodigolocal = new javax.swing.JLabel();
         txtPais = new javax.swing.JTextField();
         txtProvincia = new javax.swing.JTextField();
         txtCanton = new javax.swing.JTextField();
@@ -163,7 +172,6 @@ public class Vista_Localidad extends javax.swing.JInternalFrame {
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         lblL1 = new java.awt.Label();
-        btnSalirL1 = new javax.swing.JButton();
         jPanel5 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
         txtBusquedaL1 = new javax.swing.JTextField();
@@ -171,7 +179,7 @@ public class Vista_Localidad extends javax.swing.JInternalFrame {
         bntModificarL1 = new javax.swing.JButton();
         btnBuscarL1 = new javax.swing.JButton();
         btnEliminarL1 = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        btnImprimir = new javax.swing.JButton();
 
         jPanel3.setBackground(new java.awt.Color(255, 231, 47));
 
@@ -202,7 +210,7 @@ public class Vista_Localidad extends javax.swing.JInternalFrame {
 
         jLabel1.setText("Pais");
 
-        jLabel2.setText("ID");
+        lblcodigolocal.setText("ID");
 
         txtProvincia.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -240,7 +248,7 @@ public class Vista_Localidad extends javax.swing.JInternalFrame {
                                 .addComponent(txtProvincia)
                                 .addComponent(txtPais, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                                    .addComponent(jLabel2)
+                                    .addComponent(lblcodigolocal)
                                     .addGap(18, 18, 18)
                                     .addComponent(txtCodLocal, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addComponent(txtCanton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE))))
@@ -252,7 +260,7 @@ public class Vista_Localidad extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtCodLocal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2))
+                    .addComponent(lblcodigolocal))
                 .addGap(18, 18, Short.MAX_VALUE)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
@@ -304,10 +312,8 @@ public class Vista_Localidad extends javax.swing.JInternalFrame {
 
         jPanel2.setBackground(new java.awt.Color(255, 231, 47));
 
-        lblL1.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
+        lblL1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         lblL1.setText("Localidad");
-
-        btnSalirL1.setText("Salir");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -316,16 +322,10 @@ public class Vista_Localidad extends javax.swing.JInternalFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(lblL1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(251, 251, 251)
-                .addComponent(btnSalirL1, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addGap(325, 325, 325))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(btnSalirL1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addComponent(lblL1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 9, Short.MAX_VALUE))
@@ -352,9 +352,9 @@ public class Vista_Localidad extends javax.swing.JInternalFrame {
         btnEliminarL1.setBorderPainted(false);
         btnEliminarL1.setContentAreaFilled(false);
 
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/Recursos/Imprimir.PNG"))); // NOI18N
-        jButton1.setBorderPainted(false);
-        jButton1.setContentAreaFilled(false);
+        btnImprimir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/Recursos/Imprimir.PNG"))); // NOI18N
+        btnImprimir.setBorderPainted(false);
+        btnImprimir.setContentAreaFilled(false);
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -373,20 +373,20 @@ public class Vista_Localidad extends javax.swing.JInternalFrame {
                 .addComponent(bntModificarL1, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnEliminarL1, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 77, Short.MAX_VALUE)
+                .addComponent(btnImprimir, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(20, 20, 20))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnAgregarL1)
                     .addComponent(bntModificarL1)
                     .addComponent(btnEliminarL1)
                     .addComponent(btnBuscarL1)
-                    .addComponent(jButton1))
+                    .addComponent(btnImprimir))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -400,8 +400,8 @@ public class Vista_Localidad extends javax.swing.JInternalFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -424,7 +424,7 @@ public class Vista_Localidad extends javax.swing.JInternalFrame {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
-                .addComponent(ScrlL1, javax.swing.GroupLayout.DEFAULT_SIZE, 392, Short.MAX_VALUE))
+                .addComponent(ScrlL1, javax.swing.GroupLayout.DEFAULT_SIZE, 412, Short.MAX_VALUE))
         );
 
         pack();
@@ -447,11 +447,9 @@ public class Vista_Localidad extends javax.swing.JInternalFrame {
     private javax.swing.JButton btnCancelarL2;
     private javax.swing.JButton btnEliminarL1;
     private javax.swing.JButton btnGuardarL2;
-    private javax.swing.JButton btnSalirL1;
+    private javax.swing.JButton btnImprimir;
     private javax.swing.JDialog dlgLocalidad;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -462,6 +460,7 @@ public class Vista_Localidad extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanel5;
     private java.awt.Label lblL1;
     private javax.swing.JLabel lblL2;
+    private javax.swing.JLabel lblcodigolocal;
     private javax.swing.JTextField txtBusquedaL1;
     private javax.swing.JTextField txtCanton;
     private javax.swing.JTextField txtCodLocal;

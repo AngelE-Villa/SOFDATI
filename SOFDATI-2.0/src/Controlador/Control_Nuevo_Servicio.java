@@ -510,10 +510,10 @@ public class Control_Nuevo_Servicio {
         ConexionBADA con=new ConexionBADA();
         try {
             String servicio=vista.getLblNServicio().getText();
-            JasperReport jr= (JasperReport) JRLoader.loadObject(getClass().getResource("/Vista/Reportes/Reportes_Servicios/Reporte_Servicio.jasper"));       
+            JasperReport jr= (JasperReport) JRLoader.loadObject(getClass().getResource("/Vista/Reportes/Reporte_Servicios/Reporte_Servicio.jasper"));       
 //            JasperPrint jp=JasperFillManager.fillReport(jr, null,con.getCon());
             Map<String,Object> parametros= new HashMap<String,Object>();
-            parametros.put("servicio","%"+servicio+"%");
+            parametros.put("servicio",servicio);
             JasperPrint jp=JasperFillManager.fillReport(jr,parametros,con.getCon());
             JasperViewer jv=new JasperViewer(jp);
             jv.setVisible(true);

@@ -5,6 +5,8 @@
  */
 package Vista.Estadistica;
 
+import javax.swing.JButton;
+
 /**
  *
  * @author Usuario
@@ -16,6 +18,22 @@ public class Servicios extends javax.swing.JPanel {
      */
     public Servicios() {
         initComponents();
+    }
+
+    public JButton getBtnLugares() {
+        return btnLugares;
+    }
+
+    public void setBtnLugares(JButton btnLugares) {
+        this.btnLugares = btnLugares;
+    }
+
+    public JButton getBtnVehiculosServicio() {
+        return btnVehiculosServicio;
+    }
+
+    public void setBtnVehiculosServicio(JButton btnVehiculosServicio) {
+        this.btnVehiculosServicio = btnVehiculosServicio;
     }
 
     /**
@@ -37,8 +55,8 @@ public class Servicios extends javax.swing.JPanel {
         jPanel3 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        btnLugares = new javax.swing.JButton();
+        btnVehiculosServicio = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
@@ -132,19 +150,19 @@ public class Servicios extends javax.swing.JPanel {
 
         jPanel4.setBackground(new java.awt.Color(255, 255, 255));
 
-        jButton3.setFont(new java.awt.Font("Segoe UI Emoji", 1, 18)); // NOI18N
-        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/Recursos/Localizacion.png"))); // NOI18N
-        jButton3.setText("LUGARES   ");
-        jButton3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jButton3.setContentAreaFilled(false);
-        jButton3.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
+        btnLugares.setFont(new java.awt.Font("Segoe UI Emoji", 1, 18)); // NOI18N
+        btnLugares.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/Recursos/Localizacion.png"))); // NOI18N
+        btnLugares.setText("LUGARES   ");
+        btnLugares.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        btnLugares.setContentAreaFilled(false);
+        btnLugares.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
 
-        jButton4.setFont(new java.awt.Font("Segoe UI Emoji", 1, 18)); // NOI18N
-        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/Recursos/vehiculo.png"))); // NOI18N
-        jButton4.setText("VEHICULO   ");
-        jButton4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jButton4.setContentAreaFilled(false);
-        jButton4.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
+        btnVehiculosServicio.setFont(new java.awt.Font("Segoe UI Emoji", 1, 18)); // NOI18N
+        btnVehiculosServicio.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/Recursos/vehiculo.png"))); // NOI18N
+        btnVehiculosServicio.setText("VEHICULO   ");
+        btnVehiculosServicio.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        btnVehiculosServicio.setContentAreaFilled(false);
+        btnVehiculosServicio.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -158,8 +176,8 @@ public class Servicios extends javax.swing.JPanel {
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, 216, Short.MAX_VALUE))
+                    .addComponent(btnLugares, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnVehiculosServicio, javax.swing.GroupLayout.DEFAULT_SIZE, 216, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
@@ -168,9 +186,9 @@ public class Servicios extends javax.swing.JPanel {
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnLugares, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnVehiculosServicio, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(53, Short.MAX_VALUE))
         );
 
@@ -192,10 +210,10 @@ public class Servicios extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnLugares;
+    private javax.swing.JButton btnVehiculosServicio;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;

@@ -63,15 +63,15 @@ public class Control_Login {
     }
 
     public void Ingresar() {
-//        String con=login.getPassvisible().getText();
-//        String con1=String.valueOf(login.getTxtpassword().getPassword());
-//        con=con1;
-//        String cont=con;
-//        modelo.setCedula(login.getTxtUsuario().getText());
-//        modelo.setPassword(cont);
+        String con=login.getPassvisible().getText();
+        String con1=String.valueOf(login.getTxtpassword().getPassword());
+        con=con1;
+        String cont=con;
+        modelo.setCedula(login.getTxtUsuario().getText());
+        modelo.setPassword(cont);
 
-        modelo.setCedula("1400995010");
-        modelo.setPassword("Valeria");
+//        modelo.setCedula("1400995010");
+//        modelo.setPassword("Valeria");
 
         if (modelo.ValidarDatos()) {
             login.setVisible(false);
@@ -88,7 +88,7 @@ public class Control_Login {
 
     public void AbriDialogoRegistar() {
         login.getRegistarLogin().setVisible(true);
-        login.getRegistarLogin().setSize(270, 370);
+        login.getRegistarLogin().setSize(280, 355);
         login.getRegistarLogin().setLocationRelativeTo(login);
         login.getTxtcedulaReg().setText("");
         login.getTxtcontra1reg().setText("");
@@ -119,7 +119,7 @@ public class Control_Login {
 
     public void AbriDialogoRecuperar() {
         login.getDialogoRecuperar().setVisible(true);
-        login.getDialogoRecuperar().setSize(360, 300);
+        login.getDialogoRecuperar().setSize(315, 305);
         login.getDialogoRecuperar().setLocationRelativeTo(login);
         login.getTxtbuscarRecup().setText("");
         login.getLblDRecuperar().setText("");

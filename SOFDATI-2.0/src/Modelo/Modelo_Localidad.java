@@ -40,7 +40,6 @@ public class Modelo_Localidad extends Localidad {
     public int NLocalizacion() {
         String query = "select max(cod_ciudad) as num from localidad";
         ResultSet rs = con.query(query);
-
         try {
             while (rs.next()) {
                 return rs.getInt("num");
@@ -54,7 +53,7 @@ public class Modelo_Localidad extends Localidad {
 
     public boolean grabar() {
         String sql;
-        sql = "INSERT INTO localidad (cod_ciudad,pais,provincia,canton,ESTADO)";
+        sql = "INSERT INTO localidad (cod_ciudad,pais,provincia,canton,estado)";
         sql += "VALUES('" + getCod_ciudad() + "','" + getPais() + "','" + getProvincia() + "','" + getCanton() + "'," + 1 + ")";
         if (con.noQuery(sql) == null) {
             return true;

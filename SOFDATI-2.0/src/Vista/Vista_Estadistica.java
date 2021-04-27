@@ -55,7 +55,6 @@ public class Vista_Estadistica extends javax.swing.JFrame {
         btnEstaServicios = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
 
         jList1.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
@@ -78,13 +77,14 @@ public class Vista_Estadistica extends javax.swing.JFrame {
         );
         ContenedorLayout.setVerticalGroup(
             ContenedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 250, Short.MAX_VALUE)
+            .addGap(0, 260, Short.MAX_VALUE)
         );
 
-        jPanel1.setBackground(new java.awt.Color(0, 0, 51));
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
         bntEstaClientes.setBackground(new java.awt.Color(255, 255, 255));
         bntEstaClientes.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        bntEstaClientes.setForeground(new java.awt.Color(255, 255, 255));
         bntEstaClientes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/Recursos/user_thin_icon_171437.png"))); // NOI18N
         bntEstaClientes.setToolTipText("Estadistica Cliente");
         bntEstaClientes.addActionListener(new java.awt.event.ActionListener() {
@@ -95,6 +95,7 @@ public class Vista_Estadistica extends javax.swing.JFrame {
 
         btnEmpleados.setBackground(new java.awt.Color(255, 255, 255));
         btnEmpleados.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btnEmpleados.setForeground(new java.awt.Color(255, 255, 255));
         btnEmpleados.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/Recursos/identification_card_thin_icon_171705.png"))); // NOI18N
         btnEmpleados.setToolTipText("Estadistica Empleados");
         btnEmpleados.addActionListener(new java.awt.event.ActionListener() {
@@ -105,6 +106,7 @@ public class Vista_Estadistica extends javax.swing.JFrame {
 
         btnEstaProductos.setBackground(new java.awt.Color(255, 255, 255));
         btnEstaProductos.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btnEstaProductos.setForeground(new java.awt.Color(255, 255, 255));
         btnEstaProductos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/Recursos/package_thin_icon_171607.png"))); // NOI18N
         btnEstaProductos.setToolTipText("Estadistica Productos");
         btnEstaProductos.addActionListener(new java.awt.event.ActionListener() {
@@ -114,6 +116,7 @@ public class Vista_Estadistica extends javax.swing.JFrame {
         });
 
         btnEstaServicios.setBackground(new java.awt.Color(255, 255, 255));
+        btnEstaServicios.setForeground(new java.awt.Color(255, 255, 255));
         btnEstaServicios.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/Recursos/clipboard_text_thin_icon_171881.png"))); // NOI18N
         btnEstaServicios.setToolTipText("Estadistica Servicios");
 
@@ -122,24 +125,24 @@ public class Vista_Estadistica extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(57, 57, 57)
+                .addGap(40, 40, 40)
                 .addComponent(bntEstaClientes, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(19, 19, 19)
                 .addComponent(btnEmpleados, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(18, 18, 18)
                 .addComponent(btnEstaProductos, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(18, 18, 18)
                 .addComponent(btnEstaServicios, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(59, Short.MAX_VALUE))
+                .addContainerGap(51, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btnEstaProductos, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(btnEstaProductos, javax.swing.GroupLayout.PREFERRED_SIZE, 48, Short.MAX_VALUE)
                     .addComponent(btnEstaServicios, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnEmpleados, javax.swing.GroupLayout.PREFERRED_SIZE, 48, Short.MAX_VALUE)
+                    .addComponent(btnEmpleados, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                     .addComponent(bntEstaClientes, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -149,27 +152,20 @@ public class Vista_Estadistica extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel1.setText("ESTADISTICA");
 
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/Recursos/Logo_Horizontal.png"))); // NOI18N
-
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addComponent(jLabel3)
-                .addGap(27, 27, 27)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(98, 98, 98)
                 .addComponent(jLabel1)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jLabel3))
+                .addComponent(jLabel1)
+                .addGap(0, 11, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -177,17 +173,17 @@ public class Vista_Estadistica extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(Contenedor, javax.swing.GroupLayout.DEFAULT_SIZE, 354, Short.MAX_VALUE)
+            .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(1, 1, 1)
+                .addComponent(Contenedor, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
-                .addComponent(Contenedor, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0)
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         pack();
@@ -317,7 +313,6 @@ public class Vista_Estadistica extends javax.swing.JFrame {
     private javax.swing.JButton btnEstaProductos;
     private javax.swing.JButton btnEstaServicios;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JList<String> jList1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
